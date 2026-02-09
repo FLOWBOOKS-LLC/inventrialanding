@@ -127,11 +127,11 @@ export function ContactUs() {
               <span className="text-white text-sm font-medium">We're here to help</span>
             </motion.div>
 
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl lg:text-7xl mb-8 tracking-tight leading-tight"
+              className="text-2xl lg:text-5xl mb-8 tracking-tight leading-tight"
               style={{
                 background: 'linear-gradient(to bottom, #ffffff 0%, #e0f2fe 100%)',
                 WebkitBackgroundClip: 'text',
@@ -139,7 +139,7 @@ export function ContactUs() {
                 backgroundClip: 'text'
               }}
             >
-              Get in Touch
+              Contact Us
             </motion.h1>
 
             <motion.p 

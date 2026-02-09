@@ -35,11 +35,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      
       <Header onNavigate={setCurrentPage} currentPage={currentPage} />
       <main>
         {currentPage === 'home' ? (
           <>
-            <Hero />
+            <Hero onNavigate={setCurrentPage} />
             <Features />
             <Testimonials />
             <CTA onNavigate={setCurrentPage} />

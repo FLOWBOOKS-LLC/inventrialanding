@@ -28,7 +28,8 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
           </div>
           
           <nav className="hidden md:flex items-center gap-8 ml-12">
-            <a 
+            <button
+              type="button"
               onClick={() => handleNavClick('about')}
               className={`transition-all duration-200 relative group cursor-pointer ${currentPage === 'about' ? 'text-white' : 'text-white/80 hover:text-white'}`}
               style={currentPage === 'about' ? { color: '#4166b2' } : {}}
@@ -37,8 +38,9 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               {currentPage !== 'about' && (
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
               )}
-            </a>
-            <a 
+            </button>
+            <button
+            type="button"
               onClick={() => handleNavClick('clients')}
               className={`transition-all duration-200 relative group cursor-pointer ${currentPage === 'clients' ? 'text-white' : 'text-white/80 hover:text-white'}`}
               style={currentPage === 'clients' ? { color: '#4166b2' } : {}}
@@ -47,8 +49,9 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               {currentPage !== 'clients' && (
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
               )}
-            </a>
-            <a 
+            </button>
+            <button
+              type="button"
               onClick={() => handleNavClick('blog')}
               className={`transition-all duration-200 relative group cursor-pointer ${currentPage === 'blog' ? 'text-white' : 'text-white/80 hover:text-white'}`}
               style={currentPage === 'blog' ? { color: '#4166b2' } : {}}
@@ -57,8 +60,9 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               {currentPage !== 'blog' && (
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
               )}
-            </a>
-            <a 
+            </button>
+            <button
+              type="button"
               onClick={() => handleNavClick('contact')}
               className={`transition-all duration-200 relative group cursor-pointer ${currentPage === 'contact' ? 'text-white' : 'text-white/80 hover:text-white'}`}
               style={currentPage === 'contact' ? { color: '#4166b2' } : {}}
@@ -67,7 +71,7 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               {currentPage !== 'contact' && (
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
               )}
-            </a>
+            </button>
           </nav>
           
           <div className="flex items-center gap-4 ml-auto">

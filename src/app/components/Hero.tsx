@@ -6,6 +6,10 @@ import { HeroSceneOne } from "./HeroScenes/HeroSceneOne";
 import { HeroSceneTwo } from "./HeroScenes/HeroSceneTwo";
 import { HeroSceneThree } from "./HeroScenes/HeroSceneThree";
 
+interface HeroProps {
+  onNavigate?: (page: string) => void;
+}
+
 // export function Hero() {
 //   const [currentScene, setCurrentScene] = useState(0);
 //   const totalScenes = 3;
@@ -441,7 +445,7 @@ function Scene({ active, children }: SceneProps) {
 }
 
 
-export function Hero() {
+export function Hero({ onNavigate }: HeroProps) {
   const [currentScene, setCurrentScene] = useState(0);
   const totalScenes = 3;
 
@@ -471,7 +475,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              Simple Accounting Software for Growing Businesses
+              Smart Accounting Software for Growing Businesses
             </motion.h1>
 
             <motion.p
@@ -488,7 +492,11 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 px-8 font-semibold">
+              <Button
+                size="lg"
+                className="bg-white text-gray-900 hover:bg-gray-100 px-8 font-semibold"
+                onClick={() => onNavigate?.('contact')}
+              >
                 Request a demo
               </Button>
             </motion.div>
