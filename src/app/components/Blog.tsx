@@ -3,6 +3,7 @@ import { Calendar, Clock, User, ArrowRight, TrendingUp, BookOpen, Search, Tag, C
 import { Button } from "@/app/components/ui/button";
 import { useState, useEffect } from "react";
 import { BlogArticle } from "@/app/components/BlogArticle";
+import { blogCategories } from "@/app/constants/blogCategories";
 
 interface BlogPost {
   id: string | number;
@@ -84,13 +85,7 @@ export function Blog() {
     return <BlogArticle article={selectedArticle} onBack={() => setSelectedArticle(null)} />;
   }
 
-  const categories = [
-    { name: "All", count: 48 },
-    { name: "Product Updates", count: 12 },
-    { name: "Industry Insights", count: 18 },
-    { name: "Best Practices", count: 10 },
-    { name: "Case Studies", count: 8 }
-  ];
+  const categories = blogCategories;
 
   const trendingTopics = [
     { name: "AI Automation", posts: 24 },

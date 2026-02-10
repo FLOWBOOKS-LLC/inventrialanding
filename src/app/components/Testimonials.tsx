@@ -10,13 +10,13 @@ const categories = [
     stories: [
       {
         image: "https://images.unsplash.com/photo-1752650732081-8f61e81813ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGJ1c2luZXNzJTIwb3duZXIlMjBvZmZpY2V8ZW58MXx8fHwxNzY4OTE3NjA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Local Retail Store",
-        description: "Streamlined operations and improved cash flow management"
+        title: "FlowBooks simplifies daily finances",
+        description: "So small business owners can focus on growing their business instead of paperwork."
       },
       {
         image: "https://images.unsplash.com/photo-1553484771-6e117b648d45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnRyZXByZW5ldXIlMjBjb2ZmZWUlMjBzaG9wfGVufDF8fHx8MTc2ODkxNzYwOHww&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Coffee Shop Owner",
-        description: "Simplified bookkeeping and automated invoicing"
+        title: "Automated bookkeeping",
+        description: "Reduce manual work and keep your records accurate without the stress."
       }
     ]
   },
@@ -26,13 +26,13 @@ const categories = [
     stories: [
       {
         image: "https://images.unsplash.com/photo-1728281144091-b743062a9bf0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVlbGFuY2UlMjBwcm9mZXNzaW9uYWwlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY4ODI1OTA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Freelance Designer",
-        description: "Easy invoicing and expense tracking on the go"
+        title: "Take control of your finances",
+        description: "FlowBooks helps you manage money with clarity and confidence."
       },
       {
         image: "https://images.unsplash.com/photo-1570717173024-ec8081c8f8e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b3JraW5nJTIwbGFwdG9wfGVufDF8fHx8MTc2ODkxNzYwOXww&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Independent Consultant",
-        description: "Professional financial management made simple"
+        title: "Track income and expenses effortlessly",
+        description: "Know exactly where your money comes from and where it goes."
       }
     ]
   },
@@ -42,13 +42,13 @@ const categories = [
     stories: [
       {
         image: "https://images.unsplash.com/photo-1758518729685-f88df7890776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjB0ZWFtfGVufDF8fHx8MTc2ODgyMzkzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Tech Company",
-        description: "Scaled accounting processes with multi-user collaboration"
+        title: "Built for growing organisations",
+        description: "FlowBooks scales with your business — without added complexity."
       },
       {
         image: "https://images.unsplash.com/photo-1606836591695-4d58a73eba1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMG1lZXRpbmclMjBvZmZpY2V8ZW58MXx8fHwxNzY4ODA2MzE3fDA&ixlib=rb-4.1.0&q=80&w=1080",
         title: "Manufacturing Firm",
-        description: "Real-time financial insights across multiple departments"
+        description: "Secure multi-user access keeps teams aligned and accountable."
       }
     ]
   }

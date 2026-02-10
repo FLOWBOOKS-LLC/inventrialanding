@@ -9,7 +9,7 @@ const features = [
     iconColor: "#4166b2",
     title: "Automated Bookkeeping",
     description: "Automatically categorize transactions and reconcile accounts with AI-powered accuracy. Save hours of manual data entry.",
-    details: "Advanced AI algorithms learn from your transaction patterns to categorize expenses and income automatically. Real-time bank synchronization keeps your books up-to-date.",
+    details: "Automatically record and categorize transactions with minimal manual input. FlowBooks keeps your books accurate, organized, and up to date—saving you time and reducing errors.",
     imageUrl: "https://images.unsplash.com/photo-1753955900083-b62ee8d97805?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhY2NvdW50aW5nJTIwZGFzaGJvYXJkJTIwc2NyZWVufGVufDF8fHx8MTc2ODkxNzI1M3ww&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
@@ -17,7 +17,7 @@ const features = [
     iconColor: "#10b981",
     title: "Smart Invoicing",
     description: "Create, send, and track professional invoices. Get paid faster with automated reminders and payment tracking.",
-    details: "Professional invoice templates with your branding. Automated payment reminders and real-time payment tracking help you get paid 2x faster.",
+    details: "Create professional invoices in seconds, track payments, and manage customer balances effortlessly. FlowBooks helps you get paid faster and stay on top of receivables.",
     imageUrl: "https://images.unsplash.com/photo-1762427354566-2b6902a9fd06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnZvaWNlJTIwZG9jdW1lbnQlMjBidXNpbmVzc3xlbnwxfHx8fDE3Njg5MTcyNTR8MA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
@@ -25,7 +25,7 @@ const features = [
     iconColor: "#8b5cf6",
     title: "Real-time Analytics",
     description: "Access comprehensive financial reports and dashboards updated in real-time. Make data-driven decisions with confidence.",
-    details: "Beautiful, interactive dashboards show your financial health at a glance. Custom reports help you understand cash flow, profitability, and growth trends.",
+    details: "Access live financial insights anytime. Monitor cash flow, profits, expenses, and performance through clear dashboards that support smarter business decisions.",
     imageUrl: "https://images.unsplash.com/photo-1723987251277-18fc0a1effd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmFseXRpY3MlMjBjaGFydHMlMjBncmFwaHN8ZW58MXx8fHwxNzY4ODQ0MTM5fDA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
@@ -33,7 +33,7 @@ const features = [
     iconColor: "#ef4444",
     title: "Bank-level Security",
     description: "Your data is protected with 256-bit encryption and multi-factor authentication. Sleep soundly knowing your data is safe.",
-    details: "Enterprise-grade security with 256-bit SSL encryption, multi-factor authentication, and regular security audits. Your financial data is always protected.",
+    details: "Your data is protected with advanced encryption and strict access controls. FlowBooks uses bank-grade security standards to keep your financial information safe.",
     imageUrl: "https://images.unsplash.com/photo-1767972464040-8bfee42d7bed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWN1cml0eSUyMGxvY2slMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2ODkxNzI1NHww&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
@@ -41,7 +41,7 @@ const features = [
     iconColor: "#f59e0b",
     title: "Seamless Integration",
     description: "Connect with 100+ apps including your bank, payroll, and CRM systems. All your tools work together seamlessly.",
-    details: "Pre-built integrations with all major banks, payment processors, and business tools. Data flows automatically between your favorite apps.",
+    details: "Easily connect FlowBooks with banks, payment platforms, and other business tools. Enjoy smooth data flow without duplication or disruption.",
     imageUrl: "https://images.unsplash.com/photo-1703113690885-8caf0c77a7cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXR3b3JrJTIwaW50ZWdyYXRpb24lMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2ODkxNzI1NXww&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
@@ -49,7 +49,7 @@ const features = [
     iconColor: "#06b6d4",
     title: "Multi-user Access",
     description: "Collaborate with your team and accountant with customizable permission levels. Everyone stays in sync.",
-    details: "Invite team members and your accountant with role-based permissions. Real-time collaboration keeps everyone on the same page.",
+    details: "Collaborate securely with your team. Assign roles and permissions to accountants, managers, or staff while maintaining full control over your data.",
     imageUrl: "https://images.unsplash.com/photo-1739298061707-cefee19941b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwY29sbGFib3JhdGlvbiUyMHdvcmtzcGFjZXxlbnwxfHx8fDE3Njg4NjEzMDd8MA&ixlib=rb-4.1.0&q=80&w=1080"
   }
 ];

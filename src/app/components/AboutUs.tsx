@@ -1,29 +1,39 @@
 import { motion } from "motion/react";
-import { Target, Eye, Award, Users, TrendingUp, Shield, Zap, Globe, CheckCircle, ArrowRight } from "lucide-react";
+import { Target, Eye, Award, Users, Shield, Zap, CheckCircle, ArrowRight, TrendingUp, Globe } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 
 export function AboutUs() {
   const values = [
     {
+      icon: CheckCircle,
+      title: "Simplicity",
+      description: "We design solutions that are easy to use and understand."
+    },
+    {
+      icon: Target,
+      title: "Accuracy",
+      description: "We are committed to reliable, precise financial records."
+    },
+    {
       icon: Shield,
-      title: "Security First",
-      description: "Bank-level encryption and security protocols to protect your financial data 24/7"
+      title: "Security",
+      description: "We protect data with the highest security standards."
     },
     {
       icon: Zap,
-      title: "Innovation Driven",
-      description: "Cutting-edge AI technology that automates complex accounting tasks effortlessly"
-    },
-    {
-      icon: Users,
-      title: "Customer Focused",
-      description: "Dedicated support team and intuitive design built around your needs"
-    },
-    {
-      icon: Globe,
-      title: "Global Reach",
-      description: "Supporting businesses across 50+ countries with multi-currency capabilities"
+      title: "Innovation",
+      description: "We continuously improve to meet evolving business needs."
     }
+    // {
+    //   icon: Award,
+    //   title: "Integrity",
+    //   description: "We operate with transparency, honesty, and trust."
+    // },
+    // {
+    //   icon: Users,
+    //   title: "Customer-Centricity",
+    //   description: "Our users’ success guides everything we build."
+    // }
   ];
 
   const stats = [
@@ -57,12 +67,38 @@ export function AboutUs() {
   ];
 
   const milestones = [
-    { year: "2018", title: "Founded", description: "flowbooks was born from a vision to simplify accounting" },
-    { year: "2019", title: "Series A", description: "Raised $15M to accelerate product development" },
-    { year: "2021", title: "AI Launch", description: "Introduced Inventria AI-powered automation platform" },
-    { year: "2023", title: "Global Expansion", description: "Expanded to 50+ countries worldwide" },
-    { year: "2025", title: "Industry Leader", description: "Became the fastest-growing accounting software platform" }
-  ];
+  {
+    year: "Step 1",
+    title: "The Problem We Saw",
+    description:
+      "Many businesses struggled with poor record-keeping, limited financial visibility, and complex accounting tools that didn’t fit their realities."
+  },
+  {
+    year: "Step 2",
+    title: "Building the Solution",
+    description:
+      "We set out to create a practical, intuitive, and powerful accounting platform designed to simplify financial management."
+  },
+  {
+    year: "Step 3",
+    title: "Focused on Small Businesses",
+    description:
+      "FlowBooks began by helping small businesses automate bookkeeping and gain clearer financial insights."
+  },
+  {
+    year: "Step 4",
+    title: "Expanding Our Capabilities",
+    description:
+      "Through continuous innovation and feedback, we introduced smart invoicing, real-time analytics, secure data protection, and multi-user collaboration."
+  },
+  {
+    year: "Step 5",
+    title: "Growing With Our Users",
+    description:
+      "Today, FlowBooks serves individuals, SMEs, and mid-market organisations—empowering smarter decisions and sustainable growth."
+  }
+];
+
 
   return (
     <div className="bg-white">
@@ -163,7 +199,7 @@ export function AboutUs() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              We're on a mission to empower business owners with intelligent, automated accounting solutions that save time, reduce errors, and drive growth.
+              FlowBooks is a modern accounting and financial management platform built to simplify how businesses and individuals manage their finances. We help our users automate bookkeeping, gain real-time financial insights, and make better decisions with confidence. Our focus is on accuracy, security, and ease of use—so finance works for you, not against you.
             </motion.p>
 
             {/* Floating stats cards */}
@@ -174,7 +210,7 @@ export function AboutUs() {
               className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto"
             >
               {[
-                { value: "50K+", label: "Active Users", icon: Users },
+                { value: "50+", label: "Active Users", icon: Users },
                 { value: "99.9%", label: "Uptime", icon: Shield },
                 { value: "$2.5B+", label: "Managed", icon: TrendingUp },
                 { value: "150+", label: "Countries", icon: Globe }
@@ -226,7 +262,7 @@ export function AboutUs() {
                 </div>
                 <h2 className="text-3xl mb-4" style={{ color: '#0a1929' }}>Our Mission</h2>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  To democratize professional-grade accounting tools and make them accessible to businesses of all sizes. We believe every entrepreneur deserves the same financial clarity and control as Fortune 500 companies.
+                  To empower businesses and individuals with simple, reliable, and intelligent financial tools that improve visibility, control, and long-term success.
                 </p>
               </div>
             </motion.div>
@@ -245,7 +281,7 @@ export function AboutUs() {
                 </div>
                 <h2 className="text-3xl mb-4" style={{ color: '#0a1929' }}>Our Vision</h2>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  To become the world's most trusted and innovative accounting platform, where AI-powered automation handles the complexity while humans focus on strategic growth and decision-making.
+                  To become a trusted accounting platform for businesses across Africa and beyond, driving financial clarity, accountability, and sustainable growth through technology.
                 </p>
               </div>
             </motion.div>
