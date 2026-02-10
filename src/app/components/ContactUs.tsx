@@ -38,8 +38,8 @@ export function ContactUs() {
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "123 Business Ave, Suite 100",
-      subDetails: "New York, NY 10001",
+      details: "Floor 1 African Alliance House, Airport Road",
+      subDetails: "Kano State, Nigeria",
       color: "#1594e3"
     },
     {

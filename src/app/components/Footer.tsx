@@ -72,7 +72,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   About Us
                 </button>
               </li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Careers</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Clients</a></li>
               <li>
                 <button 
                   onClick={() => onNavigate?.('blog')}
@@ -81,8 +81,8 @@ export function Footer({ onNavigate }: FooterProps) {
                   Blog
                 </button>
               </li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Press</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Partners</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Contact Us</a></li>
+              {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Partners</a></li> */}
             </ul>
           </div>
           
