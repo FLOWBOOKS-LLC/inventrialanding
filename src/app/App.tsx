@@ -46,7 +46,7 @@ export default function App() {
             <CTA onNavigate={setCurrentPage} />
           </>
         ) : currentPage === 'about' ? (
-          <AboutUs />
+          <AboutUs onNavigate={setCurrentPage} />
         ) : currentPage === 'clients' ? (
           <Clients onNavigate={setCurrentPage} />
         ) : currentPage === 'blog' ? (

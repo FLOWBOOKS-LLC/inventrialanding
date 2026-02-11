@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
-import { Mail, Phone, MapPin, Clock, Send, MessageSquare, Headphones, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, MessageSquare, Headphones, Globe, CheckCircle } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { useState } from "react";
+import { createContact } from "@/app/lib/contactApi";
 
 export function ContactUs() {
   const [formData, setFormData] = useState({
@@ -13,11 +14,32 @@ export function ContactUs() {
     subject: "",
     message: ""
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [result, setResult] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    setSubmitting(true);
+    setResult("idle");
+
+    try {
+      await createContact(formData);
+      setResult("success");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        subject: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error("Failed to submit contact form", error);
+      setResult("error");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -354,10 +376,21 @@ export function ContactUs() {
                   size="lg"
                   className="w-full text-white"
                   style={{ background: '#1594e3' }}
+                  disabled={submitting}
                 >
-                  Send Message
+                  {submitting ? "Sending..." : "Send Message"}
                   <Send className="ml-2 h-5 w-5" />
                 </Button>
+
+                {result === "success" && (
+                  <div className="flex items-center justify-center gap-2 text-green-600 text-sm">
+                    <CheckCircle className="w-4 h-4" />
+                    Message sent! We’ll get back to you shortly.
+                  </div>
+                )}
+                {result === "error" && (
+                  <p className="text-sm text-red-600 text-center">Something went wrong. Please try again.</p>
+                )}
 
                 <p className="text-xs text-gray-500 text-center">
                   By submitting this form, you agree to our Privacy Policy and Terms of Service

@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { blogCategories } from "@/app/constants/blogCategories";
+import { fetchContacts, updateContactStatus, deleteContact } from "@/app/lib/contactApi";
 
 interface SuccessStory {
   id: string;
@@ -91,17 +92,28 @@ export function AdminDashboard() {
   const [editingTestimonial, setEditingTestimonial] = useState<Testimonial | null>(null);
   const [showTestimonialForm, setShowTestimonialForm] = useState(false);
 
-  // Load data from localStorage on mount
+  // Load data from localStorage on mount (legacy)
   useEffect(() => {
     const savedStories = localStorage.getItem("flowbooks_success_stories");
     const savedPosts = localStorage.getItem("flowbooks_blog_posts");
     const savedTestimonials = localStorage.getItem("flowbooks_testimonials");
-    const savedContacts = localStorage.getItem("flowbooks_contacts");
     
     if (savedStories) setSuccessStories(JSON.parse(savedStories));
     if (savedPosts) setBlogPosts(JSON.parse(savedPosts));
     if (savedTestimonials) setTestimonials(JSON.parse(savedTestimonials));
-    if (savedContacts) setContacts(JSON.parse(savedContacts));
+  }, []);
+
+  // Load contacts from Supabase
+  useEffect(() => {
+    let active = true;
+    fetchContacts()
+      .then((data) => {
+        if (active) setContacts(data);
+      })
+      .catch((err) => console.error("Failed to load contacts", err));
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Save to localStorage whenever data changes
@@ -122,12 +134,6 @@ export function AdminDashboard() {
       localStorage.setItem("flowbooks_testimonials", JSON.stringify(testimonials));
     }
   }, [testimonials]);
-
-  useEffect(() => {
-    if (contacts.length > 0) {
-      localStorage.setItem("flowbooks_contacts", JSON.stringify(contacts));
-    }
-  }, [contacts]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -371,12 +377,23 @@ export function AdminDashboard() {
           {activeSection === "contacts" && (
             <ContactsSection
               contacts={contacts}
-              onUpdateStatus={(id, status) => {
-                setContacts(prev => prev.map(c => c.id === id ? { ...c, status } : c));
+              onUpdateStatus={async (id, status) => {
+                try {
+                  await updateContactStatus(id, status);
+                  setContacts(prev => prev.map(c => c.id === id ? { ...c, status } : c));
+                } catch (err) {
+                  console.error("Failed to update contact status", err);
+                  alert("Could not update status. Please try again.");
+                }
               }}
-              onDelete={(id) => {
-                if (confirm("Are you sure you want to delete this contact submission?")) {
+              onDelete={async (id) => {
+                if (!confirm("Are you sure you want to delete this contact submission?")) return;
+                try {
+                  await deleteContact(id);
                   setContacts(prev => prev.filter(c => c.id !== id));
+                } catch (err) {
+                  console.error("Failed to delete contact", err);
+                  alert("Could not delete contact. Please try again.");
                 }
               }}
             />

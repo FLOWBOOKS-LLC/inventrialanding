@@ -2,7 +2,11 @@ import { motion } from "motion/react";
 import { Target, Eye, Award, Users, Shield, Zap, CheckCircle, ArrowRight, TrendingUp, Globe } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 
-export function AboutUs() {
+interface AboutUsProps {
+  onNavigate?: (page: string) => void;
+}
+
+export function AboutUs({ onNavigate }: AboutUsProps) {
   const values = [
     {
       icon: CheckCircle,
@@ -281,7 +285,7 @@ export function AboutUs() {
                 </div>
                 <h2 className="text-3xl mb-4" style={{ color: '#0a1929' }}>Our Vision</h2>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  To become a trusted accounting platform for businesses across Africa and beyond, driving financial clarity, accountability, and sustainable growth through technology.
+                  To become a trusted accounting platform for businesses across Africa and beyond, driving financial clarity, and sustainable growth through technology.
                 </p>
               </div>
             </motion.div>
@@ -476,6 +480,7 @@ export function AboutUs() {
                 size="lg" 
                 className="border-2 border-white bg-transparent text-white hover:bg-white px-8 text-base"
                 style={{ backgroundColor: 'transparent' }}
+                onClick={() => onNavigate?.('contact')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'white';
                   e.currentTarget.style.color = '#4166b2';
