@@ -26,53 +26,6 @@ export function Clients({ onNavigate }: ClientsProps) {
     const savedStories = localStorage.getItem("flowbooks_success_stories");
     if (savedStories) {
       setCaseStudies(JSON.parse(savedStories));
-    } else {
-      // Default stories if none exist
-      const defaultStories: SuccessStory[] = [
-        {
-          id: "1",
-          company: "TechCorp Solutions",
-          industry: "Technology",
-          logo: "TC",
-          image: "https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY4ODUyMjE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-          challenge: "Managing complex multi-currency transactions across 15 countries",
-          result: "Reduced accounting time by 75% and improved accuracy to 99.9%",
-          metrics: [
-            { value: "75%", label: "Time Saved" },
-            { value: "99.9%", label: "Accuracy" },
-            { value: "$2M", label: "Cost Reduction" }
-          ]
-        },
-        {
-          id: "2",
-          company: "GreenLeaf Retail",
-          industry: "E-commerce",
-          logo: "GL",
-          image: "https://images.unsplash.com/photo-1650978810653-112cb6018092?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHN1Y2Nlc3MlMjBjb2xsYWJvcmF0aW9ufGVufDF8fHx8MTc2ODkyMjUxNHww&ixlib=rb-4.1.0&q=80&w=1080",
-          challenge: "Tracking inventory and revenue across 500+ SKUs and multiple marketplaces",
-          result: "Real-time financial visibility and automated reconciliation",
-          metrics: [
-            { value: "90%", label: "Faster Reporting" },
-            { value: "100%", label: "Automation" },
-            { value: "500+", label: "SKUs Managed" }
-          ]
-        },
-        {
-          id: "3",
-          company: "Summit Properties",
-          industry: "Real Estate",
-          logo: "SP",
-          image: "https://images.unsplash.com/photo-1758518729685-f88df7890776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjB0ZWFtfGVufDF8fHx8MTc2ODgyMzkzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-          challenge: "Consolidating financials from 120+ properties with different lease structures",
-          result: "Unified financial dashboard with automated rent collection tracking",
-          metrics: [
-            { value: "120+", label: "Properties" },
-            { value: "85%", label: "Efficiency Gain" },
-            { value: "$5M", label: "Revenue Tracked" }
-          ]
-        }
-      ];
-      setCaseStudies(defaultStories);
     }
   }, []);
 
@@ -370,6 +323,12 @@ export function Clients({ onNavigate }: ClientsProps) {
                 </div>
               </motion.div>
             ))}
+
+            {caseStudies.length === 0 && (
+              <div className="text-center py-16 text-gray-500">
+                <p>No success stories yet. Add one in the Admin panel.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>

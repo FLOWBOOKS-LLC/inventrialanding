@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, Calendar, Clock, Heart, MessageCircle, Share2, Bookmark, ThumbsUp } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { useEffect, useMemo, useState } from "react";
+import { supabaseRequest } from "@/app/lib/supabaseClient";
 
 interface BlogArticleProps {
   article: {
@@ -13,6 +14,7 @@ interface BlogArticleProps {
     readTime: string;
     image: string;
     author: string;
+    content?: string;
   };
   onBack: () => void;
 }
@@ -24,34 +26,35 @@ interface Comment {
   date: string;
   content: string;
   likes: number;
+  post_id?: string | number;
 }
 
 export function BlogArticle({ article, onBack }: BlogArticleProps) {
   const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(142);
+  const [likeCount, setLikeCount] = useState(0);
   const [bookmarked, setBookmarked] = useState(false);
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
   const [subscribeEmail, setSubscribeEmail] = useState("");
   const [commentName, setCommentName] = useState("");
   const [commentEmail, setCommentEmail] = useState("");
-  const commentsStorageKey = useMemo(() => `flowbooks_comments_${article.id}`, [article.id]);
-
   useEffect(() => {
-    const saved = localStorage.getItem(commentsStorageKey);
-    if (saved) {
+    const abort = new AbortController();
+    const loadComments = async () => {
       try {
-        setComments(JSON.parse(saved));
-      } catch {
+        const data = await supabaseRequest<Comment[]>(
+          `/rest/v1/comments?select=*&post_id=eq.${article.id}`,
+          { signal: abort.signal }
+        );
+        setComments(data || []);
+      } catch (err) {
+        console.warn("Failed to load comments", err);
         setComments([]);
       }
-    }
-  }, [commentsStorageKey]);
-
-  const saveComments = (next: Comment[]) => {
-    setComments(next);
-    localStorage.setItem(commentsStorageKey, JSON.stringify(next));
-  };
+    };
+    loadComments();
+    return () => abort.abort();
+  }, [article.id]);
 
   const handleLike = () => {
     setLiked(!liked);
@@ -69,7 +72,16 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
         content: newComment,
         likes: 0
       };
-      saveComments([comment, ...comments]);
+      const save = async () => {
+        await supabaseRequest("/rest/v1/comments", {
+          method: "POST",
+          body: JSON.stringify({ ...comment, post_id: article.id }),
+          headers: { Prefer: "return=representation" }
+        });
+        const data = await supabaseRequest<Comment[]>(`/rest/v1/comments?select=*&post_id=eq.${article.id}`);
+        setComments(data || []);
+      };
+      save().catch((err) => alert(`Error saving comment: ${err instanceof Error ? err.message : err}`));
       setNewComment("");
       setCommentName("");
       setCommentEmail("");
@@ -86,49 +98,33 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
     }
   };
 
-  // Full article content sections
-  const articleContent = [
-    {
-      heading: "Understanding the Fundamentals",
-      paragraphs: [
-        "In today's rapidly evolving business landscape, understanding the core principles of financial management has become more crucial than ever. Modern accounting software has revolutionized how businesses track, analyze, and report their financial data, making it essential for business owners to stay informed about the latest tools and best practices.",
-        "The shift towards cloud-based solutions has democratized access to sophisticated financial tools that were once available only to large enterprises. Small and medium-sized businesses can now leverage the same powerful analytics and reporting capabilities to make data-driven decisions and maintain competitive advantages in their respective markets."
-      ]
-    },
-    {
-      heading: "Key Strategies for Implementation",
-      paragraphs: [
-        "Implementing new accounting software requires careful planning and a structured approach. The first step is to conduct a thorough assessment of your current processes and identify areas where automation can provide the most significant impact. This includes evaluating your existing workflows, pain points, and integration requirements with other business systems.",
-        "Once you've identified your needs, it's essential to involve key stakeholders from different departments early in the process. Their input will be invaluable in ensuring the chosen solution addresses the unique challenges of your organization. Consider running pilot programs with select teams before rolling out the software company-wide to identify and address any potential issues."
-      ]
-    },
-    {
-      heading: "Best Practices and Tips",
-      paragraphs: [
-        "To maximize the value of your accounting software investment, establish clear protocols for data entry and maintenance. Consistency in how financial information is recorded ensures accuracy in reporting and makes it easier to identify trends and anomalies. Regular training sessions help keep your team updated on new features and best practices.",
-        "Don't underestimate the importance of data security and backup procedures. Implement robust access controls to ensure that sensitive financial information is only accessible to authorized personnel. Regular backups and disaster recovery plans provide peace of mind and protect your business from potential data loss."
-      ]
-    },
-    {
-      heading: "Measuring Success and ROI",
-      paragraphs: [
-        "Tracking the return on investment from your accounting software goes beyond simple cost savings. Consider metrics such as time saved on manual processes, reduction in errors, improved financial visibility, and faster decision-making capabilities. Many businesses find that the indirect benefits, such as improved customer satisfaction and employee productivity, are just as valuable as the direct cost savings.",
-        "Establish baseline metrics before implementation and regularly review progress against these benchmarks. This data-driven approach helps justify the investment to stakeholders and identifies areas where additional training or process adjustments may be needed to fully realize the software's potential."
-      ]
-    }
-  ];
+  const contentBlocks = useMemo(() => {
+    const body = article.content ?? "";
+    if (!body.trim()) return [];
+    return body
+      .split(/\n{2,}/)
+      .map((block) => block.trim())
+      .filter(Boolean);
+  }, [article.content]);
 
-  const relatedArticles = useMemo(() => {
-    const savedPosts = localStorage.getItem("flowbooks_blog_posts");
-    if (!savedPosts) return [];
-    try {
-      const posts = JSON.parse(savedPosts) as BlogArticleProps["article"][];
-      return posts
-        .filter((p) => p.id?.toString() !== article.id?.toString())
-        .slice(0, 3);
-    } catch {
-      return [];
-    }
+  const [relatedArticles, setRelatedArticles] = useState<BlogArticleProps["article"][]>([]);
+
+  useEffect(() => {
+    const abort = new AbortController();
+    const loadRelated = async () => {
+      try {
+        const posts = await supabaseRequest<BlogArticleProps["article"][]>(
+          `/rest/v1/blog_posts?select=*&id=neq.${article.id}`,
+          { signal: abort.signal }
+        );
+        setRelatedArticles((posts || []).slice(0, 3));
+      } catch (err) {
+        console.warn("Failed to load related articles", err);
+        setRelatedArticles([]);
+      }
+    };
+    loadRelated();
+    return () => abort.abort();
   }, [article.id]);
 
   const authorInitials = useMemo(() => {
@@ -271,24 +267,21 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
 
             {/* Article body */}
             <div className="prose prose-lg max-w-none">
-              {articleContent.map((section, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="mb-12"
-                >
-                  <h2 className="text-3xl mb-6" style={{ color: '#0a1929' }}>
-                    {section.heading}
-                  </h2>
-                  {section.paragraphs.map((paragraph, pIndex) => (
-                    <p key={pIndex} className="text-gray-700 leading-relaxed mb-6 text-lg">
-                      {paragraph}
-                    </p>
-                  ))}
-                </motion.div>
-              ))}
+              {contentBlocks.length > 0 ? (
+                contentBlocks.map((paragraph, index) => (
+                  <motion.p
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.05 }}
+                    className="text-gray-700 leading-relaxed mb-6 text-lg"
+                  >
+                    {paragraph}
+                  </motion.p>
+                ))
+              ) : (
+                <p className="text-gray-500">No content yet.</p>
+              )}
             </div>
 
             {/* Call to action box */}
@@ -308,20 +301,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
               </Button>
             </motion.div>
 
-            {/* Tags */}
-            <div className="mb-12 pb-12 border-b border-gray-200">
-              <p className="text-sm text-gray-600 mb-3">Tags:</p>
-              <div className="flex flex-wrap gap-2">
-                {['Accounting', 'Finance', 'Business Strategy', 'Software', 'Best Practices'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 cursor-pointer transition-colors"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <div className="mb-12 pb-12 border-b border-gray-200"></div>
 
             {/* Related Articles */}
             {relatedArticles.length > 0 && (

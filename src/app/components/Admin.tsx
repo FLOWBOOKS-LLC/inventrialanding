@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { blogCategories } from "@/app/constants/blogCategories";
+import { supabaseRequest } from "@/app/lib/supabaseClient";
 
 interface SuccessStory {
   id: string;
@@ -56,80 +57,27 @@ export function Admin() {
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [showPostForm, setShowPostForm] = useState(false);
 
-  // Load data from localStorage on mount
+  // Load data from Supabase on mount
   useEffect(() => {
-    const savedStories = localStorage.getItem("flowbooks_success_stories");
-    const savedPosts = localStorage.getItem("flowbooks_blog_posts");
-    
-    if (savedStories) {
-      setSuccessStories(JSON.parse(savedStories));
-    } else {
-      // Initialize with default data
-      const defaultStories: SuccessStory[] = [
-        {
-          id: "1",
-          company: "TechCorp Solutions",
-          industry: "Technology",
-          logo: "TC",
-          image: "https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY4ODUyMjE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-          challenge: "Managing complex multi-currency transactions across 15 countries",
-          result: "Reduced accounting time by 75% and improved accuracy to 99.9%",
-          metrics: [
-            { value: "75%", label: "Time Saved" },
-            { value: "99.9%", label: "Accuracy" },
-            { value: "$2M", label: "Cost Reduction" }
-          ]
-        },
-        {
-          id: "2",
-          company: "GreenLeaf Retail",
-          industry: "E-commerce",
-          logo: "GL",
-          image: "https://images.unsplash.com/photo-1650978810653-112cb6018092?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHN1Y2Nlc3MlMjBjb2xsYWJvcmF0aW9ufGVufDF8fHx8MTc2ODkyMjUxNHww&ixlib=rb-4.1.0&q=80&w=1080",
-          challenge: "Tracking inventory and revenue across 500+ SKUs and multiple marketplaces",
-          result: "Real-time financial visibility and automated reconciliation",
-          metrics: [
-            { value: "90%", label: "Faster Reporting" },
-            { value: "100%", label: "Automation" },
-            { value: "500+", label: "SKUs Managed" }
-          ]
-        },
-        {
-          id: "3",
-          company: "Summit Properties",
-          industry: "Real Estate",
-          logo: "SP",
-          image: "https://images.unsplash.com/photo-1758518729685-f88df7890776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjB0ZWFtfGVufDF8fHx8MTc2ODgyMzkzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-          challenge: "Consolidating financials from 120+ properties with different lease structures",
-          result: "Unified financial dashboard with automated rent collection tracking",
-          metrics: [
-            { value: "120+", label: "Properties" },
-            { value: "85%", label: "Efficiency Gain" },
-            { value: "$5M", label: "Revenue Tracked" }
-          ]
-        }
-      ];
-      setSuccessStories(defaultStories);
-      localStorage.setItem("flowbooks_success_stories", JSON.stringify(defaultStories));
-    }
+    const abort = new AbortController();
+    const loadData = async () => {
+      try {
+        const stories = await supabaseRequest<SuccessStory[]>(`/rest/v1/success_stories?select=*`, { signal: abort.signal });
+        setSuccessStories(stories || []);
+      } catch (err) {
+        console.warn("Failed to load success stories", err);
+      }
 
-    if (savedPosts) {
-      setBlogPosts(JSON.parse(savedPosts));
-    }
+      try {
+        const posts = await supabaseRequest<BlogPost[]>(`/rest/v1/blog_posts?select=*`, { signal: abort.signal });
+        setBlogPosts(posts || []);
+      } catch (err) {
+        console.warn("Failed to load blog posts", err);
+      }
+    };
+    loadData();
+    return () => abort.abort();
   }, []);
-
-  // Save to localStorage whenever data changes
-  useEffect(() => {
-    if (successStories.length > 0) {
-      localStorage.setItem("flowbooks_success_stories", JSON.stringify(successStories));
-    }
-  }, [successStories]);
-
-  useEffect(() => {
-    if (blogPosts.length > 0) {
-      localStorage.setItem("flowbooks_blog_posts", JSON.stringify(blogPosts));
-    }
-  }, [blogPosts]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -148,39 +96,55 @@ export function Admin() {
 
   // Success Story Handlers
   const handleSaveStory = (story: SuccessStory) => {
-    if (editingStory) {
-      setSuccessStories(prev => 
-        prev.map(s => s.id === story.id ? story : s)
-      );
-    } else {
-      setSuccessStories(prev => [...prev, { ...story, id: Date.now().toString() }]);
-    }
+    const upsert = async () => {
+      const payload = { ...story, id: story.id || Date.now().toString() };
+      await supabaseRequest("/rest/v1/success_stories", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { Prefer: "return=representation,resolution=merge-duplicates" }
+      });
+      const stories = await supabaseRequest<SuccessStory[]>(`/rest/v1/success_stories?select=*`);
+      setSuccessStories(stories || []);
+    };
+    upsert().catch((err) => alert(`Error saving story: ${err instanceof Error ? err.message : err}`));
     setShowStoryForm(false);
     setEditingStory(null);
   };
 
   const handleDeleteStory = (id: string) => {
     if (confirm("Are you sure you want to delete this success story?")) {
-      setSuccessStories(prev => prev.filter(s => s.id !== id));
+      const remove = async () => {
+        await supabaseRequest(`/rest/v1/success_stories?id=eq.${id}`, { method: "DELETE" });
+        setSuccessStories(prev => prev.filter(s => s.id !== id));
+      };
+      remove().catch((err) => alert(`Error deleting story: ${err instanceof Error ? err.message : err}`));
     }
   };
 
   // Blog Post Handlers
   const handleSavePost = (post: BlogPost) => {
-    if (editingPost) {
-      setBlogPosts(prev => 
-        prev.map(p => p.id === post.id ? post : p)
-      );
-    } else {
-      setBlogPosts(prev => [...prev, { ...post, id: Date.now().toString() }]);
-    }
+    const upsert = async () => {
+      const payload = { ...post, id: post.id || Date.now().toString() };
+      await supabaseRequest("/rest/v1/blog_posts", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { Prefer: "return=representation,resolution=merge-duplicates" }
+      });
+      const posts = await supabaseRequest<BlogPost[]>(`/rest/v1/blog_posts?select=*`);
+      setBlogPosts(posts || []);
+    };
+    upsert().catch((err) => alert(`Error saving post: ${err instanceof Error ? err.message : err}`));
     setShowPostForm(false);
     setEditingPost(null);
   };
 
   const handleDeletePost = (id: string) => {
     if (confirm("Are you sure you want to delete this blog post?")) {
-      setBlogPosts(prev => prev.filter(p => p.id !== id));
+      const remove = async () => {
+        await supabaseRequest(`/rest/v1/blog_posts?id=eq.${id}`, { method: "DELETE" });
+        setBlogPosts(prev => prev.filter(p => p.id !== id));
+      };
+      remove().catch((err) => alert(`Error deleting post: ${err instanceof Error ? err.message : err}`));
     }
   };
 

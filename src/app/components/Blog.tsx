@@ -4,6 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { useState, useEffect, useMemo } from "react";
 import { BlogArticle } from "@/app/components/BlogArticle";
 import { blogCategories } from "@/app/constants/blogCategories";
+import { supabaseRequest } from "@/app/lib/supabaseClient";
 
 interface BlogPost {
   id: string | number;
@@ -42,59 +43,22 @@ export function Blog() {
     });
   }, [blogPosts]);
 
-  // Load blog posts from localStorage
+  // Load blog posts from Supabase
   useEffect(() => {
-    const savedPosts = localStorage.getItem("flowbooks_blog_posts");
-    if (savedPosts) {
-      const posts: BlogPost[] = JSON.parse(savedPosts);
-      setBlogPosts(posts);
-      // Set first post as featured if available
-      if (posts.length > 0) {
-        setFeaturedPost({ ...posts[0], featured: true });
-      }
-    } else {
-      // Default posts if none exist
-      const defaultFeaturedPost: BlogPost = {
-        id: 1,
-        title: "The Future of AI in Accounting: 2026 Trends and Predictions",
-        excerpt: "Discover how artificial intelligence is revolutionizing the accounting industry and what it means for your business in the coming year.",
-        author: "Aisha Kabir",
-        authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
-        date: "January 18, 2026",
-        readTime: "8 min read",
-        category: "Industry Insights",
-        image: "https://images.unsplash.com/photo-1762318986860-a7b18dd0da02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhY2NvdW50aW5nJTIwZmluYW5jZSUyMHdvcmtzcGFjZXxlbnwxfHx8fDE3Njg5MjI1MTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        featured: true
-      };
-
-      const defaultBlogPosts: BlogPost[] = [
-        {
-          id: 2,
-          title: "10 Accounting Best Practices Every Small Business Should Follow",
-          excerpt: "Learn essential accounting practices that will help your small business stay organized and financially healthy.",
-          author: "Aisha Kabir",
-          authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
-          date: "January 15, 2026",
-          readTime: "6 min read",
-          category: "Best Practices",
-          image: "https://images.unsplash.com/photo-1758518729685-f88df7890776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjB0ZWFtfGVufDF8fHx8MTc2ODgyMzkzN3ww&ixlib=rb-4.1.0&q=80&w=1080"
-        },
-        {
-          id: 3,
-          title: "How flowbooks Helped TechCorp Save 40 Hours Per Month",
-          excerpt: "A detailed case study on how automation transformed TechCorp's accounting workflow.",
-          author: "Michael Chen",
-          authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-          date: "January 12, 2026",
-          readTime: "5 min read",
-          category: "Case Studies",
-          image: "https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY4ODUyMjE5fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    const abort = new AbortController();
+    const load = async () => {
+      try {
+        const posts = await supabaseRequest<BlogPost[]>(`/rest/v1/blog_posts?select=*`, { signal: abort.signal });
+        setBlogPosts(posts || []);
+        if (posts && posts.length > 0) {
+          setFeaturedPost({ ...posts[0], featured: true });
         }
-      ];
-
-      setFeaturedPost(defaultFeaturedPost);
-      setBlogPosts(defaultBlogPosts);
-    }
+      } catch (err) {
+        console.warn("Failed to load blog posts", err);
+      }
+    };
+    load();
+    return () => abort.abort();
   }, []);
 
   // If an article is selected, show the full article view
@@ -205,85 +169,89 @@ export function Blog() {
       </section>
 
       {/* Featured Post */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="flex items-center gap-2 mb-8">
-              <TrendingUp className="w-5 h-5" style={{ color: '#1594e3' }} />
-              <span className="text-sm font-medium" style={{ color: '#1594e3' }}>Featured Article</span>
-            </div>
+      {featuredPost && (
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-6xl mx-auto"
+            >
+              <div className="flex items-center gap-2 mb-8">
+                <TrendingUp className="w-5 h-5" style={{ color: '#1594e3' }} />
+                <span className="text-sm font-medium" style={{ color: '#1594e3' }}>Featured Article</span>
+              </div>
 
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 hover:shadow-3xl transition-shadow duration-300">
-              <div className="grid lg:grid-cols-2 gap-0">
-                {/* Image */}
-                <div className="relative h-80 lg:h-auto">
-                  <img 
-                    src={featuredPost?.image}
-                    alt={featuredPost?.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  
-                  {/* Category Badge */}
-                  <div className="absolute top-6 left-6">
-                    <div className="inline-flex items-center gap-2 bg-white/95 backdrop-blur-md rounded-full px-4 py-2">
-                      <Tag className="w-4 h-4" style={{ color: '#1594e3' }} />
-                      <span className="text-sm font-medium" style={{ color: '#1594e3' }}>{featuredPost?.category}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <h2 className="text-3xl lg:text-4xl mb-6 leading-tight" style={{ color: '#0a1929' }}>
-                    {featuredPost?.title}
-                  </h2>
-                  
-                  <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                    {featuredPost?.excerpt}
-                  </p>
-
-                  {/* Meta Info */}
-                  <div className="flex flex-wrap items-center gap-6 mb-8 text-sm text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <img 
-                        src={featuredPost?.authorImage}
-                        alt={featuredPost?.author}
-                        className="w-8 h-8 rounded-full object-cover"
-                      />
-                      <span>{featuredPost?.author}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>{featuredPost?.date}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4" />
-                      <span>{featuredPost?.readTime}</span>
+              <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 hover:shadow-3xl transition-shadow duration-300">
+                <div className="grid lg:grid-cols-2 gap-0">
+                  {/* Image */}
+                  <div className="relative h-80 lg:h-auto">
+                    <img 
+                      src={featuredPost?.image}
+                      alt={featuredPost?.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-6 left-6">
+                      <div className="inline-flex items-center gap-2 bg-white/95 backdrop-blur-md rounded-full px-4 py-2">
+                        <Tag className="w-4 h-4" style={{ color: '#1594e3' }} />
+                        <span className="text-sm font-medium" style={{ color: '#1594e3' }}>{featuredPost?.category}</span>
+                      </div>
                     </div>
                   </div>
 
-                  <Button 
-                    size="lg"
-                    className="self-start"
-                    style={{ background: '#1594e3' }}
-                    onClick={() => setSelectedArticle(featuredPost)}
-                  >
-                    Read Full Article
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  {/* Content */}
+                  <div className="p-8 lg:p-12 flex flex-col justify-center">
+                    <h2 className="text-3xl lg:text-4xl mb-6 leading-tight" style={{ color: '#0a1929' }}>
+                      {featuredPost?.title}
+                    </h2>
+                    
+                    <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                      {featuredPost?.excerpt}
+                    </p>
+
+                    {/* Meta Info */}
+                    <div className="flex flex-wrap items-center gap-6 mb-8 text-sm text-gray-600">
+                      <div className="flex items-center gap-2">
+                        {featuredPost?.authorImage && (
+                          <img 
+                            src={featuredPost?.authorImage}
+                            alt={featuredPost?.author}
+                            className="w-8 h-8 rounded-full object-cover"
+                          />
+                        )}
+                        <span>{featuredPost?.author}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>{featuredPost?.date}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4" />
+                        <span>{featuredPost?.readTime}</span>
+                      </div>
+                    </div>
+
+                    <Button 
+                      size="lg"
+                      className="self-start"
+                      style={{ background: '#1594e3' }}
+                      onClick={() => setSelectedArticle(featuredPost)}
+                    >
+                      Read Full Article
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Categories Filter */}
       <section className="py-12 bg-gradient-to-b from-white to-gray-50">
@@ -372,14 +340,25 @@ export function Blog() {
 
                     {/* Meta */}
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2">
+                      {post.authorImage ? (
                         <img 
                           src={post.authorImage}
                           alt={post.author}
                           className="w-6 h-6 rounded-full object-cover"
                         />
-                        <span className="text-xs text-gray-600">{post.author}</span>
-                      </div>
+                      ) : (
+                        <span className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-xs font-semibold text-gray-700">
+                          {post.author
+                            .split(" ")
+                            .map((p) => p[0])
+                            .join("")
+                            .slice(0, 2)
+                            .toUpperCase()}
+                        </span>
+                      )}
+                      <span className="text-xs text-gray-600">{post.author}</span>
+                    </div>
                       <div className="flex items-center gap-1 text-xs text-gray-500">
                         <Clock className="w-3 h-3" />
                         <span>{post.readTime}</span>
@@ -397,6 +376,12 @@ export function Blog() {
                 </motion.article>
               ))}
             </div>
+
+            {filteredPosts.length === 0 && (
+              <div className="text-center py-16 text-gray-500">
+                <p>No articles yet. Add one from the Admin panel.</p>
+              </div>
+            )}
 
             {/* Load More Button */}
             <motion.div
