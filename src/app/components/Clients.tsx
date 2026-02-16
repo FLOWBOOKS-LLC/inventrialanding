@@ -173,7 +173,7 @@ export function Clients({ onNavigate }: ClientsProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl lg:text-5xl mb-6 tracking-tight leading-tight"
+              className="text-4xl lg:text-3xl mb-6 tracking-tight leading-tight"
               style={{
                 background: 'linear-gradient(to bottom, #ffffff 0%, #e0f2fe 100%)',
                 WebkitBackgroundClip: 'text',
@@ -389,7 +389,7 @@ export function Clients({ onNavigate }: ClientsProps) {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl lg:text-5xl text-white mb-6">
+            <h2 className="text-3xl lg:text-3xl text-white mb-6">
               Ready to Join Our Success Stories?
             </h2>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">

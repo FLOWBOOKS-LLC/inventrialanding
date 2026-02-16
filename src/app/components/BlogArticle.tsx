@@ -189,7 +189,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl lg:text-5xl mb-6 leading-tight" style={{ color: '#0a1929' }}>
+            <h1 className="text-4xl lg:text-3xl mb-6 leading-tight" style={{ color: '#0a1929' }}>
               {article.title}
             </h1>
 

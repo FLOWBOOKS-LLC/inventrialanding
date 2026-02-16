@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Calendar, Clock, User, ArrowRight, TrendingUp, BookOpen, Search, Tag, ChevronRight } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { BlogArticle } from "@/app/components/BlogArticle";
 import { blogCategories } from "@/app/constants/blogCategories";
 
@@ -24,6 +24,23 @@ export function Blog() {
   const [selectedArticle, setSelectedArticle] = useState<any>(null);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [featuredPost, setFeaturedPost] = useState<BlogPost | null>(null);
+
+  const filteredPosts = useMemo(() => {
+    if (selectedCategory === "All") return blogPosts;
+    return blogPosts.filter((post) => post.category === selectedCategory);
+  }, [blogPosts, selectedCategory]);
+
+  const categoriesWithCounts = useMemo(() => {
+    return blogCategories.map((category) => {
+      if (category.name === "All") {
+        return { ...category, count: blogPosts.length };
+      }
+      return {
+        ...category,
+        count: blogPosts.filter((post) => post.category === category.name).length,
+      };
+    });
+  }, [blogPosts]);
 
   // Load blog posts from localStorage
   useEffect(() => {
@@ -85,7 +102,7 @@ export function Blog() {
     return <BlogArticle article={selectedArticle} onBack={() => setSelectedArticle(null)} />;
   }
 
-  const categories = blogCategories;
+  const categories = categoriesWithCounts;
 
   const trendingTopics = [
     { name: "AI Automation", posts: 24 },
@@ -140,7 +157,7 @@ export function Blog() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl lg:text-5xl mb-8 tracking-tight leading-tight"
+              className="text-3xl lg:text-3xl mb-8 tracking-tight leading-tight"
               style={{
                 background: 'linear-gradient(to bottom, #ffffff 0%, #e0f2fe 100%)',
                 WebkitBackgroundClip: 'text',
@@ -172,7 +189,7 @@ export function Blog() {
                 <input
                   type="text"
                   placeholder="Search articles..."
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/95 backdrop-blur-md border-2 border-white/20 focus:border-white focus:outline-none text-gray-900 placeholder-gray-500"
+                  className="w-full pl-12 pr-2 py-2 rounded-2xl bg-white/95 backdrop-blur-md border-2 border-white/20 focus:border-white focus:outline-none text-gray-900 placeholder-gray-500"
                 />
               </div>
             </motion.div>
@@ -317,7 +334,7 @@ export function Blog() {
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post, index) => (
+              {filteredPosts.map((post, index) => (
                 <motion.article
                   key={post.title}
                   initial={{ opacity: 0, y: 20 }}
@@ -468,7 +485,7 @@ export function Blog() {
               <BookOpen className="w-8 h-8 text-white" />
             </div>
             
-            <h2 className="text-3xl lg:text-5xl text-white mb-6">
+            <h2 className="text-3xl lg:text-3xl text-white mb-6">
               Never Miss an Update
             </h2>
             <p className="text-xl text-white/80 mb-10">

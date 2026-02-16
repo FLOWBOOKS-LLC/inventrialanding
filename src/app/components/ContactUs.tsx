@@ -153,7 +153,7 @@ export function ContactUs() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-2xl lg:text-5xl mb-8 tracking-tight leading-tight"
+              className="text-2xl lg:text-3xl mb-8 tracking-tight leading-tight"
               style={{
                 background: 'linear-gradient(to bottom, #ffffff 0%, #e0f2fe 100%)',
                 WebkitBackgroundClip: 'text',

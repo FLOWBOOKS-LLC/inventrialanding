@@ -4,7 +4,6 @@ import { ReactNode, useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { HeroSceneOne } from "./HeroScenes/HeroSceneOne";
 import { HeroSceneTwo } from "./HeroScenes/HeroSceneTwo";
-import { HeroSceneThree } from "./HeroScenes/HeroSceneThree";
 
 interface HeroProps {
   onNavigate?: (page: string) => void;
@@ -28,7 +27,7 @@ interface HeroProps {
 //           {/* Left side - Text content */}
 //           <div className="space-y-4 lg:space-y-5">
 //             <motion.h1 
-//               className="text-3xl md:text-4xl lg:text-5xl tracking-tight text-white leading-tight"
+//               className="text-3xl md:text-4xl lg:text-3xl tracking-tight text-white leading-tight"
 //               initial={{ opacity: 0, y: 20 }}
 //               animate={{ opacity: 1, y: 0 }}
 //               transition={{ duration: 0.6 }}
@@ -470,7 +469,7 @@ export function Hero({ onNavigate }: HeroProps) {
           {/* LEFT: Text */}
           <div className="space-y-4 lg:space-y-6 max-w-xl">
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
+              className="text-3xl md:text-4xl lg:text-4xl text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -557,7 +556,7 @@ export function Hero({ onNavigate }: HeroProps) {
                 </Scene>
 
                 <Scene active={currentScene === 2}>
-                  <HeroSceneThree />
+                  <HeroSceneOne />
                 </Scene>
               </div>
 

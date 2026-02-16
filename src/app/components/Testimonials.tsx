@@ -72,7 +72,7 @@ export function Testimonials() {
       <div className="container mx-auto px-4 lg:px-6">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl lg:text-5xl text-gray-900 mb-6">
+          <h2 className="text-3xl lg:text-3xl text-gray-900 mb-6">
             How flowbooks drives success for
           </h2>
           
@@ -153,7 +153,7 @@ export function Testimonials() {
         </div>
 
         {/* Story Cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto mt-12">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto mt-12">
           <AnimatePresence mode="wait">
             {categories[selectedCategory].stories.map((story, index) => (
               <motion.div

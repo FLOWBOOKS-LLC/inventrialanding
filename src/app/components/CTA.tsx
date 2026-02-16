@@ -16,7 +16,7 @@ export function CTA({ onNavigate }: CTAProps) {
       
       <div className="container mx-auto px-4 lg:px-6 relative">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-5xl text-white mb-6">
+          <h2 className="text-3xl lg:text-3xl text-white mb-6">
             Ready to Transform Your Accounting?
           </h2>
           <p className="text-xl text-sky-100 mb-8 max-w-2xl mx-auto">
