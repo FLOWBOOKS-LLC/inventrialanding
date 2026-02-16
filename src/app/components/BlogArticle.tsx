@@ -1,11 +1,11 @@
 import { motion } from "motion/react";
-import { ArrowLeft, Calendar, Clock, User, Heart, MessageCircle, Share2, Bookmark, ThumbsUp } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Heart, MessageCircle, Share2, Bookmark, ThumbsUp } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface BlogArticleProps {
   article: {
-    id: number;
+    id: number | string;
     title: string;
     excerpt: string;
     category: string;
@@ -30,36 +30,28 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(142);
   const [bookmarked, setBookmarked] = useState(false);
-  const [comments, setComments] = useState<Comment[]>([
-    {
-      id: 1,
-      author: "Michael Rodriguez",
-      avatar: "MR",
-      date: "2 days ago",
-      content: "This article really helped me understand the tax implications better. The examples provided were very practical and easy to follow. Thank you for sharing!",
-      likes: 8
-    },
-    {
-      id: 2,
-      author: "Sarah Johnson",
-      avatar: "SJ",
-      date: "3 days ago",
-      content: "Excellent breakdown of the topic. I've implemented some of these strategies in my business and already seeing positive results.",
-      likes: 12
-    },
-    {
-      id: 3,
-      author: "David Chen",
-      avatar: "DC",
-      date: "5 days ago",
-      content: "Very informative article. Would love to see more content like this covering different aspects of accounting software.",
-      likes: 5
-    }
-  ]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
   const [subscribeEmail, setSubscribeEmail] = useState("");
   const [commentName, setCommentName] = useState("");
   const [commentEmail, setCommentEmail] = useState("");
+  const commentsStorageKey = useMemo(() => `flowbooks_comments_${article.id}`, [article.id]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(commentsStorageKey);
+    if (saved) {
+      try {
+        setComments(JSON.parse(saved));
+      } catch {
+        setComments([]);
+      }
+    }
+  }, [commentsStorageKey]);
+
+  const saveComments = (next: Comment[]) => {
+    setComments(next);
+    localStorage.setItem(commentsStorageKey, JSON.stringify(next));
+  };
 
   const handleLike = () => {
     setLiked(!liked);
@@ -72,12 +64,12 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
       const comment: Comment = {
         id: comments.length + 1,
         author: commentName || "Anonymous",
-        avatar: "AN",
+        avatar: (commentName || "Anonymous").slice(0, 2).toUpperCase(),
         date: "Just now",
         content: newComment,
         likes: 0
       };
-      setComments([comment, ...comments]);
+      saveComments([comment, ...comments]);
       setNewComment("");
       setCommentName("");
       setCommentEmail("");
@@ -126,26 +118,37 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
     }
   ];
 
-  const relatedArticles = [
-    {
-      id: 99,
-      title: "10 Essential Features Every Modern Accounting Software Must Have",
-      category: "Software Reviews",
-      readTime: "7 min read"
-    },
-    {
-      id: 100,
-      title: "How AI is Transforming Financial Forecasting",
-      category: "Technology",
-      readTime: "6 min read"
-    },
-    {
-      id: 101,
-      title: "Cloud vs On-Premise: Making the Right Choice for Your Business",
-      category: "Business Strategy",
-      readTime: "8 min read"
+  const relatedArticles = useMemo(() => {
+    const savedPosts = localStorage.getItem("flowbooks_blog_posts");
+    if (!savedPosts) return [];
+    try {
+      const posts = JSON.parse(savedPosts) as BlogArticleProps["article"][];
+      return posts
+        .filter((p) => p.id?.toString() !== article.id?.toString())
+        .slice(0, 3);
+    } catch {
+      return [];
     }
-  ];
+  }, [article.id]);
+
+  const authorInitials = useMemo(() => {
+    return article.author
+      .split(" ")
+      .map((part) => part[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+  }, [article.author]);
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+      alert("Link copied to clipboard!");
+    } catch {
+      prompt("Copy this link:", url);
+    }
+  };
 
   return (
     <div className="bg-white min-h-screen">
@@ -197,7 +200,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
             <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-200">
               <div className="flex items-center gap-2">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-medium" style={{ background: '#1594e3' }}>
-                  AK
+                  {authorInitials}
                 </div>
                 <div>
                   <p className="font-medium" style={{ color: '#0a1929' }}>{article.author}</p>
@@ -252,9 +255,10 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
               <Button
                 variant="outline"
                 className="flex items-center gap-2"
+                onClick={handleShare}
               >
                 <Share2 className="w-5 h-5" />
-                Share
+                Copy link
               </Button>
             </div>
 
@@ -320,26 +324,31 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
             </div>
 
             {/* Related Articles */}
-            <div className="mb-16">
-              <h3 className="text-2xl mb-6" style={{ color: '#0a1929' }}>Related Articles</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {relatedArticles.map((related) => (
-                  <motion.div
-                    key={related.id}
-                    whileHover={{ y: -4 }}
-                    className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all cursor-pointer"
-                  >
-                    <span className="text-xs font-medium mb-3 inline-block" style={{ color: '#1594e3' }}>
-                      {related.category}
-                    </span>
-                    <h4 className="text-lg mb-3 leading-tight" style={{ color: '#0a1929' }}>
-                      {related.title}
-                    </h4>
-                    <p className="text-sm text-gray-500">{related.readTime}</p>
-                  </motion.div>
-                ))}
+            {relatedArticles.length > 0 && (
+              <div className="mb-16">
+                <h3 className="text-2xl mb-6" style={{ color: '#0a1929' }}>Related Articles</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {relatedArticles.map((related, index) => (
+                    <motion.div
+                      key={related.id}
+                      whileHover={{ y: -4 }}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all cursor-pointer"
+                    >
+                      <span className="text-xs font-medium mb-3 inline-block" style={{ color: '#1594e3' }}>
+                        {related.category}
+                      </span>
+                      <h4 className="text-lg mb-3 leading-tight" style={{ color: '#0a1929' }}>
+                        {related.title}
+                      </h4>
+                      <p className="text-sm text-gray-500">{related.readTime}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Comments Section */}
             <div id="comments-section" className="scroll-mt-24">
