@@ -29,6 +29,7 @@ import {
 import { Button } from "@/app/components/ui/button";
 import { blogCategories } from "@/app/constants/blogCategories";
 import { fetchContacts, updateContactStatus, deleteContact } from "@/app/lib/contactApi";
+import { supabaseRequest, supabaseUrl, supabaseAnonKey } from "@/app/lib/supabaseClient";
 
 interface SuccessStory {
   id: string;
@@ -103,6 +104,53 @@ export function AdminDashboard() {
     if (savedTestimonials) setTestimonials(JSON.parse(savedTestimonials));
   }, []);
 
+  // Load success stories from Supabase
+  useEffect(() => {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn("Supabase env vars missing; using cached success stories only");
+      return;
+    }
+
+    const abort = new AbortController();
+    const load = async () => {
+      try {
+        const stories = await supabaseRequest<SuccessStory[]>(
+          `/rest/v1/success_stories?select=*`,
+          { signal: abort.signal }
+        );
+        setSuccessStories(stories || []);
+        localStorage.setItem("flowbooks_success_stories", JSON.stringify(stories || []));
+      } catch (err) {
+        console.warn("Failed to load success stories from Supabase", err);
+      }
+    };
+
+    load();
+    return () => abort.abort();
+  }, []);
+
+  // Load blog posts from Supabase
+  useEffect(() => {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn("Supabase env vars missing; using cached blog posts only");
+      return;
+    }
+
+    const abort = new AbortController();
+    const load = async () => {
+      try {
+        const posts = await supabaseRequest<BlogPost[]>(`/rest/v1/blog_posts?select=*`, { signal: abort.signal });
+        setBlogPosts(posts || []);
+        localStorage.setItem("flowbooks_blog_posts", JSON.stringify(posts || []));
+      } catch (err) {
+        console.warn("Failed to load blog posts from Supabase", err);
+      }
+    };
+
+    load();
+    return () => abort.abort();
+  }, []);
+
   // Load contacts from Supabase
   useEffect(() => {
     let active = true;
@@ -124,9 +172,8 @@ export function AdminDashboard() {
   }, [successStories]);
 
   useEffect(() => {
-    if (blogPosts.length > 0) {
-      localStorage.setItem("flowbooks_blog_posts", JSON.stringify(blogPosts));
-    }
+    // Keep localStorage in sync for quick client rendering and offline cache
+    localStorage.setItem("flowbooks_blog_posts", JSON.stringify(blogPosts));
   }, [blogPosts]);
 
   useEffect(() => {
@@ -328,9 +375,26 @@ export function AdminDashboard() {
                 setEditingStory(story);
                 setShowStoryForm(true);
               }}
-              onDelete={(id) => {
-                if (confirm("Are you sure you want to delete this success story?")) {
-                  setSuccessStories(prev => prev.filter(s => s.id !== id));
+              onDelete={async (id) => {
+                if (!confirm("Are you sure you want to delete this success story?")) return;
+
+                // Optimistic UI update
+                setSuccessStories(prev => {
+                  const next = prev.filter(s => s.id !== id);
+                  localStorage.setItem("flowbooks_success_stories", JSON.stringify(next));
+                  return next;
+                });
+
+                if (!supabaseUrl || !supabaseAnonKey) {
+                  alert("Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to delete success stories.");
+                  return;
+                }
+
+                try {
+                  await supabaseRequest(`/rest/v1/success_stories?id=eq.${id}`, { method: "DELETE" });
+                } catch (err) {
+                  console.error("Failed to delete success story", err);
+                  alert("Could not delete story on the server. It may reappear on refresh.");
                 }
               }}
             />
@@ -347,9 +411,27 @@ export function AdminDashboard() {
                 setEditingPost(post);
                 setShowPostForm(true);
               }}
-              onDelete={(id) => {
-                if (confirm("Are you sure you want to delete this blog post?")) {
-                  setBlogPosts(prev => prev.filter(p => p.id !== id));
+              onDelete={async (id) => {
+                if (!confirm("Are you sure you want to delete this blog post?")) return;
+
+                // Optimistic UI update with captured new list
+                setBlogPosts(prev => {
+                  const next = prev.filter(p => p.id !== id);
+                  localStorage.setItem("flowbooks_blog_posts", JSON.stringify(next));
+                  return next;
+                });
+
+                // Persist to Supabase
+                if (!supabaseUrl || !supabaseAnonKey) {
+                  alert("Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to delete blog posts.");
+                  return;
+                }
+
+                try {
+                  await supabaseRequest(`/rest/v1/blog_posts?id=eq.${id}`, { method: "DELETE" });
+                } catch (err) {
+                  console.error("Failed to delete blog post", err);
+                  alert("Could not delete post on the server. It may reappear on refresh.");
                 }
               }}
             />
@@ -408,12 +490,35 @@ export function AdminDashboard() {
         {showStoryForm && (
           <StoryFormModal
             story={editingStory}
-            onSave={(story) => {
-              if (editingStory) {
-                setSuccessStories(prev => prev.map(s => s.id === story.id ? story : s));
-              } else {
-                setSuccessStories(prev => [...prev, { ...story, id: Date.now().toString() }]);
+            onSave={async (story) => {
+              if (!supabaseUrl || !supabaseAnonKey) {
+                alert("Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to save success stories.");
+                return;
               }
+
+              const payload: any = { ...story };
+              if (!story.id) {
+                delete payload.id; // let Supabase generate primary key
+              }
+
+              try {
+                await supabaseRequest("/rest/v1/success_stories", {
+                  method: "POST",
+                  body: JSON.stringify(payload),
+                  headers: { Prefer: "return=representation,resolution=merge-duplicates" }
+                });
+
+                const stories = await supabaseRequest<SuccessStory[]>(
+                  "/rest/v1/success_stories?select=*"
+                );
+                setSuccessStories(stories || []);
+                localStorage.setItem("flowbooks_success_stories", JSON.stringify(stories || []));
+              } catch (err) {
+                console.error("Failed to save success story", err);
+                alert("Could not save success story. Please try again.");
+                return;
+              }
+
               setShowStoryForm(false);
               setEditingStory(null);
             }}
@@ -429,12 +534,34 @@ export function AdminDashboard() {
         {showPostForm && (
           <BlogFormModal
             post={editingPost}
-            onSave={(post) => {
-              if (editingPost) {
-                setBlogPosts(prev => prev.map(p => p.id === post.id ? post : p));
-              } else {
-                setBlogPosts(prev => [...prev, { ...post, id: Date.now().toString() }]);
+            onSave={async (post) => {
+              // Ensure Supabase config exists
+              if (!supabaseUrl || !supabaseAnonKey) {
+                alert("Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to save blog posts.");
+                return;
               }
+
+              const payload: any = { ...post };
+              if (!post.id) {
+                delete payload.id; // let Supabase generate primary key
+              }
+
+              try {
+                await supabaseRequest("/rest/v1/blog_posts", {
+                  method: "POST",
+                  body: JSON.stringify(payload),
+                  headers: { Prefer: "return=representation,resolution=merge-duplicates" }
+                });
+
+                const posts = await supabaseRequest<BlogPost[]>("/rest/v1/blog_posts?select=*");
+                setBlogPosts(posts || []);
+                localStorage.setItem("flowbooks_blog_posts", JSON.stringify(posts || []));
+              } catch (err) {
+                console.error("Failed to save blog post", err);
+                alert("Could not save blog post. Please try again.");
+                return;
+              }
+
               setShowPostForm(false);
               setEditingPost(null);
             }}

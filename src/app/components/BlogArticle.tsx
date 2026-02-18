@@ -38,6 +38,16 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
   const [subscribeEmail, setSubscribeEmail] = useState("");
   const [commentName, setCommentName] = useState("");
   const [commentEmail, setCommentEmail] = useState("");
+  const normalizeComments = (rows: any[] | null | undefined): Comment[] => {
+    if (!rows) return [];
+    return rows.map((row) => ({
+      ...row,
+      date: row.date ?? (row.created_at ? new Date(row.created_at).toLocaleDateString("en-US") : "Just now"),
+      likes: row.likes ?? 0,
+      id: row.id ?? row.created_at ?? Math.random()
+    }));
+  };
+
   useEffect(() => {
     const abort = new AbortController();
     const loadComments = async () => {
@@ -46,7 +56,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
           `/rest/v1/comments?select=*&post_id=eq.${article.id}`,
           { signal: abort.signal }
         );
-        setComments(data || []);
+        setComments(normalizeComments(data));
       } catch (err) {
         console.warn("Failed to load comments", err);
         setComments([]);
@@ -63,29 +73,41 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
 
   const handleSubmitComment = (e: React.FormEvent) => {
     e.preventDefault();
-    if (newComment.trim()) {
-      const comment: Comment = {
-        id: comments.length + 1,
-        author: commentName || "Anonymous",
-        avatar: (commentName || "Anonymous").slice(0, 2).toUpperCase(),
-        date: "Just now",
-        content: newComment,
-        likes: 0
+    if (!newComment.trim()) return;
+
+    const comment: Comment = {
+      id: comments.length + 1,
+      author: commentName || "Anonymous",
+      avatar: (commentName || "Anonymous").slice(0, 2).toUpperCase(),
+      date: "Just now",
+      content: newComment,
+      likes: 0
+    };
+
+    const save = async () => {
+      const payload: any = {
+        author: comment.author,
+        avatar: comment.avatar,
+        content: comment.content,
+        likes: comment.likes,
+        post_id: article.id,
+        email: commentEmail || null
       };
-      const save = async () => {
-        await supabaseRequest("/rest/v1/comments", {
-          method: "POST",
-          body: JSON.stringify({ ...comment, post_id: article.id }),
-          headers: { Prefer: "return=representation" }
-        });
-        const data = await supabaseRequest<Comment[]>(`/rest/v1/comments?select=*&post_id=eq.${article.id}`);
-        setComments(data || []);
-      };
-      save().catch((err) => alert(`Error saving comment: ${err instanceof Error ? err.message : err}`));
-      setNewComment("");
-      setCommentName("");
-      setCommentEmail("");
-    }
+
+      await supabaseRequest("/rest/v1/comments", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { Prefer: "return=representation" }
+      });
+
+      const data = await supabaseRequest<Comment[]>(`/rest/v1/comments?select=*&post_id=eq.${article.id}`);
+      setComments(normalizeComments(data));
+    };
+
+    save().catch((err) => alert(`Error saving comment: ${err instanceof Error ? err.message : err}`));
+    setNewComment("");
+    setCommentName("");
+    setCommentEmail("");
   };
 
   const handleSubscribe = (e: React.FormEvent) => {

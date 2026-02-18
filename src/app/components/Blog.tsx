@@ -4,7 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { useState, useEffect, useMemo } from "react";
 import { BlogArticle } from "@/app/components/BlogArticle";
 import { blogCategories } from "@/app/constants/blogCategories";
-import { supabaseRequest } from "@/app/lib/supabaseClient";
+import { supabaseRequest, supabaseUrl, supabaseAnonKey } from "@/app/lib/supabaseClient";
 
 interface BlogPost {
   id: string | number;
@@ -43,8 +43,29 @@ export function Blog() {
     });
   }, [blogPosts]);
 
+  // Load blog posts from localStorage first (same storage the Admin dashboard writes to)
+  useEffect(() => {
+    const savedPosts = localStorage.getItem("flowbooks_blog_posts");
+    if (!savedPosts) return;
+
+    try {
+      const parsed = JSON.parse(savedPosts) as BlogPost[];
+      setBlogPosts(parsed);
+      if (parsed.length > 0) {
+        setFeaturedPost({ ...parsed[0], featured: true });
+      }
+    } catch (err) {
+      console.warn("Failed to load cached blog posts", err);
+    }
+  }, []);
+
   // Load blog posts from Supabase
   useEffect(() => {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn("Supabase not configured; showing cached blog posts only");
+      return;
+    }
+
     const abort = new AbortController();
     const load = async () => {
       try {
