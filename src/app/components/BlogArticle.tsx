@@ -222,7 +222,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                 </div>
                 <div>
                   <p className="font-medium" style={{ color: '#0a1929' }}>{article.author}</p>
-                  <p className="text-sm text-gray-500">Senior Financial Writer</p>
+                  {/* <p className="text-sm text-gray-500">Senior Financial Writer</p> */}
                 </div>
               </div>
               
