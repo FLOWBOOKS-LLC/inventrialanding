@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Building2, Users, Award, CheckCircle, ArrowRight, Briefcase, Globe } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { useState, useEffect } from "react";
+import { supabaseRequest, supabaseUrl, supabaseAnonKey } from "@/app/lib/supabaseClient";
 
 interface ClientsProps {
   onNavigate?: (page: string) => void;
@@ -21,12 +22,37 @@ interface SuccessStory {
 export function Clients({ onNavigate }: ClientsProps) {
   const [caseStudies, setCaseStudies] = useState<SuccessStory[]>([]);
 
-  // Load success stories from localStorage
+  // Load success stories from localStorage for fast render
   useEffect(() => {
     const savedStories = localStorage.getItem("flowbooks_success_stories");
     if (savedStories) {
       setCaseStudies(JSON.parse(savedStories));
     }
+  }, []);
+
+  // Load success stories from Supabase so all visitors see the shared data
+  useEffect(() => {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn("Supabase env vars missing; showing cached success stories only");
+      return;
+    }
+
+    const abort = new AbortController();
+    const load = async () => {
+      try {
+        const stories = await supabaseRequest<SuccessStory[]>(
+          `/rest/v1/success_stories?select=*`,
+          { signal: abort.signal }
+        );
+        setCaseStudies(stories || []);
+        localStorage.setItem("flowbooks_success_stories", JSON.stringify(stories || []));
+      } catch (err) {
+        console.warn("Failed to load success stories from Supabase", err);
+      }
+    };
+
+    load();
+    return () => abort.abort();
   }, []);
 
   const industries = [
