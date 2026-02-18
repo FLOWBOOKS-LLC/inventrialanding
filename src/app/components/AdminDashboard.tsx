@@ -39,7 +39,6 @@ interface SuccessStory {
   image: string;
   challenge: string;
   result: string;
-  metrics: { value: string; label: string }[];
 }
 
 interface BlogPost {
@@ -832,15 +831,6 @@ function StoriesSection({
                 </div>
                 <h3 className="text-xl mb-3" style={{ color: '#0a1929' }}>{story.company}</h3>
                 <p className="text-sm text-gray-600 mb-4 line-clamp-2">{story.challenge}</p>
-                
-                <div className="grid grid-cols-3 gap-2 mb-4 pt-4 border-t border-gray-200">
-                  {story.metrics.map((metric, idx) => (
-                    <div key={idx} className="text-center">
-                      <div className="text-lg font-semibold" style={{ color: '#4166b2' }}>{metric.value}</div>
-                      <div className="text-xs text-gray-500">{metric.label}</div>
-                    </div>
-                  ))}
-                </div>
 
                 <div className="flex gap-2">
                   <Button
@@ -1268,12 +1258,7 @@ function StoryFormModal({
       logo: "",
       image: "",
       challenge: "",
-      result: "",
-      metrics: [
-        { value: "", label: "" },
-        { value: "", label: "" },
-        { value: "", label: "" }
-      ]
+      result: ""
     }
   );
 
@@ -1386,42 +1371,6 @@ function StoryFormModal({
               rows={3}
               required
             />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
-              Metrics (3 required) *
-            </label>
-            <div className="space-y-3">
-              {formData.metrics.map((metric, index) => (
-                <div key={index} className="grid grid-cols-2 gap-3">
-                  <input
-                    type="text"
-                    value={metric.value}
-                    onChange={(e) => {
-                      const newMetrics = [...formData.metrics];
-                      newMetrics[index].value = e.target.value;
-                      setFormData({ ...formData, metrics: newMetrics });
-                    }}
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Value (e.g., 75%)"
-                    required
-                  />
-                  <input
-                    type="text"
-                    value={metric.label}
-                    onChange={(e) => {
-                      const newMetrics = [...formData.metrics];
-                      newMetrics[index].label = e.target.value;
-                      setFormData({ ...formData, metrics: newMetrics });
-                    }}
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Label (e.g., Time Saved)"
-                    required
-                  />
-                </div>
-              ))}
-            </div>
           </div>
 
           <div className="flex gap-3 pt-4">

@@ -16,7 +16,6 @@ interface SuccessStory {
   image: string;
   challenge: string;
   result: string;
-  metrics: { value: string; label: string }[];
 }
 
 export function Clients({ onNavigate }: ClientsProps) {
@@ -336,15 +335,6 @@ export function Clients({ onNavigate }: ClientsProps) {
                       </div>
                     </div>
 
-                    {/* Metrics */}
-                    <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200">
-                      {study.metrics.map((metric, idx) => (
-                        <div key={idx} className="text-center">
-                          <div className="text-2xl lg:text-3xl mb-1" style={{ color: '#4166b2' }}>{metric.value}</div>
-                          <div className="text-xs text-gray-600">{metric.label}</div>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 </div>
               </motion.div>
