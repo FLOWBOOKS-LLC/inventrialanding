@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Calendar, Clock, User, ArrowRight, TrendingUp, BookOpen, Search, Tag, ChevronRight } from "lucide-react";
+import { Calendar, Clock, User, ArrowRight, TrendingUp, BookOpen, Search, Tag, ChevronRight, Loader2 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { useState, useEffect, useMemo } from "react";
 import { BlogArticle } from "@/app/components/BlogArticle";
@@ -25,6 +25,7 @@ export function Blog() {
   const [selectedArticle, setSelectedArticle] = useState<any>(null);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [featuredPost, setFeaturedPost] = useState<BlogPost | null>(null);
+  const [loadingPosts, setLoadingPosts] = useState(true);
 
   const filteredPosts = useMemo(() => {
     if (selectedCategory === "All") return blogPosts;
@@ -46,28 +47,33 @@ export function Blog() {
   // Load blog posts from localStorage first (same storage the Admin dashboard writes to)
   useEffect(() => {
     const savedPosts = localStorage.getItem("flowbooks_blog_posts");
-    if (!savedPosts) return;
-
-    try {
-      const parsed = JSON.parse(savedPosts) as BlogPost[];
-      setBlogPosts(parsed);
-      if (parsed.length > 0) {
-        setFeaturedPost({ ...parsed[0], featured: true });
+    if (savedPosts) {
+      try {
+        const parsed = JSON.parse(savedPosts) as BlogPost[];
+        setBlogPosts(parsed);
+        if (parsed.length > 0) {
+          setFeaturedPost({ ...parsed[0], featured: true });
+        }
+      } catch (err) {
+        console.warn("Failed to load cached blog posts", err);
       }
-    } catch (err) {
-      console.warn("Failed to load cached blog posts", err);
     }
+
+    // Ensure loading clears even if only cached data is present
+    setLoadingPosts(false);
   }, []);
 
   // Load blog posts from Supabase
   useEffect(() => {
     if (!supabaseUrl || !supabaseAnonKey) {
       console.warn("Supabase not configured; showing cached blog posts only");
+      setLoadingPosts(false);
       return;
     }
 
     const abort = new AbortController();
     const load = async () => {
+      setLoadingPosts(true);
       try {
         const posts = await supabaseRequest<BlogPost[]>(`/rest/v1/blog_posts?select=*`, { signal: abort.signal });
         setBlogPosts(posts || []);
@@ -76,6 +82,8 @@ export function Blog() {
         }
       } catch (err) {
         console.warn("Failed to load blog posts", err);
+      } finally {
+        setLoadingPosts(false);
       }
     };
     load();
@@ -398,9 +406,17 @@ export function Blog() {
               ))}
             </div>
 
-            {filteredPosts.length === 0 && (
-              <div className="text-center py-16 text-gray-500">
-                <p>No articles yet. Add one from the Admin panel.</p>
+            {loadingPosts && (
+              <div className="flex flex-col items-center justify-center gap-3 py-16 text-gray-600">
+                <Loader2 className="w-8 h-8 animate-spin" />
+                <p>Loading articles...</p>
+              </div>
+            )}
+
+            {!loadingPosts && filteredPosts.length === 0 && (
+              <div className="flex flex-col items-center justify-center gap-2 py-16 text-gray-500">
+                <BookOpen className="w-8 h-8 text-gray-400" />
+                <p>Articles are being curated. Check back soon.</p>
               </div>
             )}
 

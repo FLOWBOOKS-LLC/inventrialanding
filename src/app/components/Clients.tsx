@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Building2, Users, Award, CheckCircle, ArrowRight, Briefcase, Globe } from "lucide-react";
+import { Building2, Users, Award, CheckCircle, ArrowRight, Briefcase, Globe, Loader2 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { useState, useEffect } from "react";
 import { supabaseRequest, supabaseUrl, supabaseAnonKey } from "@/app/lib/supabaseClient";
@@ -20,6 +20,7 @@ interface SuccessStory {
 
 export function Clients({ onNavigate }: ClientsProps) {
   const [caseStudies, setCaseStudies] = useState<SuccessStory[]>([]);
+  const [loadingStories, setLoadingStories] = useState(true);
 
   // Load success stories from localStorage for fast render
   useEffect(() => {
@@ -27,17 +28,20 @@ export function Clients({ onNavigate }: ClientsProps) {
     if (savedStories) {
       setCaseStudies(JSON.parse(savedStories));
     }
+    // Keep loading true until remote fetch finishes or is skipped
   }, []);
 
   // Load success stories from Supabase so all visitors see the shared data
   useEffect(() => {
     if (!supabaseUrl || !supabaseAnonKey) {
       console.warn("Supabase env vars missing; showing cached success stories only");
+      setLoadingStories(false);
       return;
     }
 
     const abort = new AbortController();
     const load = async () => {
+      setLoadingStories(true);
       try {
         const stories = await supabaseRequest<SuccessStory[]>(
           `/rest/v1/success_stories?select=*`,
@@ -47,6 +51,8 @@ export function Clients({ onNavigate }: ClientsProps) {
         localStorage.setItem("flowbooks_success_stories", JSON.stringify(stories || []));
       } catch (err) {
         console.warn("Failed to load success stories from Supabase", err);
+      } finally {
+        setLoadingStories(false);
       }
     };
 
@@ -340,9 +346,17 @@ export function Clients({ onNavigate }: ClientsProps) {
               </motion.div>
             ))}
 
-            {caseStudies.length === 0 && (
-              <div className="text-center py-16 text-gray-500">
-                <p>No success stories yet. Add one in the Admin panel.</p>
+            {loadingStories && (
+              <div className="flex flex-col items-center justify-center gap-3 py-16 text-gray-600">
+                <Loader2 className="w-8 h-8 animate-spin" />
+                <p>Loading success stories...</p>
+              </div>
+            )}
+
+            {!loadingStories && caseStudies.length === 0 && (
+              <div className="flex flex-col items-center justify-center gap-2 py-16 text-gray-500">
+                <Award className="w-8 h-8 text-gray-400" />
+                <p>Success stories are on the way. Check back soon.</p>
               </div>
             )}
           </div>
