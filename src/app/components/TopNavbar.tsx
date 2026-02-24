@@ -39,47 +39,47 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
         }
       `}</style>
 
-      <div className="px-4 md:px-8 flex items-center justify-between gap-4">
-        <a href="/" aria-label="Flowbooks home" className="flex items-center">
+      <div className="px-4 md:px-8 flex items-center gap-3">
+        <a href="/" aria-label="Flowbooks home" className="flex items-center flex-shrink-0">
           <img src={logo} alt="Flowbooks" className="h-8 w-auto" />
         </a>
 
-        {/* Moving promotional ticker */}
-        <div className="hidden md:block flex-1 max-w-3xl">
+        {/* Moving promotional ticker shown on all breakpoints without extra height */}
+        <div className="flex-1 min-w-0">
           <button
             type="button"
             onClick={goToPlans}
             className="group w-full relative overflow-hidden py-1 px-2 text-left transition-all duration-150 cursor-pointer focus:outline-none active:opacity-70 hover:opacity-90"
             aria-label="View our pricing plans"
+            style={{ minHeight: 30 }}
           >
             <div
               className="promo-text whitespace-nowrap flex gap-8 text-[11px] md:text-xs font-normal text-[#0b3574]/70 tracking-tight transition-colors duration-150 group-hover:text-[#0b3574]"
-                 style={{ animation: 'marquee 14s linear infinite' }}>
+              style={{ animation: 'marquee 14s linear infinite' }}
+            >
               <span>Enjoy 25% off our product · Explore our plans · Start your free trial today</span>
               <span>Enjoy 25% off our product · Explore our plans · Start your free trial today</span>
             </div>
           </button>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            {socials.map((s, i) => {
-              const Icon = s.Icon;
-              return (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.name}
-                  className="topnav-icon"
-                  style={{ color: socialIconColor, animation: `fadeUp .36s ease forwards`, animationDelay: `${i * 80}ms` }}
-                >
-                  <Icon size={16} />
-                </a>
-              );
-            })}
-          </div>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {socials.map((s, i) => {
+            const Icon = s.Icon;
+            return (
+              <a
+                key={s.name}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.name}
+                className="topnav-icon"
+                style={{ color: socialIconColor, animation: `fadeUp .36s ease forwards`, animationDelay: `${i * 80}ms` }}
+              >
+                <Icon size={16} />
+              </a>
+            );
+          })}
         </div>
       </div>
     </div>

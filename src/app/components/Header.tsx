@@ -21,8 +21,8 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #1a2942 100%)', fontFamily: 'Roboto, sans-serif' }}>
       <div className="px-4 md:px-8">
-        <div className="flex items-center h-16">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavClick('home')}>
+        <div className="flex items-center h-16 w-full">
+          <div className="flex items-center gap-3 cursor-pointer flex-shrink-0" onClick={() => handleNavClick('home')}>
             <img src={logo} alt="flowbooks" className="h-10 w-10" />
             {/* <span className="text-2xl font-medium text-white" style={{ fontFamily: 'Roboto, sans-serif' }}>flowbooks</span> */}
           </div>
@@ -62,7 +62,7 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
             </button>
           </nav>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ml-auto">
             <Button 
               onClick={() => handleNavClick('contact')}
               className="hidden md:block text-white hover:opacity-90" 
