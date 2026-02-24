@@ -27,54 +27,42 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
             {/* <span className="text-2xl font-medium text-white" style={{ fontFamily: 'Roboto, sans-serif' }}>flowbooks</span> */}
           </div>
           
-          <nav className="hidden md:flex items-center gap-8 ml-12">
+          <nav className="hidden md:flex items-center gap-8 mx-auto">
             <button
               type="button"
               onClick={() => handleNavClick('about')}
-              className={`transition-all duration-200 relative group cursor-pointer ${currentPage === 'about' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-              style={currentPage === 'about' ? { color: '#4166b2' } : {}}
+              className="transition-all duration-200 relative group cursor-pointer text-white font-bold"
             >
               About us
-              {currentPage !== 'about' && (
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
-              )}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
             </button>
             <button
             type="button"
               onClick={() => handleNavClick('clients')}
-              className={`transition-all duration-200 relative group cursor-pointer ${currentPage === 'clients' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-              style={currentPage === 'clients' ? { color: '#4166b2' } : {}}
+              className="transition-all duration-200 relative group cursor-pointer text-white font-bold"
             >
               Clients
-              {currentPage !== 'clients' && (
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
-              )}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
             </button>
             <button
               type="button"
               onClick={() => handleNavClick('blog')}
-              className={`transition-all duration-200 relative group cursor-pointer ${currentPage === 'blog' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-              style={currentPage === 'blog' ? { color: '#4166b2' } : {}}
+              className="transition-all duration-200 relative group cursor-pointer text-white font-bold"
             >
               Blog
-              {currentPage !== 'blog' && (
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
-              )}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
             </button>
             <button
               type="button"
               onClick={() => handleNavClick('contact')}
-              className={`transition-all duration-200 relative group cursor-pointer ${currentPage === 'contact' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-              style={currentPage === 'contact' ? { color: '#4166b2' } : {}}
+              className="transition-all duration-200 relative group cursor-pointer text-white font-bold"
             >
               Contact Us
-              {currentPage !== 'contact' && (
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
-              )}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
             </button>
           </nav>
           
-          <div className="flex items-center gap-4 ml-auto">
+          <div className="flex items-center gap-4">
             <Button 
               onClick={() => handleNavClick('contact')}
               className="hidden md:block text-white hover:opacity-90" 
@@ -105,29 +93,25 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
           <nav className="px-4 py-4 flex flex-col gap-4">
             <a 
               onClick={() => handleNavClick('about')}
-              className={`py-2 transition-colors cursor-pointer ${currentPage === 'about' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-              style={currentPage === 'about' ? { color: '#4166b2' } : {}}
+              className={`py-2 transition-colors cursor-pointer text-white font-bold`}
             >
               About us
             </a>
             <a 
               onClick={() => handleNavClick('clients')}
-              className={`py-2 transition-colors cursor-pointer ${currentPage === 'clients' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-              style={currentPage === 'clients' ? { color: '#4166b2' } : {}}
+              className={`py-2 transition-colors cursor-pointer text-white font-bold`}
             >
               Clients
             </a>
             <a 
               onClick={() => handleNavClick('blog')}
-              className={`py-2 transition-colors cursor-pointer ${currentPage === 'blog' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-              style={currentPage === 'blog' ? { color: '#4166b2' } : {}}
+              className={`py-2 transition-colors cursor-pointer text-white font-bold`}
             >
               Blog
             </a>
             <a 
               onClick={() => handleNavClick('contact')}
-              className={`py-2 transition-colors cursor-pointer ${currentPage === 'contact' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-              style={currentPage === 'contact' ? { color: '#4166b2' } : {}}
+              className={`py-2 transition-colors cursor-pointer text-white font-bold`}
             >
               Contact Us
             </a>
