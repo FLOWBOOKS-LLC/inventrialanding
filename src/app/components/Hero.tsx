@@ -493,10 +493,10 @@ export function Hero({ onNavigate }: HeroProps) {
             >
               <Button
                 size="lg"
-                className="bg-white text-gray-900 hover:bg-gray-100 px-8 font-semibold"
-                onClick={() => onNavigate?.('contact')}
+                className="bg-white text-gray-900 hover:bg-gray-100 px-4 font-semibold"
+                onClick={() => onNavigate?.('register')}
               >
-                Request a demo
+                Register
               </Button>
             </motion.div>
           </div>

@@ -1,7 +1,7 @@
 import { Button } from "@/app/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import logo from "@/assets/374538f42b0e0847d9f305d8e590b6dc3aeeea09.png";
+import logo from "@/assets/flo-blue.svg";
 
 interface HeaderProps {
   onNavigate?: (page: string) => void;
@@ -20,11 +20,11 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #1a2942 100%)', fontFamily: 'Roboto, sans-serif' }}>
-      <div className="px-4 lg:px-8">
+      <div className="px-4 md:px-8">
         <div className="flex items-center h-16">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavClick('home')}>
             <img src={logo} alt="flowbooks" className="h-10 w-10" />
-            <span className="text-2xl font-medium text-white" style={{ fontFamily: 'Roboto, sans-serif' }}>flowbooks</span>
+            {/* <span className="text-2xl font-medium text-white" style={{ fontFamily: 'Roboto, sans-serif' }}>flowbooks</span> */}
           </div>
           
           <nav className="hidden md:flex items-center gap-8 ml-12">

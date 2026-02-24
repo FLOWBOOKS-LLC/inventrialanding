@@ -41,7 +41,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
   ];
 
   const stats = [
-    { number: "50K+", label: "Active Users" },
+    { number: "5+", label: "Active Users" },
     { number: "99.9%", label: "Uptime" },
     { number: "$2.5B+", label: "Managed Annually" },
     { number: "150+", label: "Countries Served" }

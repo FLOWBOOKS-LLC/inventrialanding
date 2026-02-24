@@ -9,7 +9,11 @@ import { AboutUs } from '@/app/components/AboutUs';
 import { Clients } from '@/app/components/Clients';
 import { Blog } from '@/app/components/Blog';
 import { ContactUs } from '@/app/components/ContactUs';
+import Register from '@/app/components/Register';
+import RegisterChoice from '@/app/components/RegisterChoice';
 import { AdminDashboard } from '@/app/components/AdminDashboard';
+import { TopNavbar } from '@/app/components/TopNavbar';
+// Removed Container import to avoid side paddings
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -36,6 +40,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       
+      <TopNavbar />
       <Header onNavigate={setCurrentPage} currentPage={currentPage} />
       <main>
         {currentPage === 'home' ? (
@@ -53,6 +58,10 @@ export default function App() {
           <Blog />
         ) : currentPage === 'contact' ? (
           <ContactUs />
+        ) : currentPage === 'register' ? (
+          <RegisterChoice onNavigate={setCurrentPage} />
+        ) : currentPage === 'register-partner' ? (
+          <Register onNavigate={setCurrentPage} />
         ) : currentPage === 'admin' ? (
           <AdminDashboard />
         ) : null}
