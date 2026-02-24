@@ -24,7 +24,9 @@ export function TopNavbar() {
       `}</style>
 
       <div className="px-4 md:px-8 flex items-center justify-between">
-        <img src={logo} alt="Flowbooks" className="h-8 w-auto" />
+        <a href="/" aria-label="Flowbooks home" className="flex items-center">
+          <img src={logo} alt="Flowbooks" className="h-8 w-auto" />
+        </a>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             {socials.map((s, i) => {
@@ -45,7 +47,8 @@ export function TopNavbar() {
             })}
           </div>
           <div className="text-sm font-medium pl-2 pr-4 border-l border-gray-300"
-            style={{ color: socialIconColor, animation: `fadeInRight .32s ease forwards`, animationDelay: `${socials.length * 60}ms`, opacity: 0 }}>
+            style={{ color: socialIconColor, animation: `fadeInRight .32s ease forwards`, animationDelay: `${socials.length * 60}ms` }}>
+            @FlowbooksNG
           </div>
         </div>
       </div>

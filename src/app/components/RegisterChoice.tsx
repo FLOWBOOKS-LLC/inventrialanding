@@ -98,7 +98,7 @@ export function RegisterChoice({ onNavigate }: RegisterChoiceProps) {
                 <Briefcase className="w-8 h-8" />
               </div>
               <h2 className="text-2xl font-semibold mb-3" style={{ color: '#0a1929' }}>
-                Register as Partner
+                Register as Client
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Join our partner program to offer Flowbooks to your clients and grow your business with our flexible pricing plans.
