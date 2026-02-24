@@ -494,7 +494,9 @@ export function Hero({ onNavigate }: HeroProps) {
               <Button
                 size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-100 px-4 font-semibold"
-                onClick={() => onNavigate?.('register')}
+                onClick={() => {
+                  window.open('https://dashboard.inventria.app/signup', '_blank', 'noopener,noreferrer');
+                }}
               >
                 Register
               </Button>
