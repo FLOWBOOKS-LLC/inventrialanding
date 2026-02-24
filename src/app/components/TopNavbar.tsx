@@ -48,7 +48,7 @@ export function TopNavbar() {
           </div>
           <div className="text-sm font-medium pl-2 pr-4 border-l border-gray-300"
             style={{ color: socialIconColor, animation: `fadeInRight .32s ease forwards`, animationDelay: `${socials.length * 60}ms` }}>
-            @FlowbooksNG
+            {/* @FlowbooksNG */}
           </div>
         </div>
       </div>
