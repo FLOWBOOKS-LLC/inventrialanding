@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/app/components/ui/button';
 import { Check } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface RegisterProps {
   onNavigate?: (page: string) => void;
@@ -105,10 +106,34 @@ const plans = [
 export function Register({ onNavigate }: RegisterProps) {
   return (
     <div className="min-h-screen bg-white">
-      <section className="py-16" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #1a2942 100%)' }}>
-        <div className="container mx-auto px-4 lg:px-8 text-center text-white">
+      <section
+        className="relative overflow-hidden py-20 lg:py-28"
+        style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #4166b2 100%)' }}
+      >
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-16 left-12 w-64 h-64 rounded-full opacity-20 blur-3xl"
+            style={{ background: '#4166b2' }}
+            animate={{ y: [0, 50, 0], x: [0, 30, 0], scale: [1, 1.2, 1] }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute bottom-10 right-12 w-72 h-72 rounded-full opacity-20 blur-3xl"
+            style={{ background: '#0a1929' }}
+            animate={{ y: [0, -40, 0], x: [0, -30, 0], scale: [1, 1.15, 1] }}
+            transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </div>
+        <div className="container mx-auto px-4 lg:px-8 text-center text-white relative z-10">
           <h2 className="text-2xl lg:text-3xl font-semibold mb-2">Choose a plan that fits your business</h2>
           <p className="text-sm text-white/80 max-w-2xl mx-auto">Start with a 30-day free trial. Upgrade anytime.</p>
+        </div>
+        {/* Decorative bottom wave */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg className="w-full h-24 lg:h-32" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,50 C360,90 720,10 1080,50 C1260,70 1350,80 1440,90 L1440,100 L0,100 Z" fill="white" fillOpacity="0.1"/>
+            <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1350,90 1440,100 L1440,100 L0,100 Z" fill="white"/>
+          </svg>
         </div>
       </section>
 

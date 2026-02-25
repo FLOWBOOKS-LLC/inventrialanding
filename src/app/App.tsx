@@ -12,6 +12,7 @@ import { ContactUs } from '@/app/components/ContactUs';
 import Register from '@/app/components/Register';
 import { AdminDashboard } from '@/app/components/AdminDashboard';
 import { TopNavbar } from '@/app/components/TopNavbar';
+import { FAQs } from '@/app/components/FAQs';
 // Removed Container import to avoid side paddings
 
 export default function App() {
@@ -65,6 +66,8 @@ export default function App() {
           <Blog />
         ) : currentPage === 'contact' ? (
           <ContactUs />
+        ) : currentPage === 'faqs' ? (
+          <FAQs onNavigate={setCurrentPage} />
         ) : currentPage === 'register-partner' ? (
           <Register onNavigate={setCurrentPage} />
         ) : currentPage === 'admin' ? (

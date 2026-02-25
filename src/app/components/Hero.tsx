@@ -463,7 +463,7 @@ export function Hero({ onNavigate }: HeroProps) {
       }}
     >
       {/* Vertical padding accounts for navbar */}
-      <div className="container mx-auto px-4 lg:px-6 w-full pt-20 lg:pt-0">
+      <div className="container mx-auto px-4 lg:px-6 w-full pt-8 lg:pt-0">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* LEFT: Text */}

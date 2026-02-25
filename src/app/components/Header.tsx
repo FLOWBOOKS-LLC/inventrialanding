@@ -21,13 +21,13 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #1a2942 100%)', fontFamily: 'Roboto, sans-serif' }}>
       <div className="px-4 md:px-8">
-        <div className="flex items-center h-16 w-full">
+        <div className="relative flex items-center h-16 w-full">
           <div className="flex items-center gap-3 cursor-pointer flex-shrink-0" onClick={() => handleNavClick('home')}>
             <img src={logo} alt="flowbooks" className="h-10 w-10" />
             {/* <span className="text-2xl font-medium text-white" style={{ fontFamily: 'Roboto, sans-serif' }}>flowbooks</span> */}
           </div>
           
-          <nav className="hidden md:flex items-center gap-8 mx-auto">
+          <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             <button
               type="button"
               onClick={() => handleNavClick('about')}
@@ -58,6 +58,22 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               className="transition-all duration-200 relative group cursor-pointer text-white font-bold"
             >
               Contact Us
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleNavClick('register-partner')}
+              className="transition-all duration-200 relative group cursor-pointer text-white font-bold"
+            >
+              Pricing
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleNavClick('faqs')}
+              className="transition-all duration-200 relative group cursor-pointer text-white font-bold"
+            >
+              FAQs
               <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#4166b2' }}></span>
             </button>
           </nav>
@@ -114,6 +130,18 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               className={`py-2 transition-colors cursor-pointer text-white font-bold`}
             >
               Contact Us
+            </a>
+            <a 
+              onClick={() => handleNavClick('register-partner')}
+              className={`py-2 transition-colors cursor-pointer text-white font-bold`}
+            >
+              Pricing
+            </a>
+            <a 
+              onClick={() => handleNavClick('faqs')}
+              className={`py-2 transition-colors cursor-pointer text-white font-bold`}
+            >
+              FAQs
             </a>
             <Button 
               onClick={() => handleNavClick('contact')}
