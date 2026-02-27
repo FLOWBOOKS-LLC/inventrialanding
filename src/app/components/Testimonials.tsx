@@ -62,19 +62,25 @@ export function Testimonials() {
   };
 
   return (
-    <section 
-      className="py-10 lg:py-16 relative overflow-hidden" 
-      style={{ 
-        background: 'linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 100%)',
-        fontFamily: 'Roboto, sans-serif'
+    <section
+      className="py-16 lg:py-24 relative overflow-hidden bg-slate-950"
+      style={{
+        fontFamily: "Roboto, sans-serif",
       }}
     >
-      <div className="container mx-auto px-4 lg:px-6">
+      <div className="max-w-6xl mx-auto px-4 lg:px-6">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl lg:text-3xl text-gray-900 mb-6">
-            How flowbooks drives success for
+        <div className="text-center mb-10">
+          <p className="text-xs font-semibold tracking-[0.2em] text-[#0b3574] uppercase mb-3">
+            Customer Stories
+          </p>
+          <h2 className="text-3xl lg:text-3xl text-white mb-2">
+            How Flowbooks supports different teams
           </h2>
+          <p className="text-sm md:text-base text-slate-300 max-w-2xl mx-auto">
+            From individuals to mid-market businesses, Flowbooks helps keep books accurate,
+            cash flow visible, and teams aligned.
+          </p>
           
           {/* Category Navigation */}
           <div className="relative flex items-center justify-center overflow-hidden">
@@ -93,10 +99,11 @@ export function Testimonials() {
                 <motion.button
                   key={category.id}
                   onClick={() => handleCategoryChange(index)}
-                  className="relative px-8 lg:px-10 py-4 lg:py-5 rounded-full text-xl lg:text-2xl font-medium whitespace-nowrap"
+                  className="relative px-6 lg:px-8 py-3 lg:py-3.5 rounded-full text-sm lg:text-base font-medium whitespace-nowrap"
                   animate={{
-                    backgroundColor: selectedCategory === index ? '#ffffff' : 'rgba(0, 0, 0, 0)',
-                    color: selectedCategory === index ? '#1f2937' : '#4b5563',
+                    backgroundColor:
+                      selectedCategory === index ? "#ffffff" : "rgba(15,23,42,0.5)",
+                    color: selectedCategory === index ? "#020617" : "#e5e7eb",
                     scale: selectedCategory === index ? 1.05 : 1,
                   }}
                   whileHover={{ 
@@ -111,7 +118,9 @@ export function Testimonials() {
                     ease: "easeInOut"
                   }}
                   style={{
-                    boxShadow: selectedCategory === index ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none',
+                    boxShadow: selectedCategory === index
+                      ? "0 10px 40px rgba(15,23,42,0.55)"
+                      : "0 0 0 rgba(0,0,0,0)",
                   }}
                 >
                   {/* Navigation arrows for selected category */}

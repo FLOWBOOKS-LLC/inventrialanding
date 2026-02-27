@@ -208,14 +208,14 @@ export function AdminDashboard() {
   // Login Screen
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #4166b2 100%)' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #0b3574 100%)' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md"
         >
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg, #4166b2 0%, #000000 100%)' }}>
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #000000 100%)' }}>
               <LayoutDashboard className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-3xl mb-2" style={{ color: '#0a1929' }}>Flowbooks Admin</h1>
@@ -239,7 +239,7 @@ export function AdminDashboard() {
             <Button 
               type="submit" 
               className="w-full text-white" 
-              style={{ background: '#4166b2' }}
+              style={{ background: '#0b3574' }}
             >
               Sign In
             </Button>
@@ -261,7 +261,7 @@ export function AdminDashboard() {
         {/* Logo */}
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: '#4166b2' }}>
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: '#0b3574' }}>
               <LayoutDashboard className="w-6 h-6 text-white" />
             </div>
             <div>

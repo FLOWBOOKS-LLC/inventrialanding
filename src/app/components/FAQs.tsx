@@ -75,15 +75,15 @@ export function FAQs({ onNavigate }: FAQsProps) {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-background text-foreground transition-colors">
       <section
         className="relative overflow-hidden py-20 lg:py-28"
-        style={{ background: "linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #4166b2 100%)" }}
+        style={{ background: "linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #0b3574 100%)" }}
       >
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-20 left-10 w-64 h-64 rounded-full opacity-20 blur-3xl"
-            style={{ background: "#4166b2" }}
+            style={{ background: "#0b3574" }}
             animate={{ y: [0, 50, 0], x: [0, 30, 0], scale: [1, 1.2, 1] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -136,14 +136,14 @@ export function FAQs({ onNavigate }: FAQsProps) {
                   <button
                     key={item.question}
                     type="button"
-                    className="w-full text-left rounded-2xl border border-gray-200 p-5 transition hover:border-[#4166b2]/50"
+                    className="w-full text-left rounded-2xl border border-gray-200 p-5 transition hover:border-[#0b3574]/50"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
                     <div className="flex items-center justify-between gap-4">
                       <h3 className="text-base md:text-lg font-semibold">{item.question}</h3>
                       <span
                         className={`flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 transition ${
-                          isOpen ? "bg-[#4166b2] text-white border-[#4166b2]" : "text-gray-500"
+                          isOpen ? "bg-[#0b3574] text-white border-[#0b3574]" : "text-gray-500"
                         }`}
                         aria-hidden="true"
                       >
@@ -164,7 +164,7 @@ export function FAQs({ onNavigate }: FAQsProps) {
                 We guide you through onboarding, reports, and workflows so you can focus on growth.
               </p>
               <Button
-                className="mt-4 bg-[#4166b2] text-white hover:opacity-90"
+                className="mt-4 bg-[#0b3574] text-white hover:opacity-90"
                 onClick={() => onNavigate?.("contact")}
               >
                 Book a Demo
@@ -179,7 +179,7 @@ export function FAQs({ onNavigate }: FAQsProps) {
                   return (
                     <div key={point.title} className="flex gap-3">
                       <div className="h-9 w-9 rounded-full bg-white border border-gray-200 flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-[#4166b2]" />
+                        <Icon className="h-4 w-4 text-[#0b3574]" />
                       </div>
                       <div>
                         <p className="font-semibold text-sm">{point.title}</p>
@@ -199,7 +199,7 @@ export function FAQs({ onNavigate }: FAQsProps) {
                   return (
                     <div key={topic.title} className="flex items-center gap-3">
                       <div className="h-9 w-9 rounded-full bg-[#eaf0ff] flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-[#4166b2]" />
+                        <Icon className="h-4 w-4 text-[#0b3574]" />
                       </div>
                       <div>
                         <p className="font-semibold text-sm">{topic.title}</p>

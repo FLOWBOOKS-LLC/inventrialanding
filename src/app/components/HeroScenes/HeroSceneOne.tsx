@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { CheckCircle, TrendingUp } from "lucide-react";
-import logo from "@/assets/374538f42b0e0847d9f305d8e590b6dc3aeeea09.png";
+import logo from "@/assets/flowbooks-blue.png";
 
 export function HeroSceneOne() {
   return (
@@ -16,10 +16,10 @@ export function HeroSceneOne() {
         <div className="flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-white" />
           <div>
-            <div className="text-white text-xs font-medium opacity-90">
-              Increased Efficiency
-            </div>
-            <div className="text-white text-lg font-bold">98%</div>
+              <div className="text-white text-xs font-medium opacity-90">
+                Month-end close time
+              </div>
+              <div className="text-white text-lg font-bold">2× faster</div>
           </div>
         </div>
       </motion.div>
@@ -48,7 +48,7 @@ export function HeroSceneOne() {
             <h3 className="text-white text-lg font-semibold mb-1">
               Flowbooks
             </h3>
-            <p className="text-gray-400 text-sm mb-6">since 2021</p>
+            <p className="text-gray-400 text-sm mb-6">Accounting platform since 2021</p>
           </div>
         </div>
       </motion.div>
@@ -62,7 +62,7 @@ export function HeroSceneOne() {
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
           <span className="text-white text-sm font-medium">
-            Charts of Accounts
+            Chart of accounts
           </span>
         </div>
       </motion.div>
@@ -87,7 +87,7 @@ export function HeroSceneOne() {
       >
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
-          <span className="text-white text-sm font-medium">Finance</span>
+          <span className="text-white text-sm font-medium">Financial controls</span>
         </div>
       </motion.div>
 
@@ -98,7 +98,7 @@ export function HeroSceneOne() {
         transition={{ delay: 0.7, duration: 0.4 }}
       >
         <div className="text-xs text-gray-400 mb-2 font-medium">
-          Business Cost Saved
+          Manual entries reduced
         </div>
         <div className="flex items-baseline gap-2">
           <TrendingUp className="w-5 h-5 text-green-500" />

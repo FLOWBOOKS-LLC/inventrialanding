@@ -39,7 +39,7 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
         }
       `}</style>
 
-      <div className="px-4 md:px-8 flex items-center gap-3">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center gap-3">
         <a href="/" aria-label="Flowbooks home" className="flex items-center flex-shrink-0">
           <img src={logo} alt="Flowbooks" className="h-8 w-auto" />
         </a>
@@ -50,15 +50,15 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
             type="button"
             onClick={goToPlans}
             className="group w-full relative overflow-hidden py-1 px-2 text-left transition-all duration-150 cursor-pointer focus:outline-none active:opacity-70 hover:opacity-90"
-            aria-label="View our pricing plans"
+            aria-label="View Flowbooks plans"
             style={{ minHeight: 30 }}
           >
             <div
               className="promo-text whitespace-nowrap flex gap-8 text-[11px] md:text-xs font-normal text-[#0b3574]/70 tracking-tight transition-colors duration-150 group-hover:text-[#0b3574]"
               style={{ animation: 'marquee 14s linear infinite' }}
             >
-              <span>Enjoy 25% off our product · Explore our plans · Start your free trial today</span>
-              <span>Enjoy 25% off our product · Explore our plans · Start your free trial today</span>
+              <span>Automate invoicing and reconciliations · Close your books 2x faster · See Flowbooks pricing</span>
+              <span>Automate invoicing and reconciliations · Close your books 2x faster · See Flowbooks pricing</span>
             </div>
           </button>
         </div>

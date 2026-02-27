@@ -105,15 +105,15 @@ const plans = [
 
 export function Register({ onNavigate }: RegisterProps) {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground transition-colors">
       <section
         className="relative overflow-hidden py-20 lg:py-28"
-        style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #4166b2 100%)' }}
+        style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #0b3574 100%)' }}
       >
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-16 left-12 w-64 h-64 rounded-full opacity-20 blur-3xl"
-            style={{ background: '#4166b2' }}
+            style={{ background: '#0b3574' }}
             animate={{ y: [0, 50, 0], x: [0, 30, 0], scale: [1, 1.2, 1] }}
             transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -124,7 +124,7 @@ export function Register({ onNavigate }: RegisterProps) {
             transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
-        <div className="container mx-auto px-4 lg:px-8 text-center text-white relative z-10">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 text-center text-white relative z-10">
           <h2 className="text-2xl lg:text-3xl font-semibold mb-2">Choose a plan that fits your business</h2>
           <p className="text-sm text-white/80 max-w-2xl mx-auto">Start with a 30-day free trial. Upgrade anytime.</p>
         </div>
@@ -138,13 +138,13 @@ export function Register({ onNavigate }: RegisterProps) {
       </section>
 
       <section className="py-8 bg-gray-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.map((p) => (
               <div
                 key={p.name}
                 className={`bg-white rounded-2xl shadow-sm border ${p.highlight ? 'border-2' : 'border-gray-100'} flex flex-col overflow-hidden`}
-                style={p.highlight ? { borderColor: '#4166b2', boxShadow: '0 12px 30px rgba(65,102,178,0.06)' } : {}}
+                style={p.highlight ? { borderColor: '#0b3574', boxShadow: '0 12px 30px rgba(11,53,116,0.08)' } : {}}
               >
                 {/* Upper section */}
                 <div className="px-6 py-8 text-center">
@@ -160,7 +160,7 @@ export function Register({ onNavigate }: RegisterProps) {
                   <div className="text-xs text-gray-500 mt-3">{p.note}</div>
 
                   <div className="mt-6">
-                    <Button className="w-full text-white py-3" style={{ background: '#4166b2' }} onClick={() => onNavigate?.('contact')}>
+                    <Button className="w-full text-white py-3" style={{ background: '#0b3574' }} onClick={() => onNavigate?.('contact')}>
                       Select plan
                     </Button>
                   </div>

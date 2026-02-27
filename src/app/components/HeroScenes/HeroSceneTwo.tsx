@@ -24,7 +24,7 @@ export function HeroSceneTwo() {
       </motion.div>
 
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] bg-gray-800/80 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] bg-gray-900/85 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
@@ -33,8 +33,8 @@ export function HeroSceneTwo() {
           <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-blue-400" />
           </div>
-          <span className="text-white text-lg">
-            How can I help with your bookkeeping today?
+          <span className="text-white text-sm md:text-base">
+            Flowbooks has prepared your cash flow, P&L, and balance sheet for review.
           </span>
           <button className="ml-auto w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center shadow-lg">
             <Mic className="w-4 h-4 text-white" />
@@ -48,8 +48,8 @@ export function HeroSceneTwo() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <div className="text-xs text-blue-100 mb-1">✓ SYNC COMPLETE</div>
-        <div className="text-white font-medium">Bank reconciliation updated</div>
+        <div className="text-xs text-blue-100 mb-1">✓ BANK FEEDS SYNCED</div>
+        <div className="text-white font-medium">Reconciliation up to date</div>
       </motion.div>
 
       <motion.div

@@ -39,11 +39,11 @@ export function RegisterChoice({ onNavigate }: RegisterChoiceProps) {
               overflow: 'hidden',
             }}
           >
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300" style={{ background: '#4166b2' }}></div>
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300" style={{ background: '#0b3574' }}></div>
             <div className="relative z-10">
               <div
                 className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-                style={{ background: '#4166b2' }}
+                style={{ background: '#0b3574' }}
               >
                 <Users className="w-8 h-8 text-white" />
               </div>
@@ -55,21 +55,21 @@ export function RegisterChoice({ onNavigate }: RegisterChoiceProps) {
               </p>
               <ul className="space-y-2 mb-8 text-sm text-gray-600">
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#4166b2' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#0b3574' }}></span>
                   Full accounting features
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#4166b2' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#0b3574' }}></span>
                   30-day free trial
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#4166b2' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#0b3574' }}></span>
                   Choose your plan later
                 </li>
               </ul>
               <Button
                 className="w-full text-white hover:opacity-90"
-                style={{ background: '#4166b2' }}
+                style={{ background: '#0b3574' }}
                 onClick={() => onNavigate?.('contact')}
               >
                 Register as User
@@ -84,12 +84,12 @@ export function RegisterChoice({ onNavigate }: RegisterChoiceProps) {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="group bg-white rounded-3xl border-2 p-8 hover:shadow-2xl transition-all duration-300"
             style={{
-              borderColor: '#4166b2',
+              borderColor: '#0b3574',
               position: 'relative',
               overflow: 'hidden',
             }}
           >
-            <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300" style={{ background: '#4166b2' }}></div>
+            <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300" style={{ background: '#0b3574' }}></div>
             <div className="relative z-10">
               <div
                 className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 text-white"

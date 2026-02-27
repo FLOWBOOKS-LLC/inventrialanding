@@ -105,15 +105,15 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
 
 
   return (
-    <div className="bg-white">
+    <div className="bg-background text-foreground transition-colors">
       {/* Hero Section - Dark to Color Gradient */}
-      <section className="relative overflow-hidden py-20 lg:py-28" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #4166b2 100%)' }}>
+      <section className="relative overflow-hidden py-20 lg:py-28" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #0b3574 100%)' }}>
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Floating orbs */}
           <motion.div
             className="absolute top-20 left-10 w-64 h-64 rounded-full opacity-20 blur-3xl"
-            style={{ background: '#4166b2' }}
+            style={{ background: '#0b3574' }}
             animate={{
               y: [0, 50, 0],
               x: [0, 30, 0],
@@ -127,7 +127,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
           />
           <motion.div
             className="absolute top-40 right-20 w-96 h-96 rounded-full opacity-15 blur-3xl"
-            style={{ background: '#4166b2' }}
+            style={{ background: '#0b3574' }}
             animate={{
               y: [0, -40, 0],
               x: [0, -40, 0],
@@ -155,12 +155,12 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
           
           {/* Grid pattern overlay */}
           <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: 'linear-gradient(#4166b2 1px, transparent 1px), linear-gradient(90deg, #4166b2 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(#0b3574 1px, transparent 1px), linear-gradient(90deg, #0b3574 1px, transparent 1px)',
             backgroundSize: '50px 50px'
           }}></div>
         </div>
         
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -203,7 +203,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              FlowBooks is a modern accounting and financial management platform built to simplify how businesses and individuals manage their finances. We help our users automate bookkeeping, gain real-time financial insights, and make better decisions with confidence. Our focus is on accuracy, security, and ease of use—so finance works for you, not against you.
+              Flowbooks is a modern accounting and financial management platform built to simplify how businesses and individuals manage their finances. We help our users automate bookkeeping, gain real-time financial insights, and make better decisions with confidence. Our focus is on accuracy, security, and ease of use—so finance works for you, not against you.
             </motion.p>
 
             {/* Floating stats cards */}
@@ -261,7 +261,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
             >
               <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full opacity-20" style={{ background: '#4166b2' }}></div>
               <div className="relative bg-white rounded-2xl p-8 lg:p-10 shadow-xl border border-gray-100">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ background: '#4166b2' }}>
+                <div className="w-14 h-14 rounded-xl flex items_center justify-center mb-6" style={{ background: '#0b3574' }}>
                   <Target className="w-7 h-7 text-white" />
                 </div>
                 <h2 className="text-3xl mb-4" style={{ color: '#0a1929' }}>Our Mission</h2>
@@ -280,7 +280,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
             >
               <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full opacity-20" style={{ background: '#4166b2' }}></div>
               <div className="relative bg-white rounded-2xl p-8 lg:p-10 shadow-xl border border-gray-100">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ background: 'linear-gradient(135deg, #4166b2 0%, #000000 100%)' }}>
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #000000 100%)' }}>
                   <Eye className="w-7 h-7 text-white" />
                 </div>
                 <h2 className="text-3xl mb-4" style={{ color: '#0a1929' }}>Our Vision</h2>
@@ -302,7 +302,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-1/2 left-1/4 w-64 h-64 rounded-full opacity-5 blur-3xl"
-            style={{ background: '#4166b2' }}
+            style={{ background: '#0b3574' }}
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.05, 0.1, 0.05]
@@ -315,7 +315,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
           />
           <motion.div
             className="absolute top-1/2 right-1/4 w-64 h-64 rounded-full opacity-5 blur-3xl"
-            style={{ background: '#4166b2' }}
+            style={{ background: '#0b3574' }}
             animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.1, 0.05, 0.1]
@@ -344,7 +344,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="w-3 h-3 rounded-full mx-4 flex-shrink-0"
-              style={{ background: '#4166b2' }}
+              style={{ background: '#0b3574' }}
             />
             <motion.div
               initial={{ scaleX: 0 }}
@@ -385,7 +385,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative bg-gradient-to-b from-gray-50 to-white rounded-2xl p-8 border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300" style={{ background: '#4166b2' }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300" style={{ background: '#0b3574' }}>
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl mb-3 transition-colors duration-300" style={{ color: '#0a1929' }}>{value.title}</h3>
@@ -431,14 +431,14 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
                 )}
                 
                 {/* Year badge */}
-                <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-white text-lg font-semibold shadow-lg" style={{ background: 'linear-gradient(135deg, #4166b2 0%, #000000 100%)' }}>
+                <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-white text-lg font-semibold shadow-lg" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #000000 100%)' }}>
                   {index + 1}
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 bg-white rounded-xl p-4 shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex items-center gap-2 mb-1">
-                    <CheckCircle className="w-5 h-5" style={{ color: '#4166b2' }} />
+                    <CheckCircle className="w-5 h-5" style={{ color: '#0b3574' }} />
                     <h3 className="text-2xl" style={{ color: '#0a1929' }}>{milestone.title}</h3>
                   </div>
                   <p className="text-gray-600 leading-relaxed">{milestone.description}</p>
@@ -472,7 +472,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white hover:bg-gray-100 px-8 text-base" style={{ color: '#4166b2' }}>
+              <Button size="lg" className="bg-white hover:bg-gray-100 px-8 text-base" style={{ color: '#0b3574' }}>
                 Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -483,7 +483,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
                 onClick={() => onNavigate?.('contact')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'white';
-                  e.currentTarget.style.color = '#4166b2';
+                  e.currentTarget.style.color = '#0b3574';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';

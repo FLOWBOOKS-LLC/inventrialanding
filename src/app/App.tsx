@@ -13,6 +13,8 @@ import Register from '@/app/components/Register';
 import { AdminDashboard } from '@/app/components/AdminDashboard';
 import { TopNavbar } from '@/app/components/TopNavbar';
 import { FAQs } from '@/app/components/FAQs';
+import { SecurityStrip } from '@/app/components/SecurityStrip';
+import { TrustedPartnersStrip } from '@/app/components/TrustedPartnersStrip';
 // Removed Container import to avoid side paddings
 
 export default function App() {
@@ -46,7 +48,7 @@ export default function App() {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground transition-colors">
       
       <TopNavbar onNavigate={setCurrentPage} />
       <Header onNavigate={setCurrentPage} currentPage={currentPage} />
@@ -54,6 +56,8 @@ export default function App() {
         {currentPage === 'home' ? (
           <>
             <Hero onNavigate={setCurrentPage} />
+            <SecurityStrip />
+            <TrustedPartnersStrip />
             <Features />
             <Testimonials />
             <CTA onNavigate={setCurrentPage} />

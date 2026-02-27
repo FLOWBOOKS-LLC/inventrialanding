@@ -106,9 +106,9 @@ export function Blog() {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-background text-foreground transition-colors">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-24 lg:py-32" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #4166b2 100%)' }}>
+      <section className="relative overflow-hidden py-24 lg:py-32" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #0b3574 100%)' }}>
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-10 right-10 w-80 h-80 rounded-full opacity-20 blur-3xl"
@@ -129,7 +129,7 @@ export function Blog() {
           }}></div>
         </div>
 
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ export function Blog() {
                 backgroundClip: 'text'
               }}
             >
-              flowbooks Blog
+              Flowbooks Blog
             </motion.h1>
 
             <motion.p 
@@ -200,7 +200,7 @@ export function Blog() {
       {/* Featured Post */}
       {featuredPost && (
         <section className="py-20 bg-white">
-          <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-6xl mx-auto px-4 lg:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

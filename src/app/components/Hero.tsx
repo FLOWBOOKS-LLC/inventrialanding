@@ -4,6 +4,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { HeroSceneOne } from "./HeroScenes/HeroSceneOne";
 import { HeroSceneTwo } from "./HeroScenes/HeroSceneTwo";
+import { useTheme } from "@/app/theme/ThemeProvider";
 
 interface HeroProps {
   onNavigate?: (page: string) => void;
@@ -431,12 +432,29 @@ function Scene({ active, children }: SceneProps) {
   return (
     <motion.div
       className="absolute inset-0"
+      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
       animate={
         reduceMotion
           ? { opacity: active ? 1 : 0 }
-          : { opacity: active ? 1 : 0, scale: active ? 1 : 0.96 }
+          : {
+              opacity: active ? 1 : 0,
+              scale: active ? 1 : 0.96,
+              y: active ? [6, 0, 6] : 0,
+            }
       }
-      transition={{ duration: 0.6 }}
+      transition={
+        reduceMotion
+          ? { duration: 0.4 }
+          : {
+              opacity: { duration: 0.4 },
+              scale: { duration: 0.6, ease: "easeOut" },
+              y: {
+                duration: 14,
+                repeat: active ? Infinity : 0,
+                ease: "easeInOut",
+              },
+            }
+      }
     >
       {children}
     </motion.div>
@@ -445,6 +463,7 @@ function Scene({ active, children }: SceneProps) {
 
 
 export function Hero({ onNavigate }: HeroProps) {
+  const { theme } = useTheme();
   const [currentScene, setCurrentScene] = useState(0);
   const totalScenes = 3;
 
@@ -457,33 +476,36 @@ export function Hero({ onNavigate }: HeroProps) {
 
   return (
     <section
-      className="relative overflow-hidden flex items-center min-h-[100svh]"
+      className="relative overflow-hidden flex items-center min-h-[90vh]"
       style={{
-        background: "linear-gradient(135deg, #0a1929 0%, #1a2942 100%)",
+        background:
+          theme === "dark"
+            ? "radial-gradient(circle at top, #020617 0%, #020617 55%, #000000 100%)"
+            : "linear-gradient(135deg, #0b3574 0%, #1a2942 100%)",
       }}
     >
       {/* Vertical padding accounts for navbar */}
-      <div className="w-full px-0 pt-8 lg:pt-0">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center px-3 lg:px-6">
+      <div className="w-full px-0 pt-10 lg:pt-12">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-center px-4 lg:px-6">
           
           {/* LEFT: Text */}
-          <div className="space-y-0 lg:space-y-1 max-w-xl">
+          <div className="space-y-3 lg:space-y-4 max-w-xl">
             <motion.h1
               className="text-3xl md:text-4xl lg:text-4xl text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              Smart Accounting Software for Growing Businesses
+              One platform for invoicing, reconciliation, and financial reporting
             </motion.h1>
 
             <motion.p
-              className="text-base text-white/80"
+              className="text-base text-white/80 max-w-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Track income, expenses, payroll, and financial reports in one secure platform—built for business owners.
+              Automate invoicing, bank reconciliation, and financial statements in a single secure workspace—designed for growing businesses that need clean, reliable books.
             </motion.p>
 
             <motion.div
@@ -495,12 +517,20 @@ export function Hero({ onNavigate }: HeroProps) {
                 size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-100 px-4 font-semibold"
                 onClick={() => {
-                  window.open('https://dashboard.inventria.app/signup', '_blank', 'noopener,noreferrer');
+                  window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer');
                 }}
               >
                 Register
               </Button>
             </motion.div>
+            <motion.p
+              className="text-xs md:text-sm text-white/60"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              Bank-level security · Built for accountants and finance teams · Close your books faster each month.
+            </motion.p>
           </div>
 
           {/* RIGHT: Animated Scenes */}

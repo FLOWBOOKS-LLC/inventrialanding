@@ -88,14 +88,14 @@ export function Clients({ onNavigate }: ClientsProps) {
   ];
 
   const stats = [
-    { number: "50K+", label: "Happy Clients", icon: Users },
-    { number: "150+", label: "Countries", icon: Globe },
-    { number: "99.9%", label: "Satisfaction Rate", icon: Award },
-    { number: "24/7", label: "Support", icon: CheckCircle }
+    { number: "5+", label: "Active client teams", icon: Users },
+    { number: "3", label: "Core regions served", icon: Globe },
+    { number: "99.9%", label: "Platform uptime", icon: Award },
+    { number: "24/7", label: "Support coverage", icon: CheckCircle }
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-background text-foreground transition-colors">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-28" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #4166b2 100%)' }}>
         {/* Animated background elements */}
@@ -134,7 +134,7 @@ export function Clients({ onNavigate }: ClientsProps) {
           }}></div>
         </div>
 
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -300,7 +300,7 @@ export function Clients({ onNavigate }: ClientsProps) {
                     
                     {/* Logo Badge */}
                     <div className="absolute top-6 left-6">
-                      <div className="w-16 h-16 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg" style={{ background: 'linear-gradient(135deg, #4166b2 0%, #000000 100%)' }}>
+                      <div className="w-16 h-16 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #000000 100%)' }}>
                         {study.logo}
                       </div>
                     </div>
@@ -308,7 +308,7 @@ export function Clients({ onNavigate }: ClientsProps) {
 
                   {/* Content */}
                   <div className="p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="inline-flex items-center gap-2 text-sm mb-4" style={{ color: '#4166b2' }}>
+                    <div className="inline-flex items-center gap-2 text-sm mb-4" style={{ color: '#0b3574' }}>
                       <Briefcase className="w-4 h-4" />
                       <span>{study.industry}</span>
                     </div>
@@ -389,7 +389,7 @@ export function Clients({ onNavigate }: ClientsProps) {
               <Button 
                 size="lg" 
                 className="bg-white hover:bg-gray-100 px-8 text-base" 
-                style={{ color: '#4166b2' }}
+                style={{ color: '#0b3574' }}
                 onClick={() => onNavigate?.('contact')}
               >
                 Start Free Trial
@@ -402,7 +402,7 @@ export function Clients({ onNavigate }: ClientsProps) {
                 onClick={() => onNavigate?.('contact')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'white';
-                  e.currentTarget.style.color = '#4166b2';
+                  e.currentTarget.style.color = '#0b3574';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';
