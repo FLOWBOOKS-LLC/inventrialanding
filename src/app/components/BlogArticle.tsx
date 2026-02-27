@@ -169,14 +169,14 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-background text-foreground min-h-screen transition-colors">
       {/* Header with back button */}
-      <div className="sticky top-16 z-40 bg-white border-b border-gray-200 shadow-sm">
-        <div className="container mx-auto px-4 lg:px-8 py-4">
+      <div className="sticky top-16 z-40 bg-background border-b border-border shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-4">
           <Button
             onClick={onBack}
             variant="ghost"
-            className="flex items-center gap-2 hover:bg-gray-100"
+            className="flex items-center gap-2 hover:bg-muted"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Blog
@@ -195,14 +195,14 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
         
         {/* Category badge on image */}
         <div className="absolute top-8 left-8">
-          <span className="inline-block px-4 py-2 rounded-full text-sm font-medium text-white backdrop-blur-md border border-white/30" style={{ background: 'rgba(21, 148, 227, 0.9)' }}>
+          <span className="inline-block px-4 py-2 rounded-full text-sm font-medium text-white backdrop-blur-md border border-white/30" style={{ background: 'rgba(11, 53, 116, 0.9)' }}>
             {article.category}
           </span>
         </div>
       </div>
 
       {/* Article Content */}
-      <article className="container mx-auto px-4 lg:px-8 py-12">
+      <article className="max-w-6xl mx-auto px-4 lg:px-6 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Article Header */}
           <motion.div
@@ -210,23 +210,22 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl lg:text-3xl mb-6 leading-tight" style={{ color: '#0a1929' }}>
+            <h1 className="text-4xl lg:text-5xl mb-6 leading-tight text-foreground">
               {article.title}
             </h1>
 
             {/* Meta information */}
-            <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-200">
+            <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-border">
               <div className="flex items-center gap-2">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-medium" style={{ background: '#1594e3' }}>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-medium" style={{ background: '#0b3574' }}>
                   {authorInitials}
                 </div>
                 <div>
-                  <p className="font-medium" style={{ color: '#0a1929' }}>{article.author}</p>
-                  {/* <p className="text-sm text-gray-500">Senior Financial Writer</p> */}
+                  <p className="font-medium text-foreground">{article.author}</p>
                 </div>
               </div>
               
-              <div className="flex items-center gap-6 text-gray-600 text-sm">
+              <div className="flex items-center gap-6 text-muted-foreground text-sm">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   <span>{article.date}</span>
@@ -239,7 +238,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
             </div>
 
             {/* Action buttons */}
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-12 pb-8 border-b border-gray-200">
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-12 pb-8 border-b border-border">
               <div className="flex items-center gap-3">
                 <Button
                   onClick={handleLike}
@@ -264,9 +263,9 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                 <Button
                   onClick={() => setBookmarked(!bookmarked)}
                   variant="outline"
-                  className={`flex items-center gap-2 transition-all ${bookmarked ? 'border-blue-500 bg-blue-50' : ''}`}
+                  className={`flex items-center gap-2 transition-all ${bookmarked ? 'border-[#0b3574] bg-primary/10' : ''}`}
                 >
-                  <Bookmark className={`w-5 h-5 ${bookmarked ? 'fill-blue-500 text-blue-500' : ''}`} />
+                  <Bookmark className={`w-5 h-5 ${bookmarked ? 'fill-[#0b3574] text-[#0b3574]' : ''}`} />
                 </Button>
               </div>
 
@@ -281,8 +280,8 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
             </div>
 
             {/* Article excerpt/introduction */}
-            <div className="mb-12 p-6 bg-blue-50 rounded-2xl border-l-4" style={{ borderColor: '#1594e3' }}>
-              <p className="text-lg text-gray-700 leading-relaxed">
+            <div className="mb-12 p-6 bg-primary/5 rounded-2xl border-l-4 border-[#0b3574]">
+              <p className="text-lg text-foreground leading-relaxed">
                 {article.excerpt}
               </p>
             </div>
@@ -296,13 +295,13 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.05 }}
-                    className="text-gray-700 leading-relaxed mb-6 text-lg"
+                    className="text-foreground leading-relaxed mb-6 text-lg"
                   >
                     {paragraph}
                   </motion.p>
                 ))
               ) : (
-                <p className="text-gray-500">No content yet.</p>
+                <p className="text-muted-foreground">No content yet.</p>
               )}
             </div>
 
@@ -312,23 +311,28 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="my-16 p-8 rounded-3xl text-white text-center"
-              style={{ background: 'linear-gradient(135deg, #1594e3 0%, #0c7bc4 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)' }}
             >
-              <h3 className="text-2xl mb-4">Ready to Transform Your Accounting?</h3>
+              <h3 className="text-2xl mb-4">Ready to Simplify Your Finance?</h3>
               <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-                Experience the power of modern accounting software with flowbooks. Start your free 14-day trial today.
+                Invoicing, reconciliation, and reporting in one platform. Start with flowbooks today.
               </p>
-              <Button size="lg" className="bg-white hover:bg-gray-100" style={{ color: '#1594e3' }}>
+              <Button
+                size="lg"
+                className="bg-white hover:bg-gray-100"
+                style={{ color: '#0b3574' }}
+                onClick={() => window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer')}
+              >
                 Start Free Trial
               </Button>
             </motion.div>
 
-            <div className="mb-12 pb-12 border-b border-gray-200"></div>
+            <div className="mb-12 pb-12 border-b border-border"></div>
 
             {/* Related Articles */}
             {relatedArticles.length > 0 && (
               <div className="mb-16">
-                <h3 className="text-2xl mb-6" style={{ color: '#0a1929' }}>Related Articles</h3>
+                <h3 className="text-2xl mb-6 text-foreground">Related Articles</h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   {relatedArticles.map((related, index) => (
                     <motion.div
@@ -337,15 +341,15 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all cursor-pointer"
+                      className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-all cursor-pointer"
                     >
-                      <span className="text-xs font-medium mb-3 inline-block" style={{ color: '#1594e3' }}>
+                      <span className="text-xs font-medium mb-3 inline-block" style={{ color: '#0b3574' }}>
                         {related.category}
                       </span>
-                      <h4 className="text-lg mb-3 leading-tight" style={{ color: '#0a1929' }}>
+                      <h4 className="text-lg mb-3 leading-tight text-foreground">
                         {related.title}
                       </h4>
-                      <p className="text-sm text-gray-500">{related.readTime}</p>
+                      <p className="text-sm text-muted-foreground">{related.readTime}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -354,16 +358,16 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
 
             {/* Comments Section */}
             <div id="comments-section" className="scroll-mt-24">
-              <h3 className="text-3xl mb-8" style={{ color: '#0a1929' }}>
+              <h3 className="text-3xl mb-8 text-foreground">
                 Comments ({comments.length})
               </h3>
 
               {/* Comment form */}
-              <div className="mb-12 p-8 bg-gray-50 rounded-3xl border border-gray-200">
-                <h4 className="text-xl mb-6" style={{ color: '#0a1929' }}>Leave a Comment</h4>
+              <div className="mb-12 p-8 bg-muted/30 rounded-3xl border border-border">
+                <h4 className="text-xl mb-6 text-foreground">Leave a Comment</h4>
                 <form onSubmit={handleSubmitComment} className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{ color: '#0a1929' }}>
+                    <label className="block text-sm font-medium mb-2 text-foreground">
                       Your Comment *
                     </label>
                     <textarea
@@ -371,7 +375,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
                       rows={5}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors resize-none bg-white"
+                      className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:border-[#0b3574] focus:outline-none focus:ring-2 focus:ring-[#0b3574]/20 transition-colors resize-none"
                       placeholder="Share your thoughts..."
                     />
                   </div>
@@ -380,30 +384,30 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                     type="submit"
                     size="lg"
                     className="text-white"
-                    style={{ background: '#1594e3' }}
+                    style={{ background: '#0b3574' }}
                   >
                     Post Comment
                   </Button>
                 </form>
 
                 {/* Optional Subscribe Section */}
-                <div className="mt-8 pt-8 border-t border-gray-200">
-                  <p className="text-sm text-gray-600 mb-4">
-                    📧 Want more insights like this? Subscribe to our newsletter for weekly updates!
+                <div className="mt-8 pt-8 border-t border-border">
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Want more insights? Subscribe to our newsletter for updates.
                   </p>
                   <form onSubmit={handleSubscribe} className="flex gap-3">
                     <input
                       type="email"
                       value={subscribeEmail}
                       onChange={(e) => setSubscribeEmail(e.target.value)}
-                      className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors bg-white text-sm"
-                      placeholder="Your email address (optional)"
+                      className="flex-1 px-4 py-2 rounded-lg border border-input bg-background focus:border-[#0b3574] focus:outline-none text-foreground text-sm"
+                      placeholder="Your email (optional)"
                     />
                     <Button 
                       type="submit"
                       size="sm"
                       className="text-white whitespace-nowrap"
-                      style={{ background: '#1594e3' }}
+                      style={{ background: '#0b3574' }}
                     >
                       Subscribe
                     </Button>
@@ -419,22 +423,22 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-white p-6 rounded-2xl border border-gray-200 hover:shadow-md transition-shadow"
+                    className="bg-card p-6 rounded-2xl border border-border hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-medium flex-shrink-0" style={{ background: '#1594e3' }}>
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-medium flex-shrink-0" style={{ background: '#0b3574' }}>
                         {comment.avatar}
                       </div>
                       
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
                           <div>
-                            <p className="font-medium" style={{ color: '#0a1929' }}>{comment.author}</p>
-                            <p className="text-sm text-gray-500">{comment.date}</p>
+                            <p className="font-medium text-foreground">{comment.author}</p>
+                            <p className="text-sm text-muted-foreground">{comment.date}</p>
                           </div>
                         </div>
                         
-                        <p className="text-gray-700 mb-4 leading-relaxed">
+                        <p className="text-foreground mb-4 leading-relaxed">
                           {comment.content}
                         </p>
                         
@@ -442,7 +446,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="flex items-center gap-2 text-gray-600 hover:text-blue-600"
+                            className="flex items-center gap-2 text-muted-foreground hover:text-[#0b3574]"
                           >
                             <ThumbsUp className="w-4 h-4" />
                             <span>{comment.likes}</span>
@@ -450,7 +454,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="text-gray-600 hover:text-blue-600"
+                            className="text-muted-foreground hover:text-[#0b3574]"
                           >
                             Reply
                           </Button>

@@ -94,14 +94,14 @@ export function FAQs({ onNavigate }: FAQsProps) {
             transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
-        <div className="container mx-auto px-4 lg:px-6 relative z-10 text-center text-white">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 relative z-10 text-center text-white">
           <div className="max-w-2xl mx-auto">
             <p className="text-white/70 text-sm uppercase tracking-[0.2em]">FAQs</p>
             <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-semibold mt-3">
-              Answers, clarity, and confidence
+              Answers for your finance questions
             </h1>
             <p className="text-white/80 mt-4 text-base md:text-lg">
-              Everything you need to know about Flowbooks in one place.
+              How Flowbooks helps with invoicing, reconciliation, and financial reporting.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button
@@ -122,12 +122,12 @@ export function FAQs({ onNavigate }: FAQsProps) {
         </div>
       </section>
 
-      <section className="py-14 lg:py-20">
-        <div className="container mx-auto px-4 lg:px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-stretch">
+      <section className="py-14 lg:py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-stretch">
           <div>
-            <h2 className="text-2xl md:text-3xl font-semibold">Frequently asked questions</h2>
-            <p className="text-gray-600 mt-2">
-              If you do not see your question here, reach out and we will help quickly.
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Frequently asked questions</h2>
+            <p className="text-muted-foreground mt-2">
+              Not seeing your question? Reach out and our team will help quickly.
             </p>
             <div className="mt-8 space-y-4">
               {FAQS.map((item, index) => {
@@ -136,21 +136,21 @@ export function FAQs({ onNavigate }: FAQsProps) {
                   <button
                     key={item.question}
                     type="button"
-                    className="w-full text-left rounded-2xl border border-gray-200 p-5 transition hover:border-[#0b3574]/50"
+                    className="w-full text-left rounded-2xl border border-border p-5 transition hover:border-[#0b3574]/50 bg-card"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
                     <div className="flex items-center justify-between gap-4">
-                      <h3 className="text-base md:text-lg font-semibold">{item.question}</h3>
+                      <h3 className="text-base md:text-lg font-semibold text-foreground">{item.question}</h3>
                       <span
-                        className={`flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 transition ${
-                          isOpen ? "bg-[#0b3574] text-white border-[#0b3574]" : "text-gray-500"
+                        className={`flex h-8 w-8 items-center justify-center rounded-full border border-border transition ${
+                          isOpen ? "bg-[#0b3574] text-white border-[#0b3574]" : "text-muted-foreground"
                         }`}
                         aria-hidden="true"
                       >
                         <Plus className={`h-4 w-4 transition ${isOpen ? "rotate-45" : ""}`} />
                       </span>
                     </div>
-                    {isOpen && <p className="mt-3 text-sm text-gray-600">{item.answer}</p>}
+                    {isOpen && <p className="mt-3 text-sm text-muted-foreground">{item.answer}</p>}
                   </button>
                 );
               })}
@@ -158,32 +158,32 @@ export function FAQs({ onNavigate }: FAQsProps) {
           </div>
 
           <div className="space-y-6 h-full flex flex-col">
-            <div className="rounded-3xl border border-gray-200 p-6 flex flex-col flex-1">
-              <h3 className="text-lg font-semibold">Support that feels human</h3>
-              <p className="text-sm text-gray-600 mt-2">
+            <div className="rounded-3xl border border-border p-6 flex flex-col flex-1 bg-card">
+              <h3 className="text-lg font-semibold text-foreground">Support that feels human</h3>
+              <p className="text-sm text-muted-foreground mt-2">
                 We guide you through onboarding, reports, and workflows so you can focus on growth.
               </p>
               <Button
                 className="mt-4 bg-[#0b3574] text-white hover:opacity-90"
                 onClick={() => onNavigate?.("contact")}
               >
-                Book a Demo
+                Ask us anything
               </Button>
             </div>
 
-            <div className="rounded-3xl border border-gray-200 p-6 bg-gray-50 flex flex-col flex-1">
-              <h3 className="text-lg font-semibold">Why businesses trust Flowbooks</h3>
+            <div className="rounded-3xl border border-border p-6 bg-muted/30 flex flex-col flex-1">
+              <h3 className="text-lg font-semibold text-foreground">Why businesses trust Flowbooks</h3>
               <div className="mt-4 space-y-4">
                 {points.map((point) => {
                   const Icon = point.icon;
                   return (
                     <div key={point.title} className="flex gap-3">
-                      <div className="h-9 w-9 rounded-full bg-white border border-gray-200 flex items-center justify-center">
+                      <div className="h-9 w-9 rounded-full bg-background border border-border flex items-center justify-center">
                         <Icon className="h-4 w-4 text-[#0b3574]" />
                       </div>
                       <div>
-                        <p className="font-semibold text-sm">{point.title}</p>
-                        <p className="text-sm text-gray-600">{point.description}</p>
+                        <p className="font-semibold text-sm text-foreground">{point.title}</p>
+                        <p className="text-sm text-muted-foreground">{point.description}</p>
                       </div>
                     </div>
                   );
@@ -191,19 +191,19 @@ export function FAQs({ onNavigate }: FAQsProps) {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-gray-200 p-6 flex flex-col flex-1">
-              <h3 className="text-lg font-semibold">Popular topics</h3>
+            <div className="rounded-3xl border border-border p-6 flex flex-col flex-1 bg-card">
+              <h3 className="text-lg font-semibold text-foreground">Popular topics</h3>
               <div className="mt-4 space-y-3">
                 {topics.map((topic) => {
                   const Icon = topic.icon;
                   return (
                     <div key={topic.title} className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-[#eaf0ff] flex items-center justify-center">
+                      <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center">
                         <Icon className="h-4 w-4 text-[#0b3574]" />
                       </div>
                       <div>
-                        <p className="font-semibold text-sm">{topic.title}</p>
-                        <p className="text-xs text-gray-600">{topic.description}</p>
+                        <p className="font-semibold text-sm text-foreground">{topic.title}</p>
+                        <p className="text-xs text-muted-foreground">{topic.description}</p>
                       </div>
                     </div>
                   );

@@ -16,7 +16,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
     {
       icon: Target,
       title: "Accuracy",
-      description: "We are committed to reliable, precise financial records."
+      description: "Audit-ready, precise financial records you can rely on."
     },
     {
       icon: Shield,
@@ -177,7 +177,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               <div>
                 <Award className="w-5 h-5 text-cyan-300" />
               </div>
-              <span className="text-white text-sm font-medium">Trusted by 50,000+ businesses worldwide</span>
+              <span className="text-white text-sm font-medium">Trusted by finance teams worldwide</span>
             </motion.div>
             
             {/* Main heading with gradient text */}
@@ -214,10 +214,10 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto"
             >
               {[
-                { value: "50+", label: "Active Users", icon: Users },
+                { value: "5+", label: "Active teams", icon: Users },
                 { value: "99.9%", label: "Uptime", icon: Shield },
-                { value: "$2.5B+", label: "Managed", icon: TrendingUp },
-                { value: "150+", label: "Countries", icon: Globe }
+                { value: "3", label: "Core regions", icon: TrendingUp },
+                { value: "24/7", label: "Support", icon: Globe }
               ].map((stat, index) => {
                 const Icon = stat.icon;
                 return (
@@ -249,9 +249,9 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 max-w-6xl mx-auto">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-muted/30">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -259,13 +259,13 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full opacity-20" style={{ background: '#4166b2' }}></div>
-              <div className="relative bg-white rounded-2xl p-8 lg:p-10 shadow-xl border border-gray-100">
-                <div className="w-14 h-14 rounded-xl flex items_center justify-center mb-6" style={{ background: '#0b3574' }}>
+              <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full opacity-20" style={{ background: '#0b3574' }}></div>
+              <div className="relative bg-card rounded-2xl p-8 lg:p-10 shadow-xl border border-border text-card-foreground">
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ background: '#0b3574' }}>
                   <Target className="w-7 h-7 text-white" />
                 </div>
-                <h2 className="text-3xl mb-4" style={{ color: '#0a1929' }}>Our Mission</h2>
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <h2 className="text-3xl mb-4 text-foreground">Our Mission</h2>
+                <p className="text-muted-foreground text-lg leading-relaxed">
                   To empower businesses and individuals with simple, reliable, and intelligent financial tools that improve visibility, control, and long-term success.
                 </p>
               </div>
@@ -278,13 +278,13 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full opacity-20" style={{ background: '#4166b2' }}></div>
-              <div className="relative bg-white rounded-2xl p-8 lg:p-10 shadow-xl border border-gray-100">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #000000 100%)' }}>
+              <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full opacity-20" style={{ background: '#0b3574' }}></div>
+              <div className="relative bg-card rounded-2xl p-8 lg:p-10 shadow-xl border border-border text-card-foreground">
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)' }}>
                   <Eye className="w-7 h-7 text-white" />
                 </div>
-                <h2 className="text-3xl mb-4" style={{ color: '#0a1929' }}>Our Vision</h2>
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <h2 className="text-3xl mb-4 text-foreground">Our Vision</h2>
+                <p className="text-muted-foreground text-lg leading-relaxed">
                   To become a trusted accounting platform for businesses across Africa and beyond, driving financial clarity, and sustainable growth through technology.
                 </p>
               </div>
@@ -294,9 +294,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
       </section>
 
       {/* Transition Section - Decorative gradient divider */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Gradient background */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, #f9fafb 0%, #ffffff 50%, #f9fafb 100%)' }}></div>
+      <section className="relative py-20 overflow-hidden bg-muted/20">
         
         {/* Animated decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -329,14 +327,14 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
         </div>
 
         {/* Decorative line with dot */}
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 relative z-10">
           <div className="flex items-center justify-center">
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full max-w-md"
+              className="h-px bg-gradient-to-r from-transparent via-border to-transparent w-full max-w-md"
             />
             <motion.div
               initial={{ scale: 0 }}
@@ -351,15 +349,15 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full max-w-md"
+              className="h-px bg-gradient-to-r from-transparent via-border to-transparent w-full max-w-md"
             />
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 lg:py-24 bg-background">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -367,13 +365,13 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl lg:text-4xl mb-3" style={{ color: '#0a1929' }}>Our Core Values</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              The principles that guide everything we do and every decision we make
+            <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Our Core Values</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              The principles that guide our accounting platform and every decision we make
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
@@ -383,13 +381,13 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative bg-gradient-to-b from-gray-50 to-white rounded-2xl p-8 border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-300"
+                  className="group relative bg-card rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all duration-300"
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300" style={{ background: '#0b3574' }}>
                     <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-xl mb-3 transition-colors duration-300" style={{ color: '#0a1929' }}>{value.title}</h3>
-                  <p className="text-gray-600 transition-colors duration-300 leading-relaxed">
+                  <h3 className="text-xl mb-3 text-foreground">{value.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">
                     {value.description}
                   </p>
                 </motion.div>
@@ -400,8 +398,8 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-muted/30 to-background">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -409,9 +407,9 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl lg:text-4xl mb-3" style={{ color: '#0a1929' }}>Our Journey</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              From a small startup to a global leader in accounting automation
+            <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Our Journey</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              From idea to trusted accounting platform for businesses
             </p>
           </motion.div>
 
@@ -427,21 +425,21 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               >
                 {/* Timeline line */}
                 {index !== milestones.length - 1 && (
-                  <div className="absolute left-[31px] top-16 w-0.5 h-full bg-gray-200"></div>
+                  <div className="absolute left-[31px] top-16 w-0.5 h-full bg-border"></div>
                 )}
                 
                 {/* Year badge */}
-                <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-white text-lg font-semibold shadow-lg" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #000000 100%)' }}>
+                <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-white text-lg font-semibold shadow-lg" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)' }}>
                   {index + 1}
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 bg-white rounded-xl p-4 shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                <div className="flex-1 bg-card rounded-xl p-4 shadow-md border border-border hover:shadow-xl transition-shadow duration-300">
                   <div className="flex items-center gap-2 mb-1">
                     <CheckCircle className="w-5 h-5" style={{ color: '#0b3574' }} />
-                    <h3 className="text-2xl" style={{ color: '#0a1929' }}>{milestone.title}</h3>
+                    <h3 className="text-2xl text-foreground">{milestone.title}</h3>
                   </div>
-                  <p className="text-gray-600 leading-relaxed">{milestone.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{milestone.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -450,13 +448,13 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #1a2942 100%)' }}>
+      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)' }}>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
         </div>
         
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -465,14 +463,19 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
             className="max-w-4xl mx-auto text-center"
           >
             <h2 className="text-3xl lg:text-3xl text-white mb-6">
-              Join Thousands of Happy Customers
+              Ready to Simplify Your Finance?
             </h2>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Experience the future of accounting with flowbooks. Start your free trial today.
+              Invoicing, reconciliation, and reporting in one platform. Start with flowbooks today.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white hover:bg-gray-100 px-8 text-base" style={{ color: '#0b3574' }}>
+              <Button
+                size="lg"
+                className="bg-white hover:bg-gray-100 px-8 text-base"
+                style={{ color: '#0b3574' }}
+                onClick={() => window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer')}
+              >
                 Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

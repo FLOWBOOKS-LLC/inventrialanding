@@ -125,8 +125,10 @@ export function Register({ onNavigate }: RegisterProps) {
           />
         </div>
         <div className="max-w-6xl mx-auto px-4 lg:px-6 text-center text-white relative z-10">
-          <h2 className="text-2xl lg:text-3xl font-semibold mb-2">Choose a plan that fits your business</h2>
-          <p className="text-sm text-white/80 max-w-2xl mx-auto">Start with a 30-day free trial. Upgrade anytime.</p>
+          <h2 className="text-2xl lg:text-3xl font-semibold mb-2">Flexible plans for every finance team</h2>
+          <p className="text-sm text-white/80 max-w-2xl mx-auto">
+            Invoicing, reconciliation, and reporting for solo operators, growing teams, and finance leaders.
+          </p>
         </div>
         {/* Decorative bottom wave */}
         <div className="absolute bottom-0 left-0 right-0">
@@ -137,47 +139,51 @@ export function Register({ onNavigate }: RegisterProps) {
         </div>
       </section>
 
-      <section className="py-8 bg-gray-50">
+      <section className="py-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 lg:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.map((p) => (
               <div
                 key={p.name}
-                className={`bg-white rounded-2xl shadow-sm border ${p.highlight ? 'border-2' : 'border-gray-100'} flex flex-col overflow-hidden`}
-                style={p.highlight ? { borderColor: '#0b3574', boxShadow: '0 12px 30px rgba(11,53,116,0.08)' } : {}}
+                className={`bg-card rounded-2xl shadow-sm border ${p.highlight ? 'border-2' : 'border-border'} flex flex-col overflow-hidden`}
+                style={p.highlight ? { borderColor: '#0b3574', boxShadow: '0 12px 30px rgba(11,53,116,0.12)' } : {}}
               >
                 {/* Upper section */}
                 <div className="px-6 py-8 text-center">
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: '#0a1929' }}>{p.name}</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">{p.name}</h3>
 
-                  <div className="text-xs text-gray-400 line-through mb-2">₦{p.originalPrice}</div>
+                  <div className="text-xs text-muted-foreground line-through mb-2">₦{p.originalPrice}</div>
 
                   <div className="flex items-baseline justify-center gap-2">
-                    <div className="text-3xl lg:text-4xl font-extrabold" style={{ color: '#0a1929' }}>₦{p.priceDisplay}</div>
-                    <div className="text-sm text-gray-500 mt-1">{p.per}</div>
+                    <div className="text-3xl lg:text-4xl font-extrabold text-foreground">₦{p.priceDisplay}</div>
+                    <div className="text-sm text-muted-foreground mt-1">{p.per}</div>
                   </div>
 
-                  <div className="text-xs text-gray-500 mt-3">{p.note}</div>
+                  <div className="text-xs text-muted-foreground mt-3">{p.note}</div>
 
                   <div className="mt-6">
-                    <Button className="w-full text-white py-3" style={{ background: '#0b3574' }} onClick={() => onNavigate?.('contact')}>
+                    <Button
+                      className="w-full text-white py-3"
+                      style={{ background: '#0b3574' }}
+                      onClick={() => onNavigate?.('contact')}
+                    >
                       Select plan
                     </Button>
                   </div>
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-gray-100" />
+                <div className="border-t border-border" />
 
                 {/* Lower section - features */}
                 <div className="px-6 py-6 flex-1 overflow-y-auto">
-                  <ul className="space-y-3 text-sm text-gray-700">
+                  <ul className="space-y-3 text-sm text-muted-foreground">
                     {p.features.map((f, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <span className="mt-1 text-white rounded-full p-1" style={{ background: '#e6eefc' }}>
-                          <Check className="w-3 h-3 text-[#4166b2]" />
+                        <span className="mt-1 rounded-full p-1.5 bg-primary/10">
+                          <Check className="w-3 h-3" style={{ color: '#0b3574' }} />
                         </span>
-                        <span className="leading-relaxed">{f}</span>
+                        <span className="leading-relaxed text-foreground">{f}</span>
                       </li>
                     ))}
                   </ul>

@@ -54,7 +54,11 @@ const categories = [
   }
 ];
 
-export function Testimonials() {
+interface TestimonialsProps {
+  onNavigate?: (page: string) => void;
+}
+
+export function Testimonials({ onNavigate }: TestimonialsProps) {
   const [selectedCategory, setSelectedCategory] = useState(1); // Default to "Individuals"
 
   const handleCategoryChange = (index: number) => {
@@ -176,6 +180,7 @@ export function Testimonials() {
                   delay: index * 0.1,
                   ease: "easeOut"
                 }}
+                onClick={() => onNavigate?.('clients')}
               >
                 <div className="relative h-64 lg:h-80 overflow-hidden">
                   <ImageWithFallback
@@ -204,7 +209,8 @@ export function Testimonials() {
         <div className="text-center mt-12">
           <button 
             className="text-gray-900 font-medium hover:underline transition-all duration-200"
-            style={{ color: '#4166b2' }}
+            style={{ color: '#0b3574' }}
+            onClick={() => onNavigate?.('clients')}
           >
             See all success stories →
           </button>

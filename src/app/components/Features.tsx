@@ -54,7 +54,11 @@ const features = [
   }
 ];
 
-export function Features() {
+interface FeaturesProps {
+  onNavigate?: (page: string) => void;
+}
+
+export function Features({ onNavigate }: FeaturesProps) {
   const [selectedFeature, setSelectedFeature] = useState(0);
 
   return (
@@ -133,7 +137,8 @@ export function Features() {
               </p>
               <Button 
                 className="text-white hover:opacity-90 transition-opacity w-fit"
-                style={{ backgroundColor: '#4166b2' }}
+                style={{ backgroundColor: '#0b3574' }}
+                onClick={() => onNavigate?.('faqs')}
               >
                 Learn more
                 <ChevronRight className="w-4 h-4 ml-1" />

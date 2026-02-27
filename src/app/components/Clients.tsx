@@ -65,7 +65,7 @@ export function Clients({ onNavigate }: ClientsProps) {
       icon: Building2,
       name: "Real Estate",
       count: "2,500+",
-      color: "#4166b2"
+      color: "#0b3574"
     },
     {
       icon: Briefcase,
@@ -77,7 +77,7 @@ export function Clients({ onNavigate }: ClientsProps) {
       icon: Users,
       name: "Retail & E-commerce",
       count: "4,100+",
-      color: "#4166b2"
+      color: "#0b3574"
     },
     {
       icon: Globe,
@@ -97,12 +97,12 @@ export function Clients({ onNavigate }: ClientsProps) {
   return (
     <div className="bg-background text-foreground transition-colors">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-28" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #4166b2 100%)' }}>
+      <section className="relative overflow-hidden py-20 lg:py-28" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 20%, #1a2942 50%, #0b3574 100%)' }}>
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-20 right-20 w-96 h-96 rounded-full opacity-20 blur-3xl"
-            style={{ background: '#4166b2' }}
+            style={{ background: '#0b3574' }}
             animate={{
               y: [0, 50, 0],
               scale: [1, 1.2, 1],
@@ -129,7 +129,7 @@ export function Clients({ onNavigate }: ClientsProps) {
           
           {/* Grid pattern */}
           <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: 'linear-gradient(#4166b2 1px, transparent 1px), linear-gradient(90deg, #4166b2 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(#0b3574 1px, transparent 1px), linear-gradient(90deg, #0b3574 1px, transparent 1px)',
             backgroundSize: '50px 50px'
           }}></div>
         </div>
@@ -149,7 +149,7 @@ export function Clients({ onNavigate }: ClientsProps) {
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
             >
               <Award className="w-5 h-5 text-cyan-300" />
-              <span className="text-white text-sm font-medium">Trusted by Industry Leaders</span>
+              <span className="text-white text-sm font-medium">Trusted by finance teams across sectors</span>
             </motion.div>
 
             {/* Heading */}
@@ -175,7 +175,7 @@ export function Clients({ onNavigate }: ClientsProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              Discover how leading companies across industries are transforming their accounting operations with flowbooks
+              See how teams use flowbooks for invoicing, reconciliation, and reporting—with results that speak for themselves
             </motion.p>
 
             {/* Stats */}
@@ -216,8 +216,8 @@ export function Clients({ onNavigate }: ClientsProps) {
       </section>
 
       {/* Industries Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 lg:py-24 bg-background">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -225,13 +225,13 @@ export function Clients({ onNavigate }: ClientsProps) {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl lg:text-4xl mb-3" style={{ color: '#0a1929' }}>Industries We Serve</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              From startups to enterprises, we're trusted across diverse sectors
+            <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Industries We Serve</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Invoicing, reconciliation, and reporting that fit your sector
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {industries.map((industry, index) => {
               const Icon = industry.icon;
               return (
@@ -241,19 +241,19 @@ export function Clients({ onNavigate }: ClientsProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative bg-gradient-to-b from-gray-50 to-white rounded-2xl p-8 border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-300"
+                  className="group relative bg-card rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all duration-300"
                 >
                   <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300" style={{ background: industry.color }}>
                     <Icon className="w-7 h-7 text-white" />
                   </div>
-                  <div className="text-3xl mb-2 transition-colors duration-300" style={{ color: '#0a1929' }}>
+                  <div className="text-3xl mb-2 text-foreground font-semibold">
                     {industry.count}
                   </div>
-                  <h3 className="text-xl mb-2 transition-colors duration-300" style={{ color: '#0a1929' }}>
+                  <h3 className="text-xl mb-2 text-foreground">
                     {industry.name}
                   </h3>
-                  <p className="text-gray-600 transition-colors duration-300">
-                    Trusted clients
+                  <p className="text-muted-foreground text-sm">
+                    Clients we serve
                   </p>
                 </motion.div>
               );
@@ -263,8 +263,8 @@ export function Clients({ onNavigate }: ClientsProps) {
       </section>
 
       {/* Case Studies Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-muted/30 to-background">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -272,13 +272,13 @@ export function Clients({ onNavigate }: ClientsProps) {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl lg:text-4xl mb-3" style={{ color: '#0a1929' }}>Success Stories</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Real results from real businesses that transformed their accounting operations
+            <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Success Stories</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Real results from teams that streamlined invoicing, reconciliation, and reporting
             </p>
           </motion.div>
 
-          <div className="space-y-12 max-w-6xl mx-auto">
+          <div className="space-y-12">
             {caseStudies.map((study, index) => (
               <motion.div
                 key={study.company}
@@ -286,7 +286,7 @@ export function Clients({ onNavigate }: ClientsProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow duration-300"
+                className="bg-card rounded-3xl overflow-hidden shadow-xl border border-border hover:shadow-2xl transition-shadow duration-300"
               >
                 <div className={`grid lg:grid-cols-2 gap-0 ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
                   {/* Image */}
@@ -308,34 +308,34 @@ export function Clients({ onNavigate }: ClientsProps) {
 
                   {/* Content */}
                   <div className="p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="inline-flex items-center gap-2 text-sm mb-4" style={{ color: '#0b3574' }}>
+                    <div className="inline-flex items-center gap-2 text-sm font-medium mb-4" style={{ color: '#0b3574' }}>
                       <Briefcase className="w-4 h-4" />
                       <span>{study.industry}</span>
                     </div>
                     
-                    <h3 className="text-3xl mb-6" style={{ color: '#0a1929' }}>{study.company}</h3>
+                    <h3 className="text-3xl mb-6 text-foreground">{study.company}</h3>
                     
                     <div className="space-y-4 mb-8">
                       <div>
                         <div className="flex items-start gap-2 mb-2">
-                          <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: '#fee2e2' }}>
-                            <span className="text-xs" style={{ color: '#dc2626' }}>!</span>
+                          <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-destructive/10">
+                            <span className="text-xs text-destructive">!</span>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Challenge</div>
-                            <p className="text-gray-700 leading-relaxed">{study.challenge}</p>
+                            <div className="text-sm text-muted-foreground mb-1">Challenge</div>
+                            <p className="text-foreground leading-relaxed">{study.challenge}</p>
                           </div>
                         </div>
                       </div>
                       
                       <div>
                         <div className="flex items-start gap-2">
-                          <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: '#dcfce7' }}>
-                            <CheckCircle className="w-4 h-4" style={{ color: '#16a34a' }} />
+                          <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-emerald-500/10">
+                            <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                           </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Result</div>
-                            <p className="text-gray-700 leading-relaxed">{study.result}</p>
+                            <div className="text-sm text-muted-foreground mb-1">Result</div>
+                            <p className="text-foreground leading-relaxed">{study.result}</p>
                           </div>
                         </div>
                       </div>
@@ -347,15 +347,15 @@ export function Clients({ onNavigate }: ClientsProps) {
             ))}
 
             {loadingStories && (
-              <div className="flex flex-col items-center justify-center gap-3 py-16 text-gray-600">
+              <div className="flex flex-col items-center justify-center gap-3 py-16 text-muted-foreground">
                 <Loader2 className="w-8 h-8 animate-spin" />
                 <p>Loading success stories...</p>
               </div>
             )}
 
             {!loadingStories && caseStudies.length === 0 && (
-              <div className="flex flex-col items-center justify-center gap-2 py-16 text-gray-500">
-                <Award className="w-8 h-8 text-gray-400" />
+              <div className="flex flex-col items-center justify-center gap-2 py-16 text-muted-foreground">
+                <Award className="w-8 h-8" />
                 <p>Success stories are on the way. Check back soon.</p>
               </div>
             )}
@@ -364,13 +364,13 @@ export function Clients({ onNavigate }: ClientsProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #1a2942 100%)' }}>
+      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)' }}>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
         </div>
         
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -382,15 +382,15 @@ export function Clients({ onNavigate }: ClientsProps) {
               Ready to Join Our Success Stories?
             </h2>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              See how flowbooks can transform your accounting operations. Start your free trial today.
+              Invoicing, reconciliation, and reporting in one platform. Start with flowbooks today.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-white hover:bg-gray-100 px-8 text-base" 
+              <Button
+                size="lg"
+                className="bg-white hover:bg-gray-100 px-8 text-base"
                 style={{ color: '#0b3574' }}
-                onClick={() => onNavigate?.('contact')}
+                onClick={() => window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer')}
               >
                 Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />

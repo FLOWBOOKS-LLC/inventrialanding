@@ -48,28 +48,28 @@ export function ContactUs() {
       title: "Email Us",
       details: "hello@flowbooks.com",
       subDetails: "We'll respond within 24 hours",
-      color: "#1594e3"
+      color: "#0b3574"
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
-      subDetails: "Mon-Fri, 9AM-6PM EST",
-      color: "#0c7bc4"
+      details: "08067643479",
+      subDetails: "Mon-Fri, 9AM-6PM WAT",
+      color: "#0b3574"
     },
     {
       icon: MapPin,
       title: "Visit Us",
       details: "Floor 1 African Alliance House, Airport Road",
       subDetails: "Kano State, Nigeria",
-      color: "#1594e3"
+      color: "#0b3574"
     },
     {
       icon: Clock,
       title: "Business Hours",
       details: "Monday - Friday",
-      subDetails: "9:00 AM - 6:00 PM EST",
-      color: "#0c7bc4"
+      subDetails: "9:00 AM - 6:00 PM WAT",
+      color: "#0b3574"
     }
   ];
 
@@ -101,7 +101,7 @@ export function ContactUs() {
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-20 right-20 w-96 h-96 rounded-full opacity-20 blur-3xl"
-            style={{ background: '#1594e3' }}
+            style={{ background: '#0b3574' }}
             animate={{
               y: [0, 50, 0],
               scale: [1, 1.2, 1],
@@ -127,7 +127,7 @@ export function ContactUs() {
           />
           
           <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: 'linear-gradient(#1594e3 1px, transparent 1px), linear-gradient(90deg, #1594e3 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(#0b3574 1px, transparent 1px), linear-gradient(90deg, #0b3574 1px, transparent 1px)',
             backgroundSize: '50px 50px'
           }}></div>
         </div>
@@ -146,7 +146,7 @@ export function ContactUs() {
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
             >
               <MessageSquare className="w-5 h-5 text-cyan-300" />
-              <span className="text-white text-sm font-medium">We're here to help</span>
+              <span className="text-white text-sm font-medium">Sales, support & partnerships</span>
             </motion.div>
 
             <motion.h1
@@ -170,7 +170,7 @@ export function ContactUs() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed"
             >
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              Questions about invoicing, reconciliation, or reporting? We’re here to help. Send a message and we’ll respond shortly.
             </motion.p>
           </motion.div>
         </div>
@@ -184,9 +184,9 @@ export function ContactUs() {
       </section>
 
       {/* Main Contact Form Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="max-w-6xl mx-auto px-4 lg:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto lg:items-start">
+          <div className="grid lg:grid-cols-2 gap-12 lg:items-start">
             {/* Left - Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -195,11 +195,11 @@ export function ContactUs() {
               transition={{ duration: 0.6 }}
               className="flex flex-col h-full"
             >
-              <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl border border-gray-100 flex-1 flex flex-col">
+              <div className="bg-card rounded-3xl p-8 lg:p-10 shadow-xl border border-border flex-1 flex flex-col">
                 <div>
-                  <h2 className="text-2xl lg:text-3xl mb-2" style={{ color: '#0a1929' }}>Contact Information</h2>
-                  <p className="text-gray-600 mb-8">
-                    Reach out to us through any of these channels
+                  <h2 className="text-2xl lg:text-3xl mb-2 text-foreground">Contact Information</h2>
+                  <p className="text-muted-foreground mb-8">
+                    Reach out via email, phone, or visit—we’re here to help.
                   </p>
                 </div>
 
@@ -213,12 +213,14 @@ export function ContactUs() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="group bg-gradient-to-b from-gray-50 to-white rounded-xl p-5 border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300"
+                        className="group bg-muted/30 rounded-xl p-5 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.background = `linear-gradient(135deg, ${info.color} 0%, #0c7bc4 100%)`;
+                          e.currentTarget.style.background = 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)';
+                          e.currentTarget.style.borderColor = 'transparent';
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.background = '';
+                          e.currentTarget.style.borderColor = '';
                         }}
                       >
                         <div className="flex items-start gap-4">
@@ -226,11 +228,11 @@ export function ContactUs() {
                             <Icon className="w-6 h-6 text-white" />
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-lg mb-1 group-hover:text-white transition-colors duration-300" style={{ color: '#0a1929' }}>{info.title}</h3>
-                            <p className="text-gray-700 mb-1 group-hover:text-white transition-colors duration-300">
+                            <h3 className="text-lg mb-1 text-foreground group-hover:text-white transition-colors duration-300">{info.title}</h3>
+                            <p className="text-muted-foreground mb-1 group-hover:text-white transition-colors duration-300">
                               {info.details}
                             </p>
-                            <p className="text-sm text-gray-500 group-hover:text-white/80 transition-colors duration-300">
+                            <p className="text-sm text-muted-foreground/80 group-hover:text-white/80 transition-colors duration-300">
                               {info.subDetails}
                             </p>
                           </div>
@@ -246,13 +248,13 @@ export function ContactUs() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="mt-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100"
+                  className="mt-6 bg-primary/5 rounded-2xl p-6 border border-primary/20"
                 >
-                  <h3 className="text-lg mb-2" style={{ color: '#0a1929' }}>Need Immediate Assistance?</h3>
-                  <p className="text-gray-700 text-sm mb-4">
-                    Our support team is available 24/7 to help you with urgent issues.
+                  <h3 className="text-lg mb-2 text-foreground">Need Immediate Assistance?</h3>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    Our support team is available to help with urgent accounting or platform issues.
                   </p>
-                  <Button className="w-full text-white" style={{ background: '#1594e3' }}>
+                  <Button className="w-full text-white" style={{ background: '#0b3574' }}>
                     <Phone className="mr-2 h-4 w-4" />
                     Call Support Now
                   </Button>
@@ -266,17 +268,17 @@ export function ContactUs() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl border border-gray-100"
+              className="bg-card rounded-3xl p-8 lg:p-10 shadow-xl border border-border"
             >
-              <h2 className="text-2xl lg:text-3xl mb-2" style={{ color: '#0a1929' }}>Send us a Message</h2>
-              <p className="text-gray-600 mb-8">
-                Fill out the form below and we'll get back to you shortly
+              <h2 className="text-2xl lg:text-3xl mb-2 text-foreground">Send us a Message</h2>
+              <p className="text-muted-foreground mb-8">
+                Fill out the form below and we’ll get back to you shortly.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{ color: '#0a1929' }}>
+                    <label className="block text-sm font-medium mb-2 text-foreground">
                       First Name *
                     </label>
                     <input
@@ -284,12 +286,12 @@ export function ContactUs() {
                       required
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:border-[#0b3574] focus:outline-none focus:ring-2 focus:ring-[#0b3574]/20 transition-colors"
                       placeholder="John"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{ color: '#0a1929' }}>
+                    <label className="block text-sm font-medium mb-2 text-foreground">
                       Last Name *
                     </label>
                     <input
@@ -297,14 +299,14 @@ export function ContactUs() {
                       required
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:border-[#0b3574] focus:outline-none focus:ring-2 focus:ring-[#0b3574]/20 transition-colors"
                       placeholder="Doe"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#0a1929' }}>
+                  <label className="block text-sm font-medium mb-2 text-foreground">
                     Email Address *
                   </label>
                   <input
@@ -312,39 +314,39 @@ export function ContactUs() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:border-[#0b3574] focus:outline-none focus:ring-2 focus:ring-[#0b3574]/20 transition-colors"
                     placeholder="john.doe@company.com"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#0a1929' }}>
+                  <label className="block text-sm font-medium mb-2 text-foreground">
                     Phone Number
                   </label>
                   <input
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors"
-                    placeholder="+1 (555) 000-0000"
+                    className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:border-[#0b3574] focus:outline-none focus:ring-2 focus:ring-[#0b3574]/20 transition-colors"
+                    placeholder="+234 000 000 0000"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#0a1929' }}>
+                  <label className="block text-sm font-medium mb-2 text-foreground">
                     Company Name
                   </label>
                   <input
                     type="text"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:border-[#0b3574] focus:outline-none focus:ring-2 focus:ring-[#0b3574]/20 transition-colors"
                     placeholder="Your Company"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#0a1929' }}>
+                  <label className="block text-sm font-medium mb-2 text-foreground">
                     Subject *
                   </label>
                   <input
@@ -352,13 +354,13 @@ export function ContactUs() {
                     required
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:border-[#0b3574] focus:outline-none focus:ring-2 focus:ring-[#0b3574]/20 transition-colors"
                     placeholder="How can we help you?"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#0a1929' }}>
+                  <label className="block text-sm font-medium mb-2 text-foreground">
                     Message *
                   </label>
                   <textarea
@@ -366,7 +368,7 @@ export function ContactUs() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:border-[#0b3574] focus:outline-none focus:ring-2 focus:ring-[#0b3574]/20 transition-colors resize-none"
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
@@ -375,7 +377,7 @@ export function ContactUs() {
                   type="submit"
                   size="lg"
                   className="w-full text-white"
-                  style={{ background: '#1594e3' }}
+                  style={{ background: '#0b3574' }}
                   disabled={submitting}
                 >
                   {submitting ? "Sending..." : "Send Message"}
@@ -383,17 +385,17 @@ export function ContactUs() {
                 </Button>
 
                 {result === "success" && (
-                  <div className="flex items-center justify-center gap-2 text-green-600 text-sm">
+                  <div className="flex items-center justify-center gap-2 text-green-600 dark:text-green-400 text-sm">
                     <CheckCircle className="w-4 h-4" />
                     Message sent! We’ll get back to you shortly.
                   </div>
                 )}
                 {result === "error" && (
-                  <p className="text-sm text-red-600 text-center">Something went wrong. Please try again.</p>
+                  <p className="text-sm text-destructive text-center">Something went wrong. Please try again.</p>
                 )}
 
-                <p className="text-xs text-gray-500 text-center">
-                  By submitting this form, you agree to our Privacy Policy and Terms of Service
+                <p className="text-xs text-muted-foreground text-center">
+                  By submitting, you agree to our Privacy Policy and Terms of Service.
                 </p>
               </form>
             </motion.div>

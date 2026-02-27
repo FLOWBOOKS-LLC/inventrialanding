@@ -58,8 +58,8 @@ export default function App() {
             <Hero onNavigate={setCurrentPage} />
             <SecurityStrip />
             <TrustedPartnersStrip />
-            <Features />
-            <Testimonials />
+            <Features onNavigate={setCurrentPage} />
+            <Testimonials onNavigate={setCurrentPage} />
             <CTA onNavigate={setCurrentPage} />
           </>
         ) : currentPage === 'about' ? (

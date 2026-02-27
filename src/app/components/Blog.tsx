@@ -112,7 +112,7 @@ export function Blog() {
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-10 right-10 w-80 h-80 rounded-full opacity-20 blur-3xl"
-            style={{ background: '#1594e3' }}
+            style={{ background: '#0b3574' }}
             animate={{
               y: [0, 30, 0],
               scale: [1, 1.1, 1],
@@ -124,7 +124,7 @@ export function Blog() {
             }}
           />
           <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: 'linear-gradient(#1594e3 1px, transparent 1px), linear-gradient(90deg, #1594e3 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(#0b3574 1px, transparent 1px), linear-gradient(90deg, #0b3574 1px, transparent 1px)',
             backgroundSize: '50px 50px'
           }}></div>
         </div>
@@ -143,7 +143,7 @@ export function Blog() {
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
             >
               <BookOpen className="w-5 h-5 text-cyan-300" />
-              <span className="text-white text-sm font-medium">Latest insights and updates</span>
+              <span className="text-white text-sm font-medium">Accounting & finance insights</span>
             </motion.div>
 
             <motion.h1 
@@ -167,7 +167,7 @@ export function Blog() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              Insights, tips, and updates from the world of modern accounting
+              Invoicing, reconciliation, reporting—tips and updates from the flowbooks team
             </motion.p>
 
             {/* Search Bar */}
@@ -178,7 +178,7 @@ export function Blog() {
               className="max-w-2xl mx-auto"
             >
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/60" />
                 <input
                   type="text"
                   placeholder="Search articles..."
@@ -199,21 +199,20 @@ export function Blog() {
 
       {/* Featured Post */}
       {featuredPost && (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-background">
           <div className="max-w-6xl mx-auto px-4 lg:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
             >
               <div className="flex items-center gap-2 mb-8">
-                <TrendingUp className="w-5 h-5" style={{ color: '#1594e3' }} />
-                <span className="text-sm font-medium" style={{ color: '#1594e3' }}>Featured Article</span>
+                <TrendingUp className="w-5 h-5" style={{ color: '#0b3574' }} />
+                <span className="text-sm font-medium" style={{ color: '#0b3574' }}>Featured Article</span>
               </div>
 
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 hover:shadow-3xl transition-shadow duration-300">
+              <div className="bg-card rounded-3xl overflow-hidden shadow-2xl border border-border hover:shadow-2xl transition-shadow duration-300">
                 <div className="grid lg:grid-cols-2 gap-0">
                   {/* Image */}
                   <div className="relative h-80 lg:h-auto">
@@ -227,24 +226,24 @@ export function Blog() {
                     {/* Category Badge */}
                     <div className="absolute top-6 left-6">
                       <div className="inline-flex items-center gap-2 bg-white/95 backdrop-blur-md rounded-full px-4 py-2">
-                        <Tag className="w-4 h-4" style={{ color: '#1594e3' }} />
-                        <span className="text-sm font-medium" style={{ color: '#1594e3' }}>{featuredPost?.category}</span>
+                        <Tag className="w-4 h-4" style={{ color: '#0b3574' }} />
+                        <span className="text-sm font-medium" style={{ color: '#0b3574' }}>{featuredPost?.category}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-8 lg:p-12 flex flex-col justify-center">
-                    <h2 className="text-3xl lg:text-4xl mb-6 leading-tight" style={{ color: '#0a1929' }}>
+                    <h2 className="text-3xl lg:text-4xl mb-6 leading-tight text-foreground">
                       {featuredPost?.title}
                     </h2>
                     
-                    <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                    <p className="text-muted-foreground text-lg leading-relaxed mb-8">
                       {featuredPost?.excerpt}
                     </p>
 
                     {/* Meta Info */}
-                    <div className="flex flex-wrap items-center gap-6 mb-8 text-sm text-gray-600">
+                    <div className="flex flex-wrap items-center gap-6 mb-8 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
                         {featuredPost?.authorImage && (
                           <img 
@@ -267,8 +266,8 @@ export function Blog() {
 
                     <Button 
                       size="lg"
-                      className="self-start"
-                      style={{ background: '#1594e3' }}
+                      className="self-start text-white"
+                      style={{ background: '#0b3574' }}
                       onClick={() => setSelectedArticle(featuredPost)}
                     >
                       Read Full Article
@@ -283,63 +282,60 @@ export function Blog() {
       )}
 
       {/* Categories Filter */}
-      <section className="py-12 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-wrap gap-3 justify-center">
-              {categories.map((category, index) => (
-                <motion.button
-                  key={category.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className={`px-6 py-3 rounded-full border-2 transition-all duration-300 ${
-                    selectedCategory === category.name
-                      ? 'border-transparent text-white shadow-lg'
-                      : 'border-gray-300 text-gray-700 hover:border-gray-400'
-                  }`}
-                  style={{
-                    background: selectedCategory === category.name ? '#1594e3' : 'white'
-                  }}
-                >
-                  <span className="font-medium">{category.name}</span>
-                  <span className={`ml-2 text-sm ${selectedCategory === category.name ? 'text-white/80' : 'text-gray-500'}`}>
+      <section className="py-12 bg-gradient-to-b from-background to-muted/30">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          <div className="flex flex-wrap gap-3 justify-center">
+            {categories.map((category, index) => (
+              <motion.button
+                key={category.name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                onClick={() => setSelectedCategory(category.name)}
+                className={`px-6 py-3 rounded-full border-2 transition-all duration-300 ${
+                  selectedCategory === category.name
+                    ? 'border-transparent text-white shadow-lg'
+                    : 'border-border text-foreground hover:border-primary/50 bg-card'
+                }`}
+                style={{
+                  background: selectedCategory === category.name ? '#0b3574' : undefined
+                }}
+              >
+                <span className="font-medium">{category.name}</span>
+                <span className={`ml-2 text-sm ${selectedCategory === category.name ? 'text-white/80' : 'text-muted-foreground'}`}>
                     ({category.count})
                   </span>
-                </motion.button>
-              ))}
-            </div>
+              </motion.button>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <h2 className="text-3xl lg:text-4xl mb-2" style={{ color: '#0a1929' }}>Latest Articles</h2>
-              <p className="text-gray-600">Stay updated with our newest content</p>
-            </motion.div>
+      <section className="py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl lg:text-4xl mb-2 text-foreground">Latest Articles</h2>
+            <p className="text-muted-foreground">Stay updated with our newest content</p>
+          </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post, index) => (
-                <motion.article
-                  key={post.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-                >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPosts.map((post, index) => (
+              <motion.article
+                key={post.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group bg-card rounded-2xl overflow-hidden shadow-lg border border-border hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+              >
                   {/* Image */}
                   <div className="relative h-56 overflow-hidden">
                     <img 
@@ -351,7 +347,7 @@ export function Blog() {
                     
                     {/* Category */}
                     <div className="absolute top-4 left-4">
-                      <span className="inline-block bg-white/95 backdrop-blur-md rounded-full px-3 py-1 text-xs font-medium" style={{ color: '#1594e3' }}>
+                      <span className="inline-block bg-white/95 backdrop-blur-md rounded-full px-3 py-1 text-xs font-medium" style={{ color: '#0b3574' }}>
                         {post.category}
                       </span>
                     </div>
@@ -359,16 +355,16 @@ export function Blog() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <h3 className="text-xl mb-3 leading-tight group-hover:text-current transition-colors" style={{ color: '#0a1929' }}>
+                    <h3 className="text-xl mb-3 leading-tight text-foreground group-hover:text-current transition-colors">
                       {post.title}
                     </h3>
                     
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-2">
                       {post.excerpt}
                     </p>
 
                     {/* Meta */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
                     <div className="flex items-center gap-2">
                       {post.authorImage ? (
                         <img 
@@ -377,7 +373,7 @@ export function Blog() {
                           className="w-6 h-6 rounded-full object-cover"
                         />
                       ) : (
-                        <span className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-xs font-semibold text-gray-700">
+                        <span className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs font-semibold text-muted-foreground">
                           {post.author
                             .split(" ")
                             .map((p) => p[0])
@@ -386,9 +382,9 @@ export function Blog() {
                             .toUpperCase()}
                         </span>
                       )}
-                      <span className="text-xs text-gray-600">{post.author}</span>
+                      <span className="text-xs text-muted-foreground">{post.author}</span>
                     </div>
-                      <div className="flex items-center gap-1 text-xs text-gray-500">
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
                         <Clock className="w-3 h-3" />
                         <span>{post.readTime}</span>
                       </div>
@@ -396,7 +392,7 @@ export function Blog() {
 
                     {/* Read More Link */}
                     <div className="mt-4">
-                      <button className="inline-flex items-center gap-1 text-sm font-medium group-hover:gap-2 transition-all" style={{ color: '#1594e3' }} onClick={() => setSelectedArticle(post)}>
+                      <button className="inline-flex items-center gap-1 text-sm font-medium group-hover:gap-2 transition-all text-primary" style={{ color: '#0b3574' }} onClick={() => setSelectedArticle(post)}>
                         Read More
                         <ChevronRight className="w-4 h-4" />
                       </button>
@@ -407,95 +403,94 @@ export function Blog() {
             </div>
 
             {loadingPosts && (
-              <div className="flex flex-col items-center justify-center gap-3 py-16 text-gray-600">
-                <Loader2 className="w-8 h-8 animate-spin" />
-                <p>Loading articles...</p>
-              </div>
-            )}
+            <div className="flex flex-col items-center justify-center gap-3 py-16 text-muted-foreground">
+              <Loader2 className="w-8 h-8 animate-spin" />
+              <p>Loading articles...</p>
+            </div>
+          )}
 
-            {!loadingPosts && filteredPosts.length === 0 && (
-              <div className="flex flex-col items-center justify-center gap-2 py-16 text-gray-500">
-                <BookOpen className="w-8 h-8 text-gray-400" />
-                <p>Articles are being curated. Check back soon.</p>
-              </div>
-            )}
+          {!loadingPosts && filteredPosts.length === 0 && (
+            <div className="flex flex-col items-center justify-center gap-2 py-16 text-muted-foreground">
+              <BookOpen className="w-8 h-8" />
+              <p>Articles are being curated. Check back soon.</p>
+            </div>
+          )}
 
-            {/* Load More Button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center mt-12"
+          {/* Load More Button */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-12"
+          >
+            <Button 
+              size="lg"
+              variant="outline"
+              className="border-2 px-8"
+              style={{ borderColor: '#0b3574', color: '#0b3574' }}
             >
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-2 px-8"
-                style={{ borderColor: '#1594e3', color: '#1594e3' }}
-              >
-                Load More Articles
-              </Button>
-            </motion.div>
-          </div>
+              Load More Articles
+            </Button>
+          </motion.div>
         </div>
       </section>
 
-      {/* Trending Topics Sidebar Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl lg:text-4xl mb-4" style={{ color: '#0a1929' }}>Trending Topics</h2>
-              <p className="text-gray-600">Explore popular subjects in accounting and finance</p>
-            </motion.div>
+      {/* Trending Topics */}
+      <section className="py-20 bg-gradient-to-b from-muted/30 to-background">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl lg:text-4xl mb-4 text-foreground">Trending Topics</h2>
+            <p className="text-muted-foreground">Popular subjects in accounting and finance</p>
+          </motion.div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {trendingTopics.map((topic, index) => (
-                <motion.div
-                  key={topic.name}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-6 border border-gray-200 hover:border-transparent hover:shadow-xl transition-all duration-300 cursor-pointer"
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'linear-gradient(135deg, #1594e3 0%, #0c7bc4 100%)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '';
-                  }}
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <Tag className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-                    <span className="text-2xl group-hover:text-white transition-colors" style={{ color: '#1594e3' }}>
-                      {topic.posts}
-                    </span>
-                  </div>
-                  <h3 className="text-sm font-medium text-gray-700 group-hover:text-white transition-colors">
-                    {topic.name}
-                  </h3>
-                </motion.div>
-              ))}
-            </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {trendingTopics.map((topic, index) => (
+              <motion.div
+                key={topic.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="group bg-card rounded-xl p-6 border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)';
+                  e.currentTarget.style.borderColor = 'transparent';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '';
+                  e.currentTarget.style.borderColor = '';
+                }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <Tag className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors" />
+                  <span className="text-2xl font-semibold group-hover:text-white transition-colors" style={{ color: '#0b3574' }}>
+                    {topic.posts}
+                  </span>
+                </div>
+                <h3 className="text-sm font-medium text-foreground group-hover:text-white transition-colors">
+                  {topic.name}
+                </h3>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #1a2942 100%)' }}>
+      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)' }}>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
         </div>
         
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -503,7 +498,7 @@ export function Blog() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={{ background: 'rgba(21, 148, 227, 0.2)' }}>
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-white/20">
               <BookOpen className="w-8 h-8 text-white" />
             </div>
             
@@ -511,7 +506,7 @@ export function Blog() {
               Never Miss an Update
             </h2>
             <p className="text-xl text-white/80 mb-10">
-              Subscribe to our newsletter and get the latest insights delivered to your inbox every week
+              Get accounting and finance insights delivered to your inbox.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
@@ -523,7 +518,7 @@ export function Blog() {
               <Button 
                 size="lg" 
                 className="bg-white hover:bg-gray-100 px-8 whitespace-nowrap"
-                style={{ color: '#1594e3' }}
+                style={{ color: '#0b3574' }}
               >
                 Subscribe Now
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -531,7 +526,7 @@ export function Blog() {
             </div>
             
             <p className="text-white/60 text-sm mt-6">
-              Join 50,000+ subscribers. Unsubscribe anytime.
+              Unsubscribe anytime. We respect your privacy.
             </p>
           </motion.div>
         </div>
