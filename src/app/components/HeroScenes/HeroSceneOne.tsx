@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { CheckCircle, TrendingUp } from "lucide-react";
-import logo from "@/assets/flowbooks-blue.png";
+import logo from "@/assets/flo-blue.svg";
 
 export function HeroSceneOne() {
   return (
@@ -34,7 +34,7 @@ export function HeroSceneOne() {
           <div className="flex flex-col items-center">
             <div className="relative mb-5">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-xl opacity-40"></div>
-              <div className="relative w-32 h-32 rounded-full bg-white flex items-center justify-center border-4 border-white/10 p-6">
+              <div className="relative w-32 h-32 rounded-full bg-white flex items-center justify-center border-4 border-white/10 overflow-hidden">
                 <img
                   src={logo}
                   alt="Flowbooks Logo"

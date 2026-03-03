@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { useTheme } from "@/app/theme/ThemeProvider";
+import logo from "@/assets/flowbooks-blue.png";
 
 interface HeaderProps {
   onNavigate?: (page: string) => void;
@@ -33,7 +34,17 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
     >
       <div className="mx-auto max-w-6xl px-4 lg:px-6">
         <div className="flex h-16 min-h-[4rem] w-full items-center justify-between">
-          <nav className="hidden items-center gap-8 text-sm md:flex lg:gap-10">
+          <div className="flex items-center gap-3">
+            {/* Mobile logo */}
+            <a
+              href="/"
+              aria-label="Flowbooks home"
+              className="flex items-center md:hidden"
+            >
+              <img src={logo} alt="Flowbooks" className="h-7 w-auto" />
+            </a>
+
+            <nav className="hidden items-center gap-8 text-sm md:flex lg:gap-10">
             <button
               type="button"
               onClick={() => handleNavClick('home')}
@@ -83,16 +94,19 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#0b3574' }}></span>
             </button>
           </nav>
+          </div>
           <div className="ml-auto flex shrink-0 items-center gap-4">
             <div className="hidden md:block">
               <ThemeToggle />
             </div>
             <Button 
-              onClick={() => handleNavClick('contact')}
+              onClick={() => {
+                window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer');
+              }}
               className="hidden md:block text-white hover:opacity-90" 
               style={{ backgroundColor: '#0b3574' }}
             >
-              Contact sales
+              Register
             </Button>
             
             {/* Mobile menu button */}
@@ -163,11 +177,13 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               <ThemeToggle />
             </div>
             <Button 
-              onClick={() => handleNavClick('contact')}
+              onClick={() => {
+                window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer');
+              }}
               className="text-white hover:opacity-90 w-full" 
               style={{ backgroundColor: '#0b3574' }}
             >
-              Contact sales
+              Register
             </Button>
           </nav>
         </div>

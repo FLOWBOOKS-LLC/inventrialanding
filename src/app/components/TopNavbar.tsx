@@ -35,7 +35,7 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
       `}</style>
 
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 lg:px-6">
-        <a href="/" aria-label="Flowbooks home" className="flex items-center flex-shrink-0">
+        <a href="/" aria-label="Flowbooks home" className="hidden md:flex items-center flex-shrink-0">
           <img src={logo} alt="Flowbooks" className="h-7 md:h-8 w-auto" />
         </a>
 

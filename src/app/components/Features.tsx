@@ -1,4 +1,4 @@
-import { Calculator, FileText, BarChart3, Shield, Zap, Users, ChevronRight } from "lucide-react";
+import { Calculator, FileText, BarChart3, Shield, Zap, Users, ChevronRight, Quote } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
@@ -124,19 +124,25 @@ export function Features({ onNavigate }: FeaturesProps) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             </div>
-            
-            <div className="p-6 flex-1 flex flex-col">
-              <div className="text-xs font-semibold mb-2 tracking-wider" style={{ color: '#4166b2' }}>
+
+            <div className="p-5 flex-1 flex flex-col min-h-0 items-center text-center">
+              <div className="text-xs font-semibold mb-1 tracking-wider" style={{ color: '#4166b2' }}>
                 FLOWBOOKS
               </div>
-              <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white mb-2">
                 {features[selectedFeature].title}
               </h3>
-              <p className="text-gray-600 text-base mb-4 leading-relaxed flex-1">
-                {features[selectedFeature].details}
-              </p>
+              <div className="flex flex-1 min-h-0 justify-center">
+                <div className="relative w-full max-w-2xl flex flex-col">
+                  <Quote className="absolute left-0 top-0 w-8 h-8 md:w-10 md:h-10 text-[#0b3574] dark:text-sky-400 flex-shrink-0 scale-x-[-1]" strokeWidth={1.5} aria-hidden />
+                  <p className="text-[#0a2942] dark:text-slate-200 text-xl md:text-2xl leading-relaxed flex-1 min-h-0 pt-1 pl-9 pr-9 pb-4 w-full text-center">
+                    {features[selectedFeature].details}
+                  </p>
+                  <Quote className="absolute right-0 bottom-0 w-8 h-8 md:w-10 md:h-10 text-[#0b3574] dark:text-sky-400 flex-shrink-0" strokeWidth={1.5} aria-hidden />
+                </div>
+              </div>
               <Button 
-                className="text-white hover:opacity-90 transition-opacity w-fit"
+                className="text-white hover:opacity-90 transition-opacity w-fit mt-2 flex-shrink-0"
                 style={{ backgroundColor: '#0b3574' }}
                 onClick={() => onNavigate?.('faqs')}
               >

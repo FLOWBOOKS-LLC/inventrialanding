@@ -513,11 +513,11 @@ export function Hero({ onNavigate }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-3"
+              className="flex flex-wrap gap-3 items-center"
             >
               <Button
                 size="lg"
-                className="px-6 text-white font-semibold"
+                className="px-8 py-6 text-lg font-semibold"
                 style={{ backgroundColor: '#0b3574' }}
                 onClick={() => {
                   window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer');
@@ -526,9 +526,9 @@ export function Hero({ onNavigate }: HeroProps) {
                 Register
               </Button>
               <Button
-                size="lg"
+                size="default"
                 variant="outline"
-                className="border-2 font-semibold"
+                className="border-2 font-semibold px-5 py-2.5"
                 style={{ borderColor: '#0b3574', color: '#0b3574' }}
                 onClick={() => onNavigate?.('faqs')}
               >

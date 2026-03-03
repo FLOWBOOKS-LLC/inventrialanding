@@ -6,6 +6,7 @@ const partners = [
   { name: "ISN Hubs", src: "/partners/isn-hubs-removebg-preview.png" },
   { name: "Techmybiz", src: "/partners/techmybiz-removebg-preview.png" },
   { name: "Development Bank of Nigeria (DBN)", src: "/partners/dbn-removebg-preview.png" },
+  { name: "BITs", src: "/partners/BITs%20Logo.png" },
 ];
 
 export function TrustedPartnersStrip() {
@@ -42,8 +43,8 @@ export function TrustedPartnersStrip() {
         </div>
         {/* Second row - 3 items centered */}
         <div className="flex justify-center">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 w-full lg:w-3/4 lg:max-w-4xl">
-            {partners.slice(4, 7).map((partner) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full">
+            {partners.slice(4, 8).map((partner) => (
               <div
                 key={partner.name}
                 className="group flex items-center justify-center p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-[#0b3574]/20 dark:hover:border-[#0b3574]/30 transition-all duration-300"
