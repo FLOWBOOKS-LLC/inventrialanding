@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
+import { Tag } from 'lucide-react';
 import logo from '@/assets/flowbooks-blue.png';
 
 interface TopNavbarProps {
@@ -26,44 +27,37 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
   };
 
   return (
-    <div className="bg-white border-b border-gray-200 py-1">
+    <div className="bg-[#f5f7fd] border-b border-[#d7e1f5] py-2 md:py-1">
       <style>{`
-        .topnav-icon { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:6px; transition: transform .16s ease, background-color .16s ease, box-shadow .16s ease; opacity:0; transform: translateY(4px); }
+        .topnav-icon { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:6px; transition: transform .16s ease, background-color .16s ease, box-shadow .16s ease; }
         .topnav-icon:hover { transform: translateY(-2px) scale(1.03); background-color: rgba(11,53,116,0.04); box-shadow: 0 4px 10px rgba(11,53,116,0.06); }
         .topnav-icon:focus { outline: 2px solid rgba(11,53,116,0.12); outline-offset: 2px; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInRight { from { opacity: 0; transform: translateX(4px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
       `}</style>
 
-      <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center gap-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 lg:px-6">
         <a href="/" aria-label="Flowbooks home" className="flex items-center flex-shrink-0">
-          <img src={logo} alt="Flowbooks" className="h-8 w-auto" />
+          <img src={logo} alt="Flowbooks" className="h-7 md:h-8 w-auto" />
         </a>
 
-        {/* Moving promotional ticker shown on all breakpoints without extra height */}
-        <div className="flex-1 min-w-0">
+        {/* Promotional banner - compact on mobile */}
+        <div className="flex flex-1 items-center justify-center gap-2 min-w-0 py-1">
+          <Tag className="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0 text-[#0b3574]" strokeWidth={2} />
+          <span className="inline-flex items-center rounded-full bg-[#0b3574] px-1.5 py-0.5 text-[10px] font-semibold text-white uppercase">
+            Sale
+          </span>
+          <span className="hidden sm:inline text-[11px] md:text-sm text-[#0b3574] truncate">
+            Buy now and <strong className="font-bold">save 90% off today</strong>
+          </span>
           <button
             type="button"
             onClick={goToPlans}
-            className="group w-full relative overflow-hidden py-1 px-2 text-left transition-all duration-150 cursor-pointer focus:outline-none active:opacity-70 hover:opacity-90"
-            aria-label="View Flowbooks plans"
-            style={{ minHeight: 30 }}
+            className="text-[10px] sm:text-[11px] md:text-sm font-medium text-[#0b3574] underline underline-offset-2 hover:text-[#0a2942] transition-colors cursor-pointer whitespace-nowrap flex-shrink-0"
           >
-            <div
-              className="promo-text whitespace-nowrap flex gap-8 text-[11px] md:text-xs font-normal text-[#0b3574]/70 tracking-tight transition-colors duration-150 group-hover:text-[#0b3574]"
-              style={{ animation: 'marquee 14s linear infinite' }}
-            >
-              <span>Automate invoicing and reconciliations · Close your books 2x faster · See Flowbooks pricing</span>
-              <span>Automate invoicing and reconciliations · Close your books 2x faster · See Flowbooks pricing</span>
-            </div>
+            See plans & pricing
           </button>
         </div>
 
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
           {socials.map((s, i) => {
             const Icon = s.Icon;
             return (
@@ -74,9 +68,9 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
                 rel="noopener noreferrer"
                 aria-label={s.name}
                 className="topnav-icon"
-                style={{ color: socialIconColor, animation: `fadeUp .36s ease forwards`, animationDelay: `${i * 80}ms` }}
+                style={{ color: socialIconColor }}
               >
-                <Icon size={16} />
+                <Icon size={14} />
               </a>
             );
           })}

@@ -16,8 +16,8 @@ const features = [
     icon: FileText,
     iconColor: "#10b981",
     title: "Invoicing & receivables",
-    description: "Create, send, and track invoices end-to-end so cash doesn’t get stuck in AR.",
-    details: "Create professional invoices in seconds, send them by email or link, and track what’s paid, overdue, or disputed. Aging reports and customer statements keep your receivables under control and improve cash collection.",
+    description: "Create, send, and track invoices end-to-end so cash doesn't get stuck in AR.",
+    details: "Create professional invoices in seconds, send them by email or link, and track what's paid, overdue, or disputed. Aging reports and customer statements keep your receivables under control and improve cash collection.",
     imageUrl: "https://images.unsplash.com/photo-1762427354566-2b6902a9fd06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnZvaWNlJTIwZG9jdW1lbnQlMjBidXNpbmVzc3xlbnwxfHx8fDE3Njg5MTcyNTR8MA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {

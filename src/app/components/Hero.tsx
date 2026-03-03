@@ -2,12 +2,53 @@ import { Button } from "@/app/components/ui/button";
 import { motion } from "motion/react";
 import { ReactNode, useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import { ShieldCheck, Lock, Server, Shield } from "lucide-react";
 import { HeroSceneOne } from "./HeroScenes/HeroSceneOne";
 import { HeroSceneTwo } from "./HeroScenes/HeroSceneTwo";
 import { useTheme } from "@/app/theme/ThemeProvider";
 
 interface HeroProps {
   onNavigate?: (page: string) => void;
+}
+
+type SceneProps = {
+  active: boolean;
+  children: ReactNode;
+};
+
+function Scene({ active, children }: SceneProps) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      className="absolute inset-0"
+      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
+      animate={
+        reduceMotion
+          ? { opacity: active ? 1 : 0 }
+          : {
+              opacity: active ? 1 : 0,
+              scale: active ? 1 : 0.96,
+              y: active ? [6, 0, 6] : 0,
+            }
+      }
+      transition={
+        reduceMotion
+          ? { duration: 0.4 }
+          : {
+              opacity: { duration: 0.4 },
+              scale: { duration: 0.6, ease: "easeOut" },
+              y: {
+                duration: 14,
+                repeat: active ? Infinity : 0,
+                ease: "easeInOut",
+              },
+            }
+      }
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 // export function Hero() {
@@ -421,47 +462,6 @@ interface HeroProps {
 //     </section>
 //   );
 // }
-type SceneProps = {
-  active: boolean;
-  children: ReactNode;
-};
-
-function Scene({ active, children }: SceneProps) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      className="absolute inset-0"
-      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
-      animate={
-        reduceMotion
-          ? { opacity: active ? 1 : 0 }
-          : {
-              opacity: active ? 1 : 0,
-              scale: active ? 1 : 0.96,
-              y: active ? [6, 0, 6] : 0,
-            }
-      }
-      transition={
-        reduceMotion
-          ? { duration: 0.4 }
-          : {
-              opacity: { duration: 0.4 },
-              scale: { duration: 0.6, ease: "easeOut" },
-              y: {
-                duration: 14,
-                repeat: active ? Infinity : 0,
-                ease: "easeInOut",
-              },
-            }
-      }
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-
 export function Hero({ onNavigate }: HeroProps) {
   const { theme } = useTheme();
   const [currentScene, setCurrentScene] = useState(0);
@@ -476,31 +476,32 @@ export function Hero({ onNavigate }: HeroProps) {
 
   return (
     <section
-      className="relative overflow-hidden flex items-center min-h-[90vh]"
+      className="relative flex min-h-[calc(100dvh-7rem)] flex-col overflow-hidden"
       style={{
         background:
           theme === "dark"
             ? "radial-gradient(circle at top, #020617 0%, #020617 55%, #000000 100%)"
-            : "linear-gradient(135deg, #0b3574 0%, #1a2942 100%)",
+            : "linear-gradient(180deg, #f0f5fc 0%, #e8eef9 50%, #e2e9f5 100%)",
       }}
     >
-      {/* Vertical padding accounts for navbar */}
-      <div className="w-full px-0 pt-10 lg:pt-12">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-center px-4 lg:px-6">
+      {/* Hero content - flex to fill and stay above fold */}
+      <div className="flex flex-1 w-full items-center px-0 pt-10 lg:pt-12">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 lg:grid-cols-2 lg:gap-16 lg:px-6">
           
           {/* LEFT: Text */}
           <div className="space-y-3 lg:space-y-4 max-w-xl">
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-4xl text-white leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight dark:text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              One platform for invoicing, reconciliation, and financial reporting
+              <span className="text-gray-900 dark:text-white">One platform for </span>
+              <span style={{ color: '#0b3574' }}>invoicing, reconciliation, and financial reporting</span>
             </motion.h1>
 
             <motion.p
-              className="text-base text-white/80 max-w-lg"
+              className="text-base text-gray-600 dark:text-white/80 max-w-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -512,19 +513,30 @@ export function Hero({ onNavigate }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-3"
             >
               <Button
                 size="lg"
-                className="bg-white text-gray-900 hover:bg-gray-100 px-4 font-semibold"
+                className="px-6 text-white font-semibold"
+                style={{ backgroundColor: '#0b3574' }}
                 onClick={() => {
                   window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer');
                 }}
               >
                 Register
               </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 font-semibold"
+                style={{ borderColor: '#0b3574', color: '#0b3574' }}
+                onClick={() => onNavigate?.('faqs')}
+              >
+                Learn more
+              </Button>
             </motion.div>
             <motion.p
-              className="text-xs md:text-sm text-white/60"
+              className="text-xs md:text-sm text-gray-500 dark:text-white/60"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -592,7 +604,6 @@ export function Hero({ onNavigate }: HeroProps) {
                 </Scene>
               </div>
 
-     
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-50">
               {[...Array(totalScenes)].map((_, index) => (
                 <button
@@ -600,11 +611,42 @@ export function Hero({ onNavigate }: HeroProps) {
                   onClick={() => setCurrentScene(index)}
                   className={`h-2 rounded-full transition-all ${
                     currentScene === index
-                      ? "w-6 bg-blue-500"
-                      : "w-2 bg-white/30"
+                      ? "w-6"
+                      : "w-2 bg-gray-300 dark:bg-white/30"
                   }`}
+                  style={currentScene === index ? { backgroundColor: '#0b3574' } : undefined}
                 />
               ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Security banner - fixed at bottom of hero, visible without scrolling */}
+      <div
+        className="shrink-0 border-t px-4 py-3 lg:px-6"
+        style={{
+          borderColor: theme === "dark" ? "rgba(255,255,255,0.08)" : "rgba(11,53,116,0.12)",
+          background: theme === "dark" ? "rgba(2,6,23,0.4)" : "rgba(232,238,249,0.8)",
+        }}
+      >
+        <div className="mx-auto flex max-w-6xl flex-row flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-6 sm:justify-between">
+          <div className="flex items-center gap-2 text-xs font-medium md:text-sm" style={{ color: theme === "dark" ? "#94a3b8" : "#0b3574" }}>
+            <ShieldCheck className="h-4 w-4 flex-shrink-0 text-emerald-500" />
+            <span>Security &amp; compliance by design</span>
+          </div>
+          <div className="flex flex-row flex-nowrap items-center gap-x-2 sm:gap-x-6 text-[9px] sm:text-[11px] md:text-xs whitespace-nowrap overflow-x-auto" style={{ color: theme === "dark" ? "#94a3b8" : "#475569" }}>
+            <div className="flex items-center gap-1 flex-shrink-0">
+              <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0 text-sky-500" />
+              <span>Bank-level encryption &amp; role-based access</span>
+            </div>
+            <div className="flex items-center gap-1 flex-shrink-0">
+              <Server className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0 text-sky-500" />
+              <span>Daily backups and audit-friendly records</span>
+            </div>
+            <div className="flex items-center gap-1 flex-shrink-0">
+              <Shield className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0 text-sky-500" />
+              <span>Nigeria Data Protection Commission - NDPC</span>
             </div>
           </div>
         </div>
