@@ -485,11 +485,11 @@ export function Hero({ onNavigate }: HeroProps) {
       }}
     >
       {/* Hero content - flex to fill and stay above fold */}
-      <div className="flex flex-1 w-full items-center px-0 pt-10 lg:pt-12">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 lg:grid-cols-2 lg:gap-16 lg:px-6">
+      <div className="flex flex-1 w-full items-start md:items-center px-0 pt-20 sm:pt-10 md:pt-12 lg:pt-16">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-8 md:gap-10 px-4 lg:grid-cols-2 lg:gap-16 lg:px-6">
           
           {/* LEFT: Text */}
-          <div className="space-y-3 lg:space-y-4 max-w-xl">
+          <div className="space-y-2 sm:space-y-3 lg:space-y-4 max-w-xl">
             <motion.h1
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight dark:text-white"
               initial={{ opacity: 0, y: 20 }}
@@ -624,29 +624,36 @@ export function Hero({ onNavigate }: HeroProps) {
 
       {/* Security banner - fixed at bottom of hero, visible without scrolling */}
       <div
-        className="shrink-0 border-t px-4 py-3 lg:px-6"
+        className="shrink-0 border-t px-4 py-1.5 sm:py-2.5 lg:px-6"
         style={{
           borderColor: theme === "dark" ? "rgba(255,255,255,0.08)" : "rgba(11,53,116,0.12)",
           background: theme === "dark" ? "rgba(2,6,23,0.4)" : "rgba(232,238,249,0.8)",
         }}
       >
-        <div className="mx-auto flex max-w-6xl flex-row flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-6 sm:justify-between">
-          <div className="flex items-center gap-2 text-xs font-medium md:text-sm" style={{ color: theme === "dark" ? "#94a3b8" : "#0b3574" }}>
-            <ShieldCheck className="h-4 w-4 flex-shrink-0 text-emerald-500" />
+        <div className="mx-auto flex max-w-6xl flex-row flex-wrap items-center justify-center gap-x-3 gap-y-1.5 sm:gap-x-6 sm:justify-between">
+          <div className="flex items-center gap-1.5 text-[11px] md:text-sm font-medium" style={{ color: theme === "dark" ? "#94a3b8" : "#0b3574" }}>
+            <ShieldCheck className="h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
             <span>Security &amp; compliance by design</span>
           </div>
-          <div className="flex flex-row flex-nowrap items-center gap-x-2 sm:gap-x-6 text-[9px] sm:text-[11px] md:text-xs whitespace-nowrap overflow-x-auto" style={{ color: theme === "dark" ? "#94a3b8" : "#475569" }}>
-            <div className="flex items-center gap-1 flex-shrink-0">
-              <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0 text-sky-500" />
-              <span>Bank-level encryption &amp; role-based access</span>
+          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-y-1.5 sm:gap-y-0 gap-x-0 sm:gap-x-6 text-[8px] sm:text-[9px] md:text-[11px]" style={{ color: theme === "dark" ? "#94a3b8" : "#475569" }}>
+            {/* Row 1: first two items on mobile */}
+            <div className="flex w-full sm:w-auto justify-center sm:justify-start gap-x-4 sm:gap-x-6">
+              <div className="flex items-center gap-1 flex-shrink-0">
+                <Lock className="h-3 w-3 sm:h-3 sm:w-3 flex-shrink-0 text-sky-500" />
+                <span className="whitespace-nowrap">Bank-level encryption &amp; role-based access</span>
+              </div>
+              <div className="flex items-center gap-1 flex-shrink-0">
+                <Server className="h-2.5 w-2.5 sm:h-2.5 sm:w-2.5 flex-shrink-0 text-sky-500" />
+                <span className="whitespace-nowrap">Daily backups and audit-friendly records</span>
+              </div>
             </div>
-            <div className="flex items-center gap-1 flex-shrink-0">
-              <Server className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0 text-sky-500" />
-              <span>Daily backups and audit-friendly records</span>
-            </div>
-            <div className="flex items-center gap-1 flex-shrink-0">
-              <Shield className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0 text-sky-500" />
-              <span>Nigeria Data Protection Commission - NDPC</span>
+
+            {/* Row 2: third item centered on mobile */}
+            <div className="flex w-full sm:w-auto justify-center sm:justify-start">
+              <div className="flex items-center gap-1 flex-shrink-0">
+                <Shield className="h-2.5 w-2.5 sm:h-2.5 sm:w-2.5 flex-shrink-0 text-sky-500" />
+                <span className="whitespace-nowrap">Nigeria Data Protection Commission - NDPC</span>
+              </div>
             </div>
           </div>
         </div>
