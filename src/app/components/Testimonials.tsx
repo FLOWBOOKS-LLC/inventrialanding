@@ -67,7 +67,7 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
 
   return (
     <section
-      className="py-16 lg:py-24 relative overflow-hidden bg-slate-950"
+      className="py-16 lg:py-24 relative overflow-hidden transition-colors bg-gradient-to-b from-slate-50 via-slate-100/80 to-slate-50 dark:from-slate-900/50 dark:via-slate-800/60 dark:to-slate-900/50"
       style={{
         fontFamily: "Roboto, sans-serif",
       }}
@@ -75,13 +75,13 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
       <div className="max-w-6xl mx-auto px-4 lg:px-6">
         {/* Header */}
         <div className="text-center mb-10">
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#0b3574] uppercase mb-3">
+          <p className="text-xs font-semibold tracking-[0.2em] text-slate-600 dark:text-slate-400 uppercase mb-3">
             Customer Stories
           </p>
-          <h2 className="text-3xl lg:text-3xl text-white mb-2">
+          <h2 className="text-3xl lg:text-3xl text-slate-800 dark:text-slate-100 mb-2">
             How Flowbooks supports different teams
           </h2>
-          <p className="text-sm md:text-base text-slate-300 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             From individuals to mid-market businesses, Flowbooks helps keep books accurate,
             cash flow visible, and teams aligned.
           </p>
@@ -106,15 +106,15 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
                   className="relative px-6 lg:px-8 py-3 lg:py-3.5 rounded-full text-sm lg:text-base font-medium whitespace-nowrap"
                   animate={{
                     backgroundColor:
-                      selectedCategory === index ? "#ffffff" : "rgba(15,23,42,0.5)",
-                    color: selectedCategory === index ? "#020617" : "#e5e7eb",
+                      selectedCategory === index ? "#ffffff" : "rgba(226, 232, 240, 0.8)",
+                    color: selectedCategory === index ? "#0f172a" : "#475569",
                     scale: selectedCategory === index ? 1.05 : 1,
                   }}
                   whileHover={{ 
                     scale: selectedCategory === index ? 1.08 : 1.1,
                     boxShadow: selectedCategory === index 
-                      ? '0 10px 30px rgba(0, 0, 0, 0.15)' 
-                      : '0 8px 25px rgba(21, 148, 227, 0.2)'
+                      ? '0 10px 30px rgba(0, 0, 0, 0.1)' 
+                      : '0 4px 12px rgba(15, 23, 42, 0.08)'
                   }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ 
@@ -123,7 +123,7 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
                   }}
                   style={{
                     boxShadow: selectedCategory === index
-                      ? "0 10px 40px rgba(15,23,42,0.55)"
+                      ? "0 4px 20px rgba(15,23,42,0.12)"
                       : "0 0 0 rgba(0,0,0,0)",
                   }}
                 >
@@ -208,8 +208,8 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
         {/* Optional: See all stories link */}
         <div className="text-center mt-12">
           <button 
-            className="text-gray-900 font-medium hover:underline transition-all duration-200"
-            style={{ color: '#0b3574' }}
+            className="font-medium hover:underline transition-all duration-200 text-slate-800 dark:text-slate-100"
+            style={{ color: undefined }}
             onClick={() => onNavigate?.('clients')}
           >
             See all success stories →
