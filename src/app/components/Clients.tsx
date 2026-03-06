@@ -409,7 +409,7 @@ export function Clients({ onNavigate }: ClientsProps) {
                   e.currentTarget.style.color = 'white';
                 }}
               >
-                Contact Sales
+                Contact Us
               </Button>
             </div>
           </motion.div>

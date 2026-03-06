@@ -41,7 +41,7 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               aria-label="Flowbooks home"
               className="flex items-center md:hidden"
             >
-              <img src={logo} alt="Flowbooks" className="h-7 w-auto" />
+              <img src={logo} alt="Flowbooks" className="h-11 w-auto" />
             </a>
 
             <nav className="hidden items-center gap-8 text-sm md:flex lg:gap-10">

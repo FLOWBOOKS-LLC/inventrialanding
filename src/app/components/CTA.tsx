@@ -52,7 +52,7 @@ export function CTA({ onNavigate }: CTAProps) {
                 e.currentTarget.style.color = 'white';
               }}
             >
-              Contact Sales
+              Contact Us
             </Button>
           </div>
           

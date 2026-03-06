@@ -141,11 +141,13 @@ export function Register({ onNavigate }: RegisterProps) {
 
       <section className="py-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {plans.map((p) => (
               <div
                 key={p.name}
-                className={`bg-card rounded-2xl shadow-sm border ${p.highlight ? 'border-2' : 'border-border'} flex flex-col overflow-hidden`}
+                className={`bg-card rounded-2xl shadow-sm border flex flex-col overflow-hidden transition-all duration-300 ${
+                  p.highlight ? 'border-2' : 'border-border hover:border-[#0b3574]'
+                }`}
                 style={p.highlight ? { borderColor: '#0b3574', boxShadow: '0 12px 30px rgba(11,53,116,0.12)' } : {}}
               >
                 {/* Upper section */}
