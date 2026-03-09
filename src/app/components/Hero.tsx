@@ -630,14 +630,14 @@ export function Hero({ onNavigate }: HeroProps) {
           background: theme === "dark" ? "rgba(2,6,23,0.4)" : "rgba(232,238,249,0.8)",
         }}
       >
-        <div className="mx-auto flex max-w-6xl flex-row flex-wrap items-center justify-center gap-x-3 gap-y-1.5 sm:gap-x-6 sm:justify-between">
-          <div className="flex items-center gap-1.5 text-[11px] md:text-sm font-medium" style={{ color: theme === "dark" ? "#94a3b8" : "#0b3574" }}>
+        <div className="mx-auto flex max-w-6xl flex-col lg:flex-row lg:flex-nowrap items-center gap-y-1.5 gap-x-4 lg:gap-x-6 lg:justify-between">
+          <div className="flex items-center gap-1.5 text-[11px] md:text-sm font-medium flex-shrink-0" style={{ color: theme === "dark" ? "#94a3b8" : "#0b3574" }}>
             <ShieldCheck className="h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
             <span>Security &amp; compliance by design</span>
           </div>
-          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-y-1.5 sm:gap-y-0 gap-x-0 sm:gap-x-6 text-[8px] sm:text-[9px] md:text-[11px]" style={{ color: theme === "dark" ? "#94a3b8" : "#475569" }}>
-            {/* Row 1: first two items on mobile */}
-            <div className="flex w-full sm:w-auto justify-center sm:justify-start gap-x-4 sm:gap-x-6">
+          {/* Mobile: 2 rows (2+2). Desktop: single row, all on same line */}
+          <div className="flex flex-col lg:flex-row lg:flex-nowrap items-center gap-y-1.5 gap-x-4 lg:gap-x-6 lg:flex-1 lg:justify-end text-[8px] sm:text-[9px] md:text-[11px]" style={{ color: theme === "dark" ? "#94a3b8" : "#475569" }}>
+            <div className="flex w-full lg:w-auto justify-center lg:justify-start gap-x-4 lg:gap-x-6">
               <div className="flex items-center gap-1 flex-shrink-0">
                 <Lock className="h-3 w-3 sm:h-3 sm:w-3 flex-shrink-0 text-sky-500" />
                 <span className="whitespace-nowrap">Bank-level encryption &amp; role-based access</span>
@@ -647,12 +647,14 @@ export function Hero({ onNavigate }: HeroProps) {
                 <span className="whitespace-nowrap">Daily backups and audit-friendly records</span>
               </div>
             </div>
-
-            {/* Row 2: third item centered on mobile */}
-            <div className="flex w-full sm:w-auto justify-center sm:justify-start">
+            <div className="flex w-full lg:w-auto justify-center lg:justify-start gap-x-4 lg:gap-x-6">
               <div className="flex items-center gap-1 flex-shrink-0">
                 <Shield className="h-2.5 w-2.5 sm:h-2.5 sm:w-2.5 flex-shrink-0 text-sky-500" />
                 <span className="whitespace-nowrap">Nigeria Data Protection Commission - NDPC</span>
+              </div>
+              <div className="flex items-center gap-1 flex-shrink-0">
+                <Shield className="h-2.5 w-2.5 sm:h-2.5 sm:w-2.5 flex-shrink-0 text-sky-500" />
+                <span className="whitespace-nowrap">ISO 27001 and ISO 27017 certified</span>
               </div>
             </div>
           </div>
