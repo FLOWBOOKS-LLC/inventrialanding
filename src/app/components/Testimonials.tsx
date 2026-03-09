@@ -21,22 +21,6 @@ const categories = [
     ]
   },
   {
-    id: "individuals",
-    label: "Individuals",
-    stories: [
-      {
-        image: "https://images.unsplash.com/photo-1728281144091-b743062a9bf0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVlbGFuY2UlMjBwcm9mZXNzaW9uYWwlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY4ODI1OTA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Take control of your finances",
-        description: "FlowBooks helps you manage money with clarity and confidence."
-      },
-      {
-        image: "https://images.unsplash.com/photo-1570717173024-ec8081c8f8e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b3JraW5nJTIwbGFwdG9wfGVufDF8fHx8MTc2ODkxNzYwOXww&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Track income and expenses effortlessly",
-        description: "Know exactly where your money comes from and where it goes."
-      }
-    ]
-  },
-  {
     id: "mid-market",
     label: "Mid-Market Businesses",
     stories: [
@@ -59,7 +43,7 @@ interface TestimonialsProps {
 }
 
 export function Testimonials({ onNavigate }: TestimonialsProps) {
-  const [selectedCategory, setSelectedCategory] = useState(1); // Default to "Individuals"
+  const [selectedCategory, setSelectedCategory] = useState(0); // Default to "Small Businesses"
 
   const handleCategoryChange = (index: number) => {
     setSelectedCategory(index);
@@ -82,7 +66,7 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
             How Flowbooks supports different teams
           </h2>
           <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            From individuals to mid-market businesses, Flowbooks helps keep books accurate,
+            From small businesses to mid-market businesses, Flowbooks helps keep books accurate,
             cash flow visible, and teams aligned.
           </p>
           
@@ -91,7 +75,7 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
             <motion.div 
               className="flex items-center gap-4 lg:gap-8"
               animate={{
-                x: selectedCategory === 0 ? '25%' : selectedCategory === 2 ? '-25%' : '0%'
+                x: selectedCategory === 0 ? '25%' : '-25%'
               }}
               transition={{ 
                 type: "spring",
