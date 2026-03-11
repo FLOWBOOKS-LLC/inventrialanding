@@ -458,23 +458,15 @@ export function Blog() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group bg-card rounded-xl p-6 border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)';
-                  e.currentTarget.style.borderColor = 'transparent';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '';
-                  e.currentTarget.style.borderColor = '';
-                }}
+                className="group bg-card rounded-xl p-6 border border-border hover:bg-[#e0ecff] hover:border-[#0b3574]/40 hover:shadow-xl transition-all duration-300 cursor-pointer"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <Tag className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors" />
-                  <span className="text-2xl font-semibold group-hover:text-white transition-colors" style={{ color: '#0b3574' }}>
+                  <Tag className="w-5 h-5 text-[#0b3574]" />
+                  <span className="text-2xl font-semibold" style={{ color: '#0b3574' }}>
                     {topic.posts}
                   </span>
                 </div>
-                <h3 className="text-sm font-medium text-foreground group-hover:text-white transition-colors">
+                <h3 className="text-sm font-medium text-foreground">
                   {topic.name}
                 </h3>
               </motion.div>
