@@ -323,7 +323,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
                 style={{ color: '#0b3574' }}
                 onClick={() => window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer')}
               >
-                Start Free Trial
+                Signup
               </Button>
             </motion.div>
 

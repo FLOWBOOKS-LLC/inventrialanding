@@ -448,7 +448,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)' }}>
+      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #f0f5fc 0%, #e8eef9 50%, #e2e9f5 100%)' }}>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
@@ -462,38 +462,28 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl lg:text-3xl text-white mb-6">
+            <h2 className="text-3xl lg:text-3xl text-[#0b3574] mb-6">
               Ready to Simplify Your Finance?
             </h2>
-            <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
               Invoicing, reconciliation, and reporting in one platform. Start with flowbooks today.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-white hover:bg-gray-100 px-8 text-base"
-                style={{ color: '#0b3574' }}
+                className="bg-[#0b3574] hover:bg-[#0a2942] px-8 text-base text-white"
                 onClick={() => window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer')}
               >
-                Start Free Trial
+                Signup
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
                 size="lg" 
-                className="border-2 border-white bg-transparent text-white hover:bg-white px-8 text-base"
-                style={{ backgroundColor: 'transparent' }}
+                className="border-2 border-[#0b3574] bg-transparent text-[#0b3574] hover:bg-[#0b3574] hover:text-white px-8 text-base"
                 onClick={() => onNavigate?.('contact')}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'white';
-                  e.currentTarget.style.color = '#0b3574';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = 'white';
-                }}
               >
-                Schedule a Demo
+                Contact us
               </Button>
             </div>
           </motion.div>

@@ -484,7 +484,7 @@ export function Blog() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0b3574 0%, #1a2942 100%)' }}>
+      <section className="py-20 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #f0f5fc 0%, #e8eef9 50%, #e2e9f5 100%)' }}>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
@@ -498,14 +498,14 @@ export function Blog() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-white/20">
-              <BookOpen className="w-8 h-8 text-white" />
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-[#0b3574]/10">
+              <BookOpen className="w-8 h-8 text-[#0b3574]" />
             </div>
             
-            <h2 className="text-3xl lg:text-3xl text-white mb-6">
+            <h2 className="text-3xl lg:text-3xl text-[#0b3574] mb-6">
               Never Miss an Update
             </h2>
-            <p className="text-xl text-white/80 mb-10">
+            <p className="text-xl text-slate-600 mb-10">
               Get accounting and finance insights delivered to your inbox.
             </p>
             
@@ -513,7 +513,7 @@ export function Blog() {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-6 py-4 rounded-xl bg-white/10 backdrop-blur-md border-2 border-white/20 focus:border-white focus:outline-none text-white placeholder-white/60"
+                className="flex-1 px-6 py-4 rounded-xl bg-white border border-slate-200 focus:border-[#0b3574] focus:outline-none text-slate-900 placeholder-slate-400"
               />
               <Button 
                 size="lg" 
@@ -525,7 +525,7 @@ export function Blog() {
               </Button>
             </div>
             
-            <p className="text-white/60 text-sm mt-6">
+            <p className="text-slate-500 text-sm mt-6">
               Unsubscribe anytime. We respect your privacy.
             </p>
           </motion.div>

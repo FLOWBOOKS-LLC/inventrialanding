@@ -71,7 +71,7 @@ export function Clients({ onNavigate }: ClientsProps) {
       icon: Briefcase,
       name: "Professional Services",
       count: "3,200+",
-      color: "#000000"
+      color: "#0b3574"
     },
     {
       icon: Users,
@@ -83,7 +83,7 @@ export function Clients({ onNavigate }: ClientsProps) {
       icon: Globe,
       name: "Technology",
       count: "1,800+",
-      color: "#000000"
+      color: "#0b3574"
     }
   ];
 
@@ -392,7 +392,7 @@ export function Clients({ onNavigate }: ClientsProps) {
                 style={{ color: '#0b3574' }}
                 onClick={() => window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer')}
               >
-                Start Free Trial
+                Signup
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
@@ -409,7 +409,7 @@ export function Clients({ onNavigate }: ClientsProps) {
                   e.currentTarget.style.color = 'white';
                 }}
               >
-                Contact Us
+                Contact us
               </Button>
             </div>
           </motion.div>
