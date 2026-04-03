@@ -1,5 +1,6 @@
 name: Deploy React frontend to Hostinger
 
+# Builds with npm ci, then uploads dist/ to Hostinger over FTPS (secrets: FTP_*_MF).
 on:
   push:
     branches:
