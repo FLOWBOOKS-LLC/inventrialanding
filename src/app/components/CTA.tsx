@@ -31,7 +31,7 @@ export function CTA({ onNavigate }: CTAProps) {
             Ready to streamline your accounting?
           </h2>
           <p className={`text-xl mb-8 max-w-2xl mx-auto ${isDark ? "text-sky-100" : "text-gray-600"}`}>
-            Flowbooks brings invoicing, reconciliation, and financial reporting into one secure workspace so your team can close the books faster and with fewer errors.
+            Flowbooks brings invoicing, inventory, reconciliation, and financial reporting into one secure workspace so your team can close the books faster and with fewer errors.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

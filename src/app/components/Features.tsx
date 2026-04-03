@@ -1,4 +1,4 @@
-import { Calculator, FileText, BarChart3, Shield, Zap, Users, ChevronRight, Quote } from "lucide-react";
+import { Calculator, FileText, Package, BarChart3, Shield, Zap, Users, ChevronRight, Quote } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
@@ -21,6 +21,14 @@ const features = [
     imageUrl: "https://images.unsplash.com/photo-1762427354566-2b6902a9fd06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnZvaWNlJTIwZG9jdW1lbnQlMjBidXNpbmVzc3xlbnwxfHx8fDE3Njg5MTcyNTR8MA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
+    icon: Package,
+    iconColor: "#059669",
+    title: "Inventory & stock visibility",
+    description: "Know what you have on hand and how it ties to sales, purchases, and your ledger.",
+    details: "Maintain item catalogs, monitor quantities across locations, and connect stock movement to invoices and bills. Reduce shrinkage and stockouts with clearer visibility from warehouse to financial statements.",
+    imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+  },
+  {
     icon: BarChart3,
     iconColor: "#8b5cf6",
     title: "Financial reporting & insights",
@@ -41,7 +49,7 @@ const features = [
     iconColor: "#f59e0b",
     title: "Bank, payroll & app integrations",
     description: "Connect bank accounts, payroll, and payment tools so data flows automatically into your books.",
-    details: "Sync transactions from banks, payroll systems, and payment providers to avoid duplicate entry. Keep your ledgers aligned with the tools you already use while maintaining a single source of financial truth.",
+    details: "Sync transactions from banks, payroll systems, and payment providers to avoid duplicate entry. Connect sales and purchasing flows so inventory and cash stay aligned with the tools you already use—one source of truth for operations and finance.",
     imageUrl: "https://images.unsplash.com/photo-1703113690885-8caf0c77a7cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXR3b3JrJTIwaW50ZWdyYXRpb24lMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2ODkxNzI1NXww&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {

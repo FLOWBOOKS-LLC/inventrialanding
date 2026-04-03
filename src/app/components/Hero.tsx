@@ -2,7 +2,7 @@ import { Button } from "@/app/components/ui/button";
 import { motion } from "motion/react";
 import { ReactNode, useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { ShieldCheck, Lock, Server, Shield } from "lucide-react";
+import { ShieldCheck, Lock, Server, Shield, PhoneCall } from "lucide-react";
 import { HeroSceneOne } from "./HeroScenes/HeroSceneOne";
 import { HeroSceneTwo } from "./HeroScenes/HeroSceneTwo";
 import { useTheme } from "@/app/theme/ThemeProvider";
@@ -497,7 +497,7 @@ export function Hero({ onNavigate }: HeroProps) {
               transition={{ duration: 0.6 }}
             >
               <span className="text-gray-900 dark:text-white">One platform for </span>
-              <span style={{ color: '#0b3574' }}>invoicing, reconciliation, and financial reporting</span>
+              <span style={{ color: '#0b3574' }}>invoicing, inventory, reconciliation, and financial reporting</span>
             </motion.h1>
 
             <motion.p
@@ -506,7 +506,7 @@ export function Hero({ onNavigate }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Automate invoicing, bank reconciliation, and financial statements in a single secure workspace—designed for growing businesses that need clean, reliable books.
+              Automate invoicing, track inventory, reconcile the bank, and produce financial statements in one secure workspace—built for growing businesses that need clean books and accurate stock visibility.
             </motion.p>
 
             <motion.div
@@ -520,19 +520,31 @@ export function Hero({ onNavigate }: HeroProps) {
                 className="px-8 py-6 text-lg font-semibold"
                 style={{ backgroundColor: '#0b3574' }}
                 onClick={() => {
-                  window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer');
+                  window.open('https://app.flowbooks.org/signup', '_blank', 'noopener,noreferrer');
                 }}
               >
                 Register
               </Button>
               <Button
-                size="default"
+                size="lg"
                 variant="outline"
-                className="border-2 font-semibold px-5 py-2.5"
-                style={{ borderColor: '#0b3574', color: '#0b3574' }}
-                onClick={() => onNavigate?.('faqs')}
+                className="group relative h-auto min-h-12 overflow-hidden rounded-xl border-2 border-[#0b3574] bg-white/95 px-8 py-6 text-lg font-semibold text-[#0b3574] shadow-[0_2px_8px_rgba(11,53,116,0.08)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#08285c] hover:bg-[#f3f6fc] hover:shadow-[0_10px_28px_rgba(11,53,116,0.18)] active:translate-y-0 dark:border-white/30 dark:bg-white/[0.08] dark:text-white dark:shadow-[0_2px_12px_rgba(0,0,0,0.25)] dark:hover:border-white/45 dark:hover:bg-white/[0.14] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.35)]"
+                onClick={() => {
+                  const calendlyUrl = import.meta.env.VITE_CALENDLY_URL?.trim();
+                  if (calendlyUrl) {
+                    window.open(calendlyUrl, "_blank", "noopener,noreferrer");
+                    return;
+                  }
+                  window.alert(
+                    'Calendly is not set yet. Add your event link to .env.local as VITE_CALENDLY_URL= (for example https://calendly.com/flowbooksng), save the file, then restart the dev server.'
+                  );
+                }}
               >
-                Learn more
+                <PhoneCall
+                  className="size-5 shrink-0 text-[#0b3574] transition-transform duration-200 group-hover:scale-110 dark:text-white"
+                  aria-hidden
+                />
+                Book a call
               </Button>
             </motion.div>
             <motion.p
@@ -541,7 +553,7 @@ export function Hero({ onNavigate }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              Bank-level security · Built for accountants and finance teams · Close your books faster each month.
+              Bank-level security · Inventory-aware books · Built for accountants and finance teams · Close faster every month.
             </motion.p>
           </div>
 

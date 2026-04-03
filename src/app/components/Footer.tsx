@@ -17,7 +17,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <img src={logo} alt="Flowbooks" className="h-8 w-auto" />
             </div>
             <p className="text-white/90 mb-6 leading-relaxed">
-              Simplifying accounting for businesses of all sizes. From invoicing to expense tracking, we've got you covered.
+              Simplifying accounting for businesses of all sizes—from invoicing and inventory to expense tracking and reporting.
             </p>
             <div className="space-y-2 mb-6">
               <p className="text-sm text-white/80">

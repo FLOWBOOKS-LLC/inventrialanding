@@ -9,7 +9,8 @@ import { AboutUs } from '@/app/components/AboutUs';
 import { Clients } from '@/app/components/Clients';
 import { Blog } from '@/app/components/Blog';
 import { ContactUs } from '@/app/components/ContactUs';
-import Register from '@/app/components/Register';
+// Pricing / plans page — temporarily disabled
+// import Register from '@/app/components/Register';
 import { AdminDashboard } from '@/app/components/AdminDashboard';
 import { TopNavbar } from '@/app/components/TopNavbar';
 import { FAQs } from '@/app/components/FAQs';
@@ -71,9 +72,10 @@ export default function App() {
           <ContactUs />
         ) : currentPage === 'faqs' ? (
           <FAQs onNavigate={setCurrentPage} />
-        ) : currentPage === 'register-partner' ? (
+        ) : /* Pricing / plans page — temporarily disabled
+        currentPage === 'register-partner' ? (
           <Register onNavigate={setCurrentPage} />
-        ) : currentPage === 'admin' ? (
+        ) : */ currentPage === 'admin' ? (
           <AdminDashboard />
         ) : null}
       </main>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/app/components/ui/button';
 import { Check } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -104,6 +104,65 @@ const plans = [
 ];
 
 export function Register({ onNavigate }: RegisterProps) {
+  const backendBaseUrl = useMemo(() => {
+    const fromEnv = (import.meta as any)?.env?.VITE_BACKEND_URL as string | undefined;
+    return (fromEnv && fromEnv.trim()) || 'http://localhost:4000';
+  }, []);
+  const [isInitiating, setIsInitiating] = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
+  const [paymentResponse, setPaymentResponse] = useState<any>(null);
+
+  const initiatePayment = async (plan: (typeof plans)[number]) => {
+    const email = window.prompt('Enter your email to continue with payment');
+    if (!email) return;
+    const firstName = 'Customer';
+    const lastName = '';
+
+    const amount = Number(String(plan.priceDisplay).replace(/,/g, ''));
+    if (!amount || Number.isNaN(amount)) {
+      setPaymentError('Invalid plan amount. Please try again.');
+      return;
+    }
+
+    setIsInitiating(true);
+    setPaymentError(null);
+    setPaymentResponse(null);
+
+    try {
+      const transactionId = String(Date.now());
+      const resp = await fetch(`${backendBaseUrl}/api/payments/remita/initiate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderId: transactionId,
+          amount,
+          email,
+          firstName,
+          lastName,
+          description: `Flowbooks plan: ${plan.name}`,
+          metadata: { plan: plan.name },
+        }),
+      });
+
+      const data = await resp.json();
+      setPaymentResponse(data);
+
+      if (!resp.ok || !data?.ok) {
+        throw new Error(data?.message || 'Failed to initiate payment.');
+      }
+
+      const redirectUrl = data?.redirectUrl;
+      if (!redirectUrl) {
+        throw new Error('No redirect URL returned from payment provider.');
+      }
+
+      window.location.href = redirectUrl;
+    } catch (e: any) {
+      setPaymentError(e?.message || 'Something went wrong.');
+      setIsInitiating(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors">
       <section
@@ -127,7 +186,7 @@ export function Register({ onNavigate }: RegisterProps) {
         <div className="max-w-6xl mx-auto px-4 lg:px-6 text-center text-white relative z-10">
           <h2 className="text-2xl lg:text-3xl font-semibold mb-2">Flexible plans for every finance team</h2>
           <p className="text-sm text-white/80 max-w-2xl mx-auto">
-            Invoicing, reconciliation, and reporting for solo operators, growing teams, and finance leaders.
+            Invoicing, inventory, reconciliation, and reporting for solo operators, growing teams, and finance leaders.
           </p>
         </div>
         {/* Decorative bottom wave */}
@@ -167,9 +226,10 @@ export function Register({ onNavigate }: RegisterProps) {
                     <Button
                       className="w-full text-white py-3"
                       style={{ background: '#0b3574' }}
-                      onClick={() => onNavigate?.('contact')}
+                      onClick={() => initiatePayment(p)}
+                      disabled={isInitiating}
                     >
-                      Select plan
+                      {isInitiating ? 'Starting payment…' : 'Select plan'}
                     </Button>
                   </div>
                 </div>
@@ -193,6 +253,24 @@ export function Register({ onNavigate }: RegisterProps) {
               </div>
             ))}
           </div>
+
+          {(paymentError || paymentResponse) && (
+            <div className="mt-8 rounded-2xl border border-border bg-card p-5">
+              {paymentError ? (
+                <div className="text-sm text-red-600">{paymentError}</div>
+              ) : (
+                <>
+                  <div className="text-sm font-semibold text-foreground">Payment initiated</div>
+                  <div className="mt-1 text-xs text-muted-foreground">
+                    Copy the RRR (if present) and use the Verify endpoint to confirm status.
+                  </div>
+                  <pre className="mt-3 overflow-auto rounded-xl bg-muted p-3 text-xs text-foreground">
+{JSON.stringify(paymentResponse, null, 2)}
+                  </pre>
+                </>
+              )}
+            </div>
+          )}
         </div>
       </section>
     </div>

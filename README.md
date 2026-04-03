@@ -24,3 +24,26 @@ Or with Docker Compose:
 ```bash
 docker compose up --build
 ```
+
+## Backend (Express + Remita)
+
+An Express backend scaffold is available in `backend/` for payment integration.
+
+### Run backend locally
+
+```bash
+cd backend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+Default backend URL: `http://localhost:4000`
+
+### Remita endpoints
+
+- `GET /health`
+- `GET /api/payments/remita/health`
+- `POST /api/payments/remita/initiate`
+- `GET /api/payments/remita/verify/:rrr`
+- `POST /api/payments/remita/webhook`

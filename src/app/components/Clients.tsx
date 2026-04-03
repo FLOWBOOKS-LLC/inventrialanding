@@ -175,7 +175,7 @@ export function Clients({ onNavigate }: ClientsProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              See how teams use flowbooks for invoicing, reconciliation, and reporting—with results that speak for themselves
+              See how teams use flowbooks for invoicing, inventory, reconciliation, and reporting—with results that speak for themselves
             </motion.p>
 
             {/* Stats */}
@@ -227,7 +227,7 @@ export function Clients({ onNavigate }: ClientsProps) {
           >
             <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Industries We Serve</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Invoicing, reconciliation, and reporting that fit your sector
+              Invoicing, inventory, reconciliation, and reporting that fit your sector
             </p>
           </motion.div>
 
@@ -274,7 +274,7 @@ export function Clients({ onNavigate }: ClientsProps) {
           >
             <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Success Stories</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Real results from teams that streamlined invoicing, reconciliation, and reporting
+              Real results from teams that streamlined invoicing, inventory, reconciliation, and reporting
             </p>
           </motion.div>
 
@@ -382,7 +382,7 @@ export function Clients({ onNavigate }: ClientsProps) {
               Ready to Join Our Success Stories?
             </h2>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Invoicing, reconciliation, and reporting in one platform. Start with flowbooks today.
+              Invoicing, inventory, reconciliation, and reporting in one platform. Start with flowbooks today.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

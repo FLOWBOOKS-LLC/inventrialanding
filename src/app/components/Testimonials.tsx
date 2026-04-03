@@ -67,7 +67,7 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
           </h2>
           <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             From small businesses to mid-market businesses, Flowbooks helps keep books accurate,
-            cash flow visible, and teams aligned.
+            inventory visible, cash flow clear, and teams aligned.
           </p>
           
           {/* Category Navigation */}

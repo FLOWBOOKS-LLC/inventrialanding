@@ -51,7 +51,7 @@ export function RegisterChoice({ onNavigate }: RegisterChoiceProps) {
                 Register as User
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Access Flowbooks accounting software to manage your business finances, track income, and generate financial reports.
+                Access Flowbooks accounting software to manage your business finances, track income and inventory, and generate financial reports.
               </p>
               <ul className="space-y-2 mb-8 text-sm text-gray-600">
                 <li className="flex items-center gap-2">

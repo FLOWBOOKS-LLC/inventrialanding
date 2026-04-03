@@ -315,7 +315,7 @@ export function BlogArticle({ article, onBack }: BlogArticleProps) {
             >
               <h3 className="text-2xl mb-4">Ready to Simplify Your Finance?</h3>
               <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-                Invoicing, reconciliation, and reporting in one platform. Start with flowbooks today.
+                Invoicing, inventory, reconciliation, and reporting in one platform. Start with flowbooks today.
               </p>
               <Button
                 size="lg"

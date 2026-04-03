@@ -34,7 +34,7 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
     >
       <div className="mx-auto max-w-6xl px-4 lg:px-6">
         <div className="flex h-16 min-h-[4rem] w-full items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0">
             {/* Mobile logo */}
             <a
               href="/"
@@ -43,6 +43,18 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
             >
               <img src={logo} alt="Flowbooks" className="h-11 w-auto" />
             </a>
+
+            <div
+              className="hidden md:flex flex-col justify-center flex-shrink-0 pr-3 mr-1 lg:pr-5 lg:mr-2 border-r border-gray-300/70 dark:border-white/10"
+              aria-hidden
+            >
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0b3574] dark:text-sky-300">
+                Inventory · Invoicing · Books
+              </span>
+              <span className="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5 leading-tight max-w-[10.5rem] lg:max-w-none">
+                One platform for operations &amp; finance
+              </span>
+            </div>
 
             <nav className="hidden items-center gap-8 text-sm md:flex lg:gap-10">
             <button
@@ -77,6 +89,7 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               Contact Us
               <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#0b3574' }}></span>
             </button>
+            {/* Pricing / plans — temporarily hidden
             <button
               type="button"
               onClick={() => handleNavClick('register-partner')}
@@ -85,6 +98,7 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
               Pricing
               <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#0b3574' }}></span>
             </button>
+            */}
             <button
               type="button"
               onClick={() => handleNavClick('faqs')}
@@ -101,7 +115,7 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
             </div>
             <Button 
               onClick={() => {
-                window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer');
+                window.open('https://app.flowbooks.org/signup', '_blank', 'noopener,noreferrer');
               }}
               className="hidden md:block text-white hover:opacity-90" 
               style={{ backgroundColor: '#0b3574' }}
@@ -161,12 +175,14 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
             >
               Contact Us
             </a>
+            {/* Pricing / plans — temporarily hidden
             <a 
               onClick={() => handleNavClick('register-partner')}
               className={`py-2 transition-colors cursor-pointer text-gray-900 dark:text-white font-bold`}
             >
               Pricing
             </a>
+            */}
             <a 
               onClick={() => handleNavClick('faqs')}
               className={`py-2 transition-colors cursor-pointer text-gray-900 dark:text-white font-bold`}
@@ -178,7 +194,7 @@ export function Header({ onNavigate, currentPage = 'home' }: HeaderProps) {
             </div>
             <Button 
               onClick={() => {
-                window.open('https://app.flowbooks.org/', '_blank', 'noopener,noreferrer');
+                window.open('https://app.flowbooks.org/signup', '_blank', 'noopener,noreferrer');
               }}
               className="text-white hover:opacity-90 w-full" 
               style={{ backgroundColor: '#0b3574' }}

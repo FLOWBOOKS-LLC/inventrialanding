@@ -170,7 +170,7 @@ export function ContactUs() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed"
             >
-              Questions about invoicing, reconciliation, or reporting? We’re here to help. Send a message and we’ll respond shortly.
+              Questions about invoicing, inventory, reconciliation, or reporting? We’re here to help. Send a message and we’ll respond shortly.
             </motion.p>
           </motion.div>
         </div>

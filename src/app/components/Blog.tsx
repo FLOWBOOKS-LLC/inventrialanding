@@ -167,7 +167,7 @@ export function Blog() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              Invoicing, reconciliation, reporting—tips and updates from the flowbooks team
+              Invoicing, inventory, reconciliation, and reporting—tips and updates from the flowbooks team
             </motion.p>
 
             {/* Search Bar */}

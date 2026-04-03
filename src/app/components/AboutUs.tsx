@@ -93,7 +93,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
     year: "Step 4",
     title: "Expanding Our Capabilities",
     description:
-      "Through continuous innovation and feedback, we introduced smart invoicing, real-time analytics, secure data protection, and multi-user collaboration."
+      "Through continuous innovation and feedback, we introduced smart invoicing, inventory and stock visibility, real-time analytics, secure data protection, and multi-user collaboration."
   },
   {
     year: "Step 5",
@@ -203,7 +203,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              Flowbooks is a modern accounting and financial management platform built to simplify how businesses and individuals manage their finances. We help our users automate bookkeeping, gain real-time financial insights, and make better decisions with confidence. Our focus is on accuracy, security, and ease of use—so finance works for you, not against you.
+              Flowbooks is a modern accounting and financial management platform built to simplify how businesses and individuals manage their finances. We help our users automate bookkeeping, stay on top of inventory, gain real-time financial insights, and make better decisions with confidence. Our focus is on accuracy, security, and ease of use—so finance works for you, not against you.
             </motion.p>
 
             {/* Floating stats cards */}
@@ -466,7 +466,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               Ready to Simplify Your Finance?
             </h2>
             <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-              Invoicing, reconciliation, and reporting in one platform. Start with flowbooks today.
+              Invoicing, inventory, reconciliation, and reporting in one platform. Start with flowbooks today.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

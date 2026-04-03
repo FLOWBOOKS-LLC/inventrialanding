@@ -46,7 +46,8 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
             Sale
           </span>
           <span className="hidden sm:inline text-[11px] md:text-sm text-[#0b3574] truncate">
-            Buy now and <strong className="font-bold">save 90% off today</strong>
+            Invoicing, <strong className="font-bold">inventory</strong> &amp; books — buy now and{' '}
+            <strong className="font-bold">save 90% off today</strong>
           </span>
           <button
             type="button"

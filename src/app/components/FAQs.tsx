@@ -11,7 +11,7 @@ const FAQS = [
   {
     question: "What makes Flowbooks different from traditional accounting tools?",
     answer:
-      "Flowbooks combines clean bookkeeping, real-time reporting, and simple workflows built for owners and operators. You spend less time on accounting and more time running the business.",
+      "Flowbooks combines clean bookkeeping, inventory visibility, real-time reporting, and simple workflows built for owners and operators. You spend less time on accounting and more time running the business.",
   },
   {
     question: "Do I need an accountant to use Flowbooks?",
@@ -101,7 +101,7 @@ export function FAQs({ onNavigate }: FAQsProps) {
               Answers for your finance questions
             </h1>
             <p className="text-white/80 mt-4 text-base md:text-lg">
-              How Flowbooks helps with invoicing, reconciliation, and financial reporting.
+              How Flowbooks helps with invoicing, inventory, reconciliation, and financial reporting.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button
