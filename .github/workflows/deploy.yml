@@ -52,10 +52,11 @@ jobs:
           port: 21
           local-dir: ./dist/
           # Hostinger: usually public_html for the site root (change if your panel shows a different path)
-          server-dir: public_html/
+          server-dir: /
           dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
             **/.DS_Store
+
