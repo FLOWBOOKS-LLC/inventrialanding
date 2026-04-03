@@ -1,12 +1,10 @@
+import { createRoot } from "react-dom/client";
+import App from "./app/App.tsx";
+import "./styles/index.css";
+import { ThemeProvider } from "./app/theme/ThemeProvider.tsx";
 
-  import { createRoot } from "react-dom/client";
-  import App from "./app/App.tsx";
-  import "./styles/index.css";
-  import { ThemeProvider } from "./app/theme/ThemeProvider.tsx";
- 
-  createRoot(document.getElementById("root")!).render(
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  );
-  
+createRoot(document.getElementById("root")!).render(
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>
+);
