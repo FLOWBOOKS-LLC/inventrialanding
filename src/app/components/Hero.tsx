@@ -536,7 +536,7 @@ export function Hero({ onNavigate }: HeroProps) {
                     return;
                   }
                   window.alert(
-                    'Calendly is not set yet. Add your event link to .env.local as VITE_CALENDLY_URL= (for example https://calendly.com/flowbooksng), save the file, then restart the dev server.'
+                    'Calendly is not configured. For local dev: set VITE_CALENDLY_URL in .env.local and restart. For production: set VITE_CALENDLY_URL in .env.production (or rebuild after updating it) so the build embeds your public Calendly link.'
                   );
                 }}
               >
