@@ -5,6 +5,7 @@ import { useReducedMotion } from "framer-motion";
 import { ShieldCheck, Lock, Server, Shield, PhoneCall } from "lucide-react";
 import { HeroSceneOne } from "./HeroScenes/HeroSceneOne";
 import { HeroSceneTwo } from "./HeroScenes/HeroSceneTwo";
+import { HeroSceneManufacturing } from "./HeroScenes/HeroSceneManufacturing";
 import { useTheme } from "@/app/theme/ThemeProvider";
 
 interface HeroProps {
@@ -497,7 +498,7 @@ export function Hero({ onNavigate }: HeroProps) {
               transition={{ duration: 0.6 }}
             >
               <span className="text-gray-900 dark:text-white">One platform for </span>
-              <span style={{ color: '#0b3574' }}>invoicing, inventory, reconciliation, and financial reporting</span>
+              <span style={{ color: '#0b3574' }}>invoicing, manufacturing, inventory, reconciliation, and financial reporting</span>
             </motion.h1>
 
             <motion.p
@@ -506,7 +507,7 @@ export function Hero({ onNavigate }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Automate invoicing, track inventory, reconcile the bank, and produce financial statements in one secure workspace—built for growing businesses that need clean books and accurate stock visibility.
+              Automate invoicing, production costing, inventory tracking, bank reconciliation, and financial statements in one secure workspace—built for manufacturers and growing businesses that need clean books and accurate stock visibility.
             </motion.p>
 
             <motion.div
@@ -547,13 +548,39 @@ export function Hero({ onNavigate }: HeroProps) {
                 Book a call
               </Button>
             </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="flex flex-wrap gap-2 pt-1"
+            >
+              {[
+                "Production Costing",
+                "BOM & Raw Materials",
+                "Inventory",
+                "Invoicing",
+                "Reconciliation",
+              ].map((tool) => (
+                <span
+                  key={tool}
+                  className="rounded-full border px-3 py-1 text-xs font-medium dark:text-white/80"
+                  style={{
+                    borderColor: "rgba(11, 53, 116, 0.18)",
+                    color: "#0b3574",
+                    background: "rgba(11, 53, 116, 0.05)",
+                  }}
+                >
+                  {tool}
+                </span>
+              ))}
+            </motion.div>
             <motion.p
               className="text-xs md:text-sm text-gray-500 dark:text-white/60"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              Bank-level security · Inventory-aware books · Built for accountants and finance teams · Close faster every month.
+              Bank-level security · Manufacturing &amp; finance in one place · Close faster every month.
             </motion.p>
           </div>
 
@@ -612,7 +639,7 @@ export function Hero({ onNavigate }: HeroProps) {
                 </Scene>
 
                 <Scene active={currentScene === 2}>
-                  <HeroSceneOne />
+                  <HeroSceneManufacturing />
                 </Scene>
               </div>
 

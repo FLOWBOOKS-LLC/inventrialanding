@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { DollarSign, FileText, Mic, Sparkles, TrendingUp } from "lucide-react";
+import { DollarSign, Factory, FileText, Mic, Sparkles, TrendingUp } from "lucide-react";
 
 export function HeroSceneTwo() {
   return (
@@ -89,6 +89,19 @@ export function HeroSceneTwo() {
           <div className="w-2 h-2 rounded-full bg-blue-500" />
           <FileText className="w-4 h-4 text-gray-400" />
           <span className="text-white text-sm">Invoice Management</span>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-6 right-8 bg-gray-800/80 backdrop-blur-xl rounded-xl px-4 py-3 border border-white/10 shadow-xl"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.4 }}
+      >
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-orange-500" />
+          <Factory className="w-4 h-4 text-gray-400" />
+          <span className="text-white text-sm">Production Costing</span>
         </div>
       </motion.div>
     </div>

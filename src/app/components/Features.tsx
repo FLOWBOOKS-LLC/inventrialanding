@@ -1,4 +1,4 @@
-import { Calculator, FileText, Package, BarChart3, Shield, Zap, Users, ChevronRight, Quote } from "lucide-react";
+import { Calculator, FileText, Package, BarChart3, Shield, Zap, Users, ChevronRight, Quote, Factory } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
@@ -27,6 +27,14 @@ const features = [
     description: "Know what you have on hand and how it ties to sales, purchases, and your ledger.",
     details: "Maintain item catalogs, monitor quantities across locations, and connect stock movement to invoices and bills. Reduce shrinkage and stockouts with clearer visibility from warehouse to financial statements.",
     imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+  },
+  {
+    icon: Factory,
+    iconColor: "#f97316",
+    title: "Manufacturing & production tools",
+    description: "Track BOMs, raw materials, WIP, finished goods, and production costing in one flow.",
+    details: "Plan batches, issue raw materials, capture labour and overhead, and roll costs into finished goods automatically. Flowbooks supports process costing, inventory valuation, requisitions, and manufacturing records—so finance and operations stay aligned.",
+    imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
   },
   {
     icon: BarChart3,
