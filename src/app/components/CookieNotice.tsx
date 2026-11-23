@@ -218,28 +218,29 @@ export function CookieNotice() {
                         <span className="flex-1 text-sm font-semibold leading-snug text-neutral-800">
                           {category.title}
                         </span>
-                        {isNecessary ? (
-                          <span className="shrink-0 text-xs font-bold" style={{ color: BRAND }}>
-                            Always Active
-                          </span>
-                        ) : (
-                          <button
-                            type="button"
-                            role="switch"
-                            aria-checked={checked}
-                            aria-label={category.title}
-                            onClick={() => toggle(category.key as OptionalCategoryKey)}
-                            className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0b3574] focus-visible:ring-offset-2 ${
-                              checked ? "" : "bg-neutral-300"
-                            }`}
-                            style={{ backgroundColor: checked ? BRAND : undefined }}
-                          >
-                            <span
-                              className={`pointer-events-none block h-4 w-4 rounded-full bg-white shadow transition-transform ${
-                                checked ? "translate-x-6" : "translate-x-1"
+                        {isNecessary ? null : (
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-medium text-neutral-500">
+                              {checked ? "On" : "Off"}
+                            </span>
+                            <button
+                              type="button"
+                              role="switch"
+                              aria-checked={checked}
+                              aria-label={category.title}
+                              onClick={() => toggle(category.key as OptionalCategoryKey)}
+                              className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0b3574] focus-visible:ring-offset-2 ${
+                                checked ? "" : "bg-neutral-300"
                               }`}
-                            />
-                          </button>
+                              style={{ backgroundColor: checked ? BRAND : undefined }}
+                            >
+                              <span
+                                className={`pointer-events-none block h-4 w-4 rounded-full bg-white shadow transition-transform ${
+                                  checked ? "translate-x-6" : "translate-x-1"
+                                }`}
+                              />
+                            </button>
+                          </div>
                         )}
                       </div>
                       {isOpen ? (
