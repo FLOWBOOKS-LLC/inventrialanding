@@ -18,6 +18,9 @@ FROM nginx:stable-alpine
 # Copy built files from builder
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+# Serve pre-rendered per-route HTML, SPA fallback, caching and crawl rules
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

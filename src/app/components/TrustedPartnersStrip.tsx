@@ -51,7 +51,9 @@ export function TrustedPartnersStrip() {
               >
                 <img
                   src={partner.src}
-                  alt={partner.name}
+                  alt={`${partner.name} logo`}
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 md:h-20 w-full max-w-[140px] md:max-w-[180px] object-contain object-center transition-transform duration-300 group-hover:scale-105"
                 />
               </div>

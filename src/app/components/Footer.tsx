@@ -1,6 +1,9 @@
 import logo from '@/assets/flowbooks-blue.png';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
+import { openCookieSettings } from '@/app/components/CookieNotice';
+import { SeoLink } from '@/app/components/seo/SeoLink';
+import type { PageKey } from '@/app/lib/seo';
 import {
   ShieldCheck,
   BadgeCheck,
@@ -65,6 +68,41 @@ const trustBadges = [
   },
 ];
 
+const navigationLinks: { label: string; page: PageKey }[] = [
+  { label: 'Home', page: 'home' },
+  { label: 'Services', page: 'services' },
+  { label: 'About us', page: 'about' },
+  { label: 'Clients', page: 'clients' },
+  { label: 'Blog', page: 'blog' },
+  { label: 'ERP / Accounting plans', page: 'accounting' },
+  { label: 'NRS E-Invoicing plans', page: 'e-invoicing' },
+  { label: 'NDPR Data Compliance', page: 'compliance' },
+  { label: 'FAQs', page: 'faqs' },
+  { label: 'Contact us', page: 'contact' },
+];
+
+const companyLinks: { label: string; page: PageKey }[] = [
+  { label: 'About Flowbooks', page: 'about' },
+  { label: 'Our clients', page: 'clients' },
+  { label: 'Blog & insights', page: 'blog' },
+];
+
+const resourceLinks: { label: string; page: PageKey }[] = [
+  { label: 'FAQs', page: 'faqs' },
+  { label: 'Contact support', page: 'contact' },
+  { label: 'Register', page: 'register-partner' },
+];
+
+const solutionLinks: { label: string; page: PageKey }[] = [
+  { label: 'Accounting software in Nigeria', page: 'accounting-software-nigeria' },
+  { label: 'Inventory management software', page: 'inventory-management-software' },
+  { label: 'Manufacturing management software', page: 'manufacturing-management-software' },
+  { label: 'Stock management software', page: 'stock-management-software' },
+  { label: 'Financial reporting software', page: 'financial-reporting-software' },
+  { label: 'Invoicing software', page: 'invoicing-software' },
+  { label: 'Business management software', page: 'business-management-software' },
+];
+
 export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="text-white" style={{ backgroundColor: '#0b3574' }}>
@@ -73,7 +111,7 @@ export function Footer({ onNavigate }: FooterProps) {
           {/* Column 1 - Brand */}
           <div>
             <div className="flex items-center gap-2 mb-6">
-              <img src={logo} alt="Flowbooks" className="h-8 w-auto" />
+              <img src={logo} alt="Flowbooks logo" width={518} height={189} className="h-8 w-auto" />
             </div>
             <p className="text-white/90 mb-6 leading-relaxed">
               Accounting software / ERP, NRS e-invoicing, and NDPR data compliance—helping organisations run operations, finance, and stay regulation-ready.
@@ -125,153 +163,73 @@ export function Footer({ onNavigate }: FooterProps) {
               </a>
             </div>
           </div>
-          
+
           {/* Column 2 - Navigation (matches main navbar) */}
           <div>
             <h3 className="text-white font-semibold mb-5">Navigation</h3>
             <ul className="space-y-3 text-sm">
-              <li>
-                <button
-                  onClick={() => onNavigate?.('home')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Home
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('services')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Services
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('about')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  About us
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('clients')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Clients
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('blog')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Blog
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('accounting')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  ERP / Accounting plans
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('e-invoicing')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  NRS E-Invoicing plans
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('compliance')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  NDPR Data Compliance
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('faqs')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  FAQs
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('contact')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Contact us
-                </button>
-              </li>
+              {navigationLinks.map((link) => (
+                <li key={link.label}>
+                  <SeoLink
+                    page={link.page}
+                    onNavigate={onNavigate}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </SeoLink>
+                </li>
+              ))}
             </ul>
           </div>
-          
+
           {/* Column 3 - Company */}
           <div>
             <h3 className="text-white font-semibold mb-5">Company</h3>
             <ul className="space-y-3 text-sm">
-              <li>
-                <button
-                  onClick={() => onNavigate?.('about')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  About Flowbooks
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('clients')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Our clients
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('blog')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Blog & insights
-                </button>
-              </li>
+              {companyLinks.map((link) => (
+                <li key={link.label}>
+                  <SeoLink
+                    page={link.page}
+                    onNavigate={onNavigate}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </SeoLink>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="text-white font-semibold mt-8 mb-5">Solutions</h3>
+            <ul className="space-y-3 text-sm">
+              {solutionLinks.map((link) => (
+                <li key={link.label}>
+                  <SeoLink
+                    page={link.page}
+                    onNavigate={onNavigate}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </SeoLink>
+                </li>
+              ))}
             </ul>
           </div>
-          
+
           {/* Column 4 - Resources (existing pages only) */}
           <div>
             <h3 className="text-white font-semibold mb-5">Resources</h3>
             <ul className="space-y-3 text-sm">
-              <li>
-                <button
-                  onClick={() => onNavigate?.('faqs')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  FAQs
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('contact')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Contact support
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('register-partner')}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  Register
-                </button>
-              </li>
+              {resourceLinks.map((link) => (
+                <li key={link.label}>
+                  <SeoLink
+                    page={link.page}
+                    onNavigate={onNavigate}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </SeoLink>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -295,7 +253,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   className="flex items-start gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3"
                 >
                   <div className="mt-0.5 w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-4 h-4 text-white" />
+                    <Icon className="w-4 h-4 text-white" aria-hidden />
                   </div>
                   <div>
                     <div className="text-sm font-semibold text-white leading-snug">{badge.title}</div>
@@ -306,7 +264,7 @@ export function Footer({ onNavigate }: FooterProps) {
             })}
           </div>
         </div>
-        
+
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <p className="text-white/70 text-sm">
@@ -315,7 +273,13 @@ export function Footer({ onNavigate }: FooterProps) {
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
               <a id="privacy" href="#privacy" className="text-white/70 hover:text-white transition-colors">Privacy</a>
               <a href="#" className="text-white/70 hover:text-white transition-colors">Terms</a>
-              <a href="#" className="text-white/70 hover:text-white transition-colors">Cookies</a>
+              <button
+                type="button"
+                onClick={() => openCookieSettings()}
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Cookie Settings
+              </button>
               <a href="#" className="text-white/70 hover:text-white transition-colors">Sitemap</a>
             </div>
           </div>

@@ -1,0 +1,245 @@
+{
+  "siteUrl": "https://flowbooks.org",
+  "pages": {
+    "home": {
+      "path": "/",
+      "title": "FlowBooks | Accounting Software, ERP & E-Invoicing Nigeria",
+      "description": "FlowBooks delivers accounting software and ERP for Nigerian businesses: invoicing, inventory, bank reconciliation, financial reporting, NRS e-invoicing and NDPR compliance.",
+      "keywords": [
+        "accounting software in Nigeria",
+        "business management software",
+        "inventory management software",
+        "invoicing software",
+        "financial reporting software",
+        "NRS e-invoicing"
+      ],
+      "priority": "1.0",
+      "changefreq": "weekly"
+    },
+    "services": {
+      "path": "/services",
+      "title": "Accounting, E-Invoicing & NDPR Services | FlowBooks",
+      "description": "Three connected FlowBooks services: accounting software and ERP, NRS e-invoicing for statutory invoice clearance, and NDPR / NDPC-aligned data compliance.",
+      "keywords": [
+        "accounting software services",
+        "NRS e-invoicing",
+        "NDPR data compliance"
+      ],
+      "priority": "0.9",
+      "changefreq": "monthly"
+    },
+    "accounting": {
+      "path": "/erp-accounting-plans",
+      "title": "Accounting Software & ERP Plans in Nigeria | FlowBooks",
+      "description": "Compare FlowBooks accounting software and ERP plans covering bookkeeping, unlimited invoicing, inventory, multi-currency, and audit-ready financial reporting. Pay with Remita.",
+      "keywords": [
+        "accounting software in Nigeria",
+        "ERP plans",
+        "accounting software pricing"
+      ],
+      "priority": "0.9",
+      "changefreq": "monthly"
+    },
+    "e-invoicing": {
+      "path": "/nrs-e-invoicing-packages",
+      "title": "NRS E-Invoicing Packages & Pricing | FlowBooks",
+      "description": "Validate, sign, and transmit NRS-compliant invoices with IRN generation and QR clearance. Choose a FlowBooks package by monthly invoice volume and pay with Remita.",
+      "keywords": [
+        "NRS e-invoicing",
+        "e-invoicing software Nigeria",
+        "IRN invoice clearance"
+      ],
+      "priority": "0.9",
+      "changefreq": "monthly"
+    },
+    "compliance": {
+      "path": "/ndpr-data-compliance",
+      "title": "NDPR Data Compliance Services in Nigeria | FlowBooks",
+      "description": "NDPR / NDPC-aligned data compliance support: registration, audits, DPIAs, cross-border transfers, and training. Start with an assessment, then receive a tailored proposal.",
+      "keywords": [
+        "NDPR compliance Nigeria",
+        "NDPC data protection",
+        "data compliance services"
+      ],
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "compliance-assessment": {
+      "path": "/compliance-assessment",
+      "title": "NDPR / NDP Act Compliance Assessment | FlowBooks",
+      "description": "Complete the FlowBooks NDPR client assessment to classify your organisation, map registration and CAR requirements, and receive a tailored compliance proposal.",
+      "keywords": [
+        "NDPR assessment",
+        "NDPC registration",
+        "compliance audit Nigeria"
+      ],
+      "priority": "0.6",
+      "changefreq": "yearly"
+    },
+    "about": {
+      "path": "/about",
+      "title": "About FlowBooks | Accounting Software & Compliance Partner",
+      "description": "FlowBooks combines accounting software and ERP, NRS e-invoicing, and NDPR data compliance so Nigerian organisations can run finance operations and stay regulation-ready.",
+      "keywords": [
+        "about FlowBooks",
+        "accounting software company Nigeria"
+      ],
+      "priority": "0.6",
+      "changefreq": "yearly"
+    },
+    "clients": {
+      "path": "/clients",
+      "title": "FlowBooks Clients & Success Stories | ERP & Compliance",
+      "description": "See how organisations use FlowBooks for accounting software and ERP, NRS e-invoicing, and NDPR data compliance, and the industries we support across Nigeria.",
+      "keywords": [
+        "FlowBooks clients",
+        "accounting software case studies"
+      ],
+      "priority": "0.6",
+      "changefreq": "monthly"
+    },
+    "blog": {
+      "path": "/blog",
+      "title": "Accounting, Invoicing & Compliance Insights | FlowBooks Blog",
+      "description": "Practical guidance on accounting software, invoicing, inventory, reconciliation, NRS e-invoicing, and NDPR data compliance from the FlowBooks team.",
+      "keywords": [
+        "accounting insights Nigeria",
+        "invoicing best practices",
+        "NDPR guidance"
+      ],
+      "priority": "0.7",
+      "changefreq": "weekly"
+    },
+    "contact": {
+      "path": "/contact",
+      "title": "Contact FlowBooks | Accounting Software & ERP Support",
+      "description": "Talk to the FlowBooks team about accounting software and ERP, NRS e-invoicing, or NDPR data compliance. Reach us by email, phone, or send a message.",
+      "keywords": [
+        "contact FlowBooks",
+        "FlowBooks support"
+      ],
+      "priority": "0.5",
+      "changefreq": "yearly"
+    },
+    "faqs": {
+      "path": "/faqs",
+      "title": "FlowBooks FAQs | Accounting Software, ERP & E-Invoicing",
+      "description": "Answers about FlowBooks accounting software and ERP, NRS e-invoicing, NDPR data compliance pricing, onboarding, and support.",
+      "keywords": [
+        "FlowBooks FAQ",
+        "accounting software questions"
+      ],
+      "priority": "0.6",
+      "changefreq": "monthly"
+    },
+    "accounting-software-nigeria": {
+      "path": "/accounting-software-nigeria",
+      "title": "Accounting Software in Nigeria for Growing Businesses",
+      "description": "FlowBooks accounting software gives Nigerian businesses bookkeeping, bank reconciliation, unlimited invoicing, VAT tracking, and financial reporting in one workspace.",
+      "keywords": [
+        "accounting software in Nigeria",
+        "bookkeeping software Nigeria",
+        "accounting software for SMEs"
+      ],
+      "landing": true,
+      "priority": "0.9",
+      "changefreq": "monthly"
+    },
+    "inventory-management-software": {
+      "path": "/inventory-management-software",
+      "title": "Inventory Management Software in Nigeria | FlowBooks",
+      "description": "Track inventory alongside your books in FlowBooks accounting software, with stock item records, classes and locations, and clear reporting on what you own and sell.",
+      "keywords": [
+        "inventory management software",
+        "inventory software Nigeria",
+        "stock tracking software"
+      ],
+      "landing": true,
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "manufacturing-management-software": {
+      "path": "/manufacturing-management-software",
+      "title": "Manufacturing Management & Visibility Software | FlowBooks",
+      "description": "FlowBooks ERP gives manufacturers accounting, invoicing, inventory records, and manufacturing visibility alongside audit-ready reporting, in one workspace.",
+      "keywords": [
+        "manufacturing management software",
+        "manufacturing ERP Nigeria",
+        "production visibility software"
+      ],
+      "landing": true,
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "stock-management-software": {
+      "path": "/stock-management-software",
+      "title": "Stock Management Software in Nigeria | FlowBooks",
+      "description": "Manage stock levels, item records, and locations with FlowBooks accounting software, and see how stock movement flows into invoicing and financial reporting.",
+      "keywords": [
+        "stock management software",
+        "stock control software Nigeria",
+        "inventory tracking"
+      ],
+      "landing": true,
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "financial-reporting-software": {
+      "path": "/financial-reporting-software",
+      "title": "Financial Reporting Software | FlowBooks Accounting",
+      "description": "Real-time profit and loss, balance sheet, and cash flow, plus custom dashboards and custom reporting fields. FlowBooks turns transactions into audit-ready reports.",
+      "keywords": [
+        "financial reporting software",
+        "financial statements software",
+        "management reporting Nigeria"
+      ],
+      "landing": true,
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "invoicing-software": {
+      "path": "/invoicing-software",
+      "title": "Invoicing Software in Nigeria | FlowBooks",
+      "description": "Create and send unlimited custom invoices and quotes, track receivables, and pair operational billing with NRS e-invoicing clearance for IRN and QR codes.",
+      "keywords": [
+        "invoicing software",
+        "invoice software Nigeria",
+        "receivables tracking"
+      ],
+      "landing": true,
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "business-management-software": {
+      "path": "/business-management-software",
+      "title": "Business Management Software & ERP | FlowBooks",
+      "description": "Run accounting, invoicing, inventory, bank reconciliation, and reporting in one ERP workspace built for Nigerian SMEs and mid-market finance teams.",
+      "keywords": [
+        "business management software",
+        "ERP software Nigeria",
+        "SME finance software"
+      ],
+      "landing": true,
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "register": {
+      "path": "/register",
+      "title": "Register | FlowBooks",
+      "description": "Create a FlowBooks account.",
+      "noindex": true
+    },
+    "register-partner": {
+      "path": "/register-partner",
+      "title": "Partner Registration | FlowBooks",
+      "description": "Register as a FlowBooks partner.",
+      "noindex": true
+    },
+    "not-found": {
+      "path": "/404",
+      "title": "Page not found | FlowBooks",
+      "description": "The page you are looking for could not be found.",
+      "noindex": true
+    }
+  }
+}

@@ -198,6 +198,8 @@ export function Blog() {
                     <img 
                       src={featuredPost?.image}
                       alt={featuredPost?.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -320,6 +322,8 @@ export function Blog() {
                     <img 
                       src={post.image}
                       alt={post.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

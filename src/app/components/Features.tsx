@@ -172,7 +172,9 @@ export function Features({ onNavigate }: FeaturesProps) {
             <div className="relative h-48 overflow-hidden flex-shrink-0">
               <ImageWithFallback
                 src={features[selectedFeature].imageUrl}
-                alt={features[selectedFeature].title}
+                alt={`${features[selectedFeature].title} — FlowBooks`}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>

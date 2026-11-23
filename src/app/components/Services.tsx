@@ -2,6 +2,18 @@ import { Calculator, BadgeCheck, Scale, ArrowRight, Check } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "@/app/components/ui/button";
 import { serviceCatalog, serviceNavItems, type ServiceKey } from "@/app/constants/servicePlans";
+import { SeoLink } from "@/app/components/seo/SeoLink";
+import type { PageKey } from "@/app/lib/seo";
+
+const capabilityLinks: { label: string; page: PageKey }[] = [
+  { label: "Accounting software in Nigeria", page: "accounting-software-nigeria" },
+  { label: "Inventory management software", page: "inventory-management-software" },
+  { label: "Manufacturing management software", page: "manufacturing-management-software" },
+  { label: "Stock management software", page: "stock-management-software" },
+  { label: "Financial reporting software", page: "financial-reporting-software" },
+  { label: "Invoicing software", page: "invoicing-software" },
+  { label: "Business management software", page: "business-management-software" },
+];
 
 interface ServicesProps {
   onNavigate?: (page: string) => void;
@@ -121,6 +133,27 @@ export function Services({ onNavigate }: ServicesProps) {
                 </div>
               );
             })}
+          </div>
+
+          <div className="mt-14 rounded-2xl border border-border bg-card p-6 lg:p-8">
+            <h2 className="text-xl font-semibold text-foreground mb-1">Explore FlowBooks by capability</h2>
+            <p className="text-sm text-muted-foreground mb-5">
+              Learn how each part of the accounting software / ERP fits into your operations.
+            </p>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3 text-sm">
+              {capabilityLinks.map((link) => (
+                <li key={link.page}>
+                  <SeoLink
+                    page={link.page}
+                    onNavigate={onNavigate}
+                    className="inline-flex items-center gap-1 font-medium text-[#0b3574] hover:underline"
+                  >
+                    {link.label}
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </SeoLink>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

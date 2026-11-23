@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Target, Eye, Award, Users, Shield, Zap, CheckCircle, ArrowRight, TrendingUp, Globe } from "lucide-react";
+import { Target, Eye, Award, Shield, Zap, CheckCircle, ArrowRight, TrendingUp, Globe } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 
 interface AboutUsProps {
@@ -193,7 +193,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
                 backgroundClip: 'text'
               }}
             >
-              Accounting software / ERP, NRS e-invoicing, and NDPR data compliance
+              About FlowBooks: accounting software, ERP and NDPR compliance
             </motion.h1>
             
             {/* Subtitle */}
@@ -211,10 +211,9 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 max-w-3xl mx-auto"
             >
               {[
-                { value: "5+", label: "Active teams", icon: Users },
                 { value: "99.9%", label: "Uptime", icon: Shield },
                 { value: "3", label: "Core regions", icon: TrendingUp },
                 { value: "24/7", label: "Support", icon: Globe }
