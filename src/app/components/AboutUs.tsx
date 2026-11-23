@@ -11,22 +11,22 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
     {
       icon: CheckCircle,
       title: "Simplicity",
-      description: "We design solutions that are easy to use and understand."
+      description: "Clear accounting tools and practical compliance guidance."
     },
     {
       icon: Target,
       title: "Accuracy",
-      description: "Audit-ready, precise financial records you can rely on."
+      description: "Audit-ready financial records and careful compliance work."
     },
     {
       icon: Shield,
-      title: "Security",
-      description: "We protect data with the highest security standards."
+      title: "NDPR data compliance",
+      description: "NDPR / NDPC-aligned compliance services and secure systems."
     },
     {
       icon: Zap,
-      title: "Innovation",
-      description: "We continuously improve to meet evolving business needs."
+      title: "Partnership",
+      description: "ERP, NRS e-invoicing, and NDPR data compliance under one relationship."
     }
     // {
     //   icon: Award,
@@ -75,31 +75,31 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
     year: "Step 1",
     title: "The Problem We Saw",
     description:
-      "Many businesses struggled with poor record-keeping, limited financial visibility, and complex accounting tools that didn’t fit their realities."
+      "Organisations needed accounting software / ERP, statutory NRS e-invoicing readiness, and practical NDPR data compliance support—not disconnected tools and advisors."
   },
   {
     year: "Step 2",
     title: "Building the Solution",
     description:
-      "We set out to create a practical, intuitive, and powerful accounting platform designed to simplify financial management."
+      "We built practical accounting software and ERP capabilities, then paired them with NRS e-invoicing and NDPR data compliance so operations, finance, and regulatory readiness move together."
   },
   {
     year: "Step 3",
-    title: "Focused on Small Businesses",
+    title: "ERP & Accounting First",
     description:
-      "FlowBooks began by helping small businesses automate bookkeeping and gain clearer financial insights."
+      "FlowBooks began by helping businesses automate bookkeeping, invoicing, inventory, reconciliation, and reporting with clearer operational and financial visibility."
   },
   {
     year: "Step 4",
-    title: "Expanding Our Capabilities",
+    title: "NRS E-Invoicing & NDPR Data Compliance",
     description:
-      "Through continuous innovation and feedback, we introduced smart invoicing, inventory and stock visibility, real-time analytics, secure data protection, and multi-user collaboration."
+      "We expanded into NRS e-invoicing and NDPR / NDPC-aligned data compliance—registration, audits, privacy guidance, DPIAs, cross-border transfers, semi-annual reporting, and training."
   },
   {
     year: "Step 5",
-    title: "Growing With Our Users",
+    title: "Growing With Our Clients",
     description:
-      "Today, FlowBooks serves individuals, SMEs, and mid-market organisations—empowering smarter decisions and sustainable growth."
+      "Today, FlowBooks partners with SMEs and mid-market organisations that need accounting software / ERP, NRS e-invoicing, and NDPR data compliance under one trusted relationship."
   }
 ];
 
@@ -193,7 +193,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
                 backgroundClip: 'text'
               }}
             >
-              Revolutionizing Accounting for Modern Businesses
+              Accounting software / ERP, NRS e-invoicing, and NDPR data compliance
             </motion.h1>
             
             {/* Subtitle */}
@@ -203,7 +203,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              Flowbooks is a modern accounting and financial management platform built to simplify how businesses and individuals manage their finances. We help our users automate bookkeeping, stay on top of inventory, gain real-time financial insights, and make better decisions with confidence. Our focus is on accuracy, security, and ease of use—so finance works for you, not against you.
+              Flowbooks offers accounting software and ERP, NRS e-invoicing, and NDPR data compliance. We help organisations run operations and books, meet statutory invoicing requirements, and fulfil NDPC-aligned obligations—with accuracy, security, and practical guidance.
             </motion.p>
 
             {/* Floating stats cards */}
@@ -266,7 +266,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
                 </div>
                 <h2 className="text-3xl mb-4 text-foreground">Our Mission</h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  To empower businesses and individuals with simple, reliable, and intelligent financial tools that improve visibility, control, and long-term success.
+                  To empower organisations with reliable accounting software / ERP, NRS e-invoicing, and practical NDPR data compliance that improve visibility, control, and regulatory readiness.
                 </p>
               </div>
             </motion.div>
@@ -285,7 +285,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
                 </div>
                 <h2 className="text-3xl mb-4 text-foreground">Our Vision</h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  To become a trusted accounting platform for businesses across Africa and beyond, driving financial clarity, and sustainable growth through technology.
+                  To be the trusted partner for accounting software / ERP, NRS e-invoicing, and NDPR data compliance across Nigeria and beyond—driving operational clarity and sustainable, regulation-ready growth.
                 </p>
               </div>
             </motion.div>
@@ -367,7 +367,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
           >
             <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Our Core Values</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              The principles that guide our accounting platform and every decision we make
+              The principles that guide our ERP, NRS e-invoicing, and NDPR data compliance work
             </p>
           </motion.div>
 
@@ -409,7 +409,7 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
           >
             <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Our Journey</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              From idea to trusted accounting platform for businesses
+              From accounting software / ERP to NRS e-invoicing and NDPR data compliance
             </p>
           </motion.div>
 

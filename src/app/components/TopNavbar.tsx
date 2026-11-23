@@ -20,7 +20,7 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
 
   const goToPlans = () => {
     if (onNavigate) {
-      onNavigate('register-partner');
+      onNavigate('accounting');
     } else {
       window.open('https://dashboard.inventria.app/signup', '_blank', 'noopener,noreferrer');
     }
@@ -46,15 +46,14 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
             Sale
           </span>
           <span className="hidden sm:inline text-[11px] md:text-sm text-[#0b3574] truncate">
-            Invoicing, <strong className="font-bold">inventory</strong> &amp; books — buy now and{' '}
-            <strong className="font-bold">save 90% off today</strong>
+            Accounting software / ERP, <strong className="font-bold">NRS e-invoicing</strong> &amp; NDPR data compliance
           </span>
           <button
             type="button"
             onClick={goToPlans}
             className="text-[10px] sm:text-[11px] md:text-sm font-medium text-[#0b3574] underline underline-offset-2 hover:text-[#0a2942] transition-colors cursor-pointer whitespace-nowrap flex-shrink-0"
           >
-            See plans & pricing
+            See service plans
           </button>
         </div>
 

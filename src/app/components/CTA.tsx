@@ -28,10 +28,10 @@ export function CTA({ onNavigate }: CTAProps) {
       <div className="container mx-auto px-4 lg:px-6 relative">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`text-3xl lg:text-3xl mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
-            Ready to streamline your accounting?
+            Ready for ERP, NRS e-invoicing, and NDPR data compliance?
           </h2>
           <p className={`text-xl mb-8 max-w-2xl mx-auto ${isDark ? "text-sky-100" : "text-gray-600"}`}>
-            Flowbooks brings invoicing, inventory, reconciliation, and financial reporting into one secure workspace so your team can close the books faster and with fewer errors.
+            Partner with Flowbooks for accounting software / ERP, NRS e-invoicing, and NDPR data compliance—from registration and audits to DPIAs, reporting, and training.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -71,7 +71,7 @@ export function CTA({ onNavigate }: CTAProps) {
           </div>
           
           <p className={`text-sm mt-6 ${isDark ? "text-sky-100" : "text-gray-600"}`}>
-            Bank-level security · Built for accountants and finance teams · Works across entities and locations
+            Accounting software / ERP · NRS e-invoicing · NDPR data compliance
           </p>
         </div>
       </div>

@@ -497,8 +497,8 @@ export function Hero({ onNavigate }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-gray-900 dark:text-white">One platform for </span>
-              <span style={{ color: '#0b3574' }}>invoicing, manufacturing, inventory, reconciliation, and financial reporting</span>
+              <span className="text-gray-900 dark:text-white">Accounting software / ERP, NRS e-invoicing, and </span>
+              <span style={{ color: '#0b3574' }}>NDPR data compliance—in one partnership</span>
             </motion.h1>
 
             <motion.p
@@ -507,7 +507,7 @@ export function Hero({ onNavigate }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Automate invoicing, production costing, inventory tracking, bank reconciliation, and financial statements in one secure workspace—built for manufacturers and growing businesses that need clean books and accurate stock visibility.
+              Flowbooks offers accounting software and ERP, NRS e-invoicing, and NDPR data compliance—so organisations can run operations and finance, meet statutory invoicing requirements, and stay NDPC-ready.
             </motion.p>
 
             <motion.div
@@ -555,11 +555,9 @@ export function Hero({ onNavigate }: HeroProps) {
               className="flex flex-wrap gap-2 pt-1"
             >
               {[
-                "Production Costing",
-                "BOM & Raw Materials",
-                "Inventory",
-                "Invoicing",
-                "Reconciliation",
+                "Accounting Software / ERP",
+                "NRS E-Invoicing",
+                "NDPR Data Compliance",
               ].map((tool) => (
                 <span
                   key={tool}
@@ -580,7 +578,7 @@ export function Hero({ onNavigate }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              Bank-level security · Manufacturing &amp; finance in one place · Close faster every month.
+              Accounting software / ERP · NRS e-invoicing · NDPR data compliance
             </motion.p>
           </div>
 

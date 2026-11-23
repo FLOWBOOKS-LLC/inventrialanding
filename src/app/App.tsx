@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/app/components/Header';
 import { Hero } from '@/app/components/Hero';
 import { Features } from '@/app/components/Features';
+import { Services } from '@/app/components/Services';
+import { ServicePlanPage } from '@/app/components/ServicePlanPage';
+import { ComplianceAssessment } from '@/app/components/ComplianceAssessment';
 import { Testimonials } from '@/app/components/Testimonials';
 import { CTA } from '@/app/components/CTA';
 import { Footer } from '@/app/components/Footer';
@@ -9,28 +12,19 @@ import { AboutUs } from '@/app/components/AboutUs';
 import { Clients } from '@/app/components/Clients';
 import { Blog } from '@/app/components/Blog';
 import { ContactUs } from '@/app/components/ContactUs';
-// Pricing / plans page — temporarily disabled
-// import Register from '@/app/components/Register';
-import { AdminDashboard } from '@/app/components/AdminDashboard';
 import { TopNavbar } from '@/app/components/TopNavbar';
 import { FAQs } from '@/app/components/FAQs';
 import { TrustedPartnersStrip } from '@/app/components/TrustedPartnersStrip';
-// Removed Container import to avoid side paddings
+import { CookieNotice } from '@/app/components/CookieNotice';
+import { serviceNavItems, type ServiceKey } from '@/app/constants/servicePlans';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const registerUrl = 'https://dashboard.inventria.app/signup';
-
-  // Check for admin URL hash on mount
-  useEffect(() => {
-    if (window.location.hash === '#admin') {
-      setCurrentPage('admin');
-    }
-  }, []);
+  const isServicePage = serviceNavItems.includes(currentPage as ServiceKey);
 
   // Scroll to top whenever the page changes
   useEffect(() => {
-    // Use setTimeout to ensure scroll happens after component render
     setTimeout(() => {
       window.scrollTo({
         top: 0,
@@ -42,8 +36,12 @@ export default function App() {
 
   // Redirect any legacy "register" navigation to the new signup portal
   useEffect(() => {
-    if (currentPage === 'register') {
-      window.open(registerUrl, '_blank', 'noopener,noreferrer');
+    if (currentPage === 'register' || currentPage === 'register-partner') {
+      if (currentPage === 'register') {
+        window.open(registerUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        setCurrentPage('accounting');
+      }
     }
   }, [currentPage]);
 
@@ -62,6 +60,12 @@ export default function App() {
             <Testimonials onNavigate={setCurrentPage} />
             <CTA onNavigate={setCurrentPage} />
           </>
+        ) : currentPage === 'services' ? (
+          <Services onNavigate={setCurrentPage} />
+        ) : currentPage === 'compliance-assessment' ? (
+          <ComplianceAssessment onNavigate={setCurrentPage} />
+        ) : isServicePage ? (
+          <ServicePlanPage serviceKey={currentPage as ServiceKey} onNavigate={setCurrentPage} />
         ) : currentPage === 'about' ? (
           <AboutUs onNavigate={setCurrentPage} />
         ) : currentPage === 'clients' ? (
@@ -72,14 +76,10 @@ export default function App() {
           <ContactUs />
         ) : currentPage === 'faqs' ? (
           <FAQs onNavigate={setCurrentPage} />
-        ) : /* Pricing / plans page — temporarily disabled
-        currentPage === 'register-partner' ? (
-          <Register onNavigate={setCurrentPage} />
-        ) : */ currentPage === 'admin' ? (
-          <AdminDashboard />
         ) : null}
       </main>
-      {currentPage !== 'admin' && <Footer onNavigate={setCurrentPage} />}
+      <Footer onNavigate={setCurrentPage} />
+      <CookieNotice />
     </div>
   );
 }

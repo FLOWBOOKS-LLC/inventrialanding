@@ -21,14 +21,31 @@ if (dotenvResult.error) {
 
 const { default: remitaRoutes } = await import("./routes/remita.routes.js");
 const { default: calendlyWebhookRouter } = await import("./routes/calendly.webhook.route.js");
+const { default: assessmentRoutes } = await import("./routes/assessment.routes.js");
 
 const app = express();
 const port = Number(process.env.PORT || 4000);
 
-app.use(helmet());
+app.use(
+  helmet({
+    // KYC (Connect) and the landing site call this API from different local ports.
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
+
+const allowedOrigins = (process.env.FRONTEND_ORIGINS || process.env.FRONTEND_ORIGIN || "")
+  .split(",")
+  .map((value) => value.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173",
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
+      const localDev = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+      if (localDev || allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(null, false);
+    },
     credentials: true,
   })
 );
@@ -44,6 +61,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.use("/api/payments/remita", remitaRoutes);
+app.use("/api/assessments", assessmentRoutes);
 
 app.use((err, _req, res, _next) => {
   console.error("Unhandled error:", err);

@@ -9,34 +9,34 @@ interface FAQsProps {
 
 const FAQS = [
   {
-    question: "What makes Flowbooks different from traditional accounting tools?",
+    question: "What does Flowbooks offer?",
     answer:
-      "Flowbooks combines clean bookkeeping, inventory visibility, real-time reporting, and simple workflows built for owners and operators. You spend less time on accounting and more time running the business.",
+      "Flowbooks offers three connected services: accounting software / ERP for operations and finance, NRS e-invoicing for statutory invoice clearance, and NDPR data compliance aligned with Nigeria’s NDPC framework.",
   },
   {
-    question: "Do I need an accountant to use Flowbooks?",
+    question: "What is included in your NDPR data compliance service?",
     answer:
-      "No. You can manage day-to-day finances on your own, and your accountant can still access reports or collaborate with you when needed.",
+      "We assist organisations with registration; conduct and file audits; advise on personal data processing principles and lawful bases; help implement mechanisms for data subject rights; support Data Privacy Impact Assessments; guide cross-border data transfer compliance; support Internal Semi-Annual Data Protection Reports; and deliver training and awareness programmes.",
   },
   {
-    question: "Can I connect my bank accounts?",
+    question: "Do you offer NRS e-invoicing?",
     answer:
-      "Yes. Secure bank connections let you sync transactions automatically and keep books up to date without manual entry.",
+      "Yes. Our NRS e-invoicing service helps organisations validate, sign, and transmit invoices, generate IRNs and QR codes, and track clearance and payment status alongside ERP and accounting workflows.",
   },
   {
-    question: "How secure is my data?",
+    question: "Is Flowbooks an accounting software / ERP?",
     answer:
-      "We use encryption in transit and at rest, strict access controls, and continuous monitoring to keep your data safe.",
+      "Yes. Flowbooks provides accounting software and ERP capabilities—including bookkeeping, invoicing, inventory, reconciliation, reporting, and multi-user access—so operators and finance teams can run the business from one workspace.",
   },
   {
-    question: "Can I switch plans later?",
+    question: "How is NDPR data compliance priced?",
     answer:
-      "Absolutely. Upgrade or downgrade at any time as your business changes.",
+      "NDPR data compliance has no fixed packages on the site. Complete the NDPR / NDP Act / GAID assessment and we email a tailored proposal to you and to muhammad.fahad@flowbooks.org, separating NDPC statutory fees from our professional fees. ERP and NRS e-invoicing keep their own published Remita plans under Services.",
   },
   {
-    question: "Do you offer onboarding support?",
+    question: "Do you offer onboarding and training?",
     answer:
-      "Yes. Our team helps you set up your chart of accounts, import data, and go live confidently.",
+      "Yes. We help you go live on the accounting software / ERP and NRS e-invoicing, and NDPR data compliance includes training and awareness so teams understand their obligations.",
   },
 ];
 
@@ -46,31 +46,31 @@ export function FAQs({ onNavigate }: FAQsProps) {
   const points = [
     {
       icon: ShieldCheck,
-      title: "Trusted and secure",
-      description: "Built with modern security practices and audit-ready controls.",
+      title: "Three clear offers",
+      description: "Accounting software / ERP, NRS e-invoicing, and NDPR data compliance.",
     },
     {
       icon: Wallet,
-      title: "Transparent pricing",
-      description: "Clear plans with no hidden fees or surprise upgrades.",
+      title: "Separate pricing",
+      description: "Each service has its own plans under Services.",
     },
     {
       icon: LifeBuoy,
-      title: "Fast support",
-      description: "Helpful humans ready to assist when you need it most.",
+      title: "Practical support",
+      description: "Onboarding, audits, reporting help, and training when you need it.",
     },
   ];
 
   const topics = [
     {
       icon: Lock,
-      title: "Security & compliance",
-      description: "Encryption, roles, and access policies for peace of mind.",
+      title: "NDPR data compliance",
+      description: "Registration, audits, DPIAs, rights, transfers, and reporting.",
     },
     {
       icon: Users,
-      title: "Collaboration",
-      description: "Share access with partners, teams, and advisors.",
+      title: "ERP & finance teams",
+      description: "Accounting software access for operators, accountants, and advisors.",
     },
   ];
 
@@ -98,91 +98,60 @@ export function FAQs({ onNavigate }: FAQsProps) {
           <div className="max-w-2xl mx-auto">
             <p className="text-white/70 text-sm uppercase tracking-[0.2em]">FAQs</p>
             <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-semibold mt-3">
-              Answers for your finance questions
+              Questions about Flowbooks
             </h1>
             <p className="text-white/80 mt-4 text-base md:text-lg">
-              How Flowbooks helps with invoicing, inventory, reconciliation, and financial reporting.
+              How Flowbooks helps with accounting software / ERP, NRS e-invoicing, and NDPR data compliance.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Button
-                className="bg-white text-gray-900 hover:bg-gray-100"
-                onClick={() => onNavigate?.("contact")}
-              >
-                Contact Support
-              </Button>
-            </div>
           </div>
-        </div>
-        {/* Decorative bottom wave */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24 lg:h-32" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,50 C360,90 720,10 1080,50 C1260,70 1350,80 1440,90 L1440,100 L0,100 Z" fill="white" fillOpacity="0.1"/>
-            <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1350,90 1440,100 L1440,100 L0,100 Z" fill="white"/>
-          </svg>
         </div>
       </section>
 
-      <section className="py-14 lg:py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4 lg:px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-stretch">
+      <section className="py-16 lg:py-24">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14">
           <div>
-            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Frequently asked questions</h2>
-            <p className="text-muted-foreground mt-2">
-              Not seeing your question? Reach out and our team will help quickly.
-            </p>
-            <div className="mt-8 space-y-4">
+            <div className="space-y-3">
               {FAQS.map((item, index) => {
-                const isOpen = openIndex === index;
+                const open = openIndex === index;
                 return (
-                  <button
+                  <div
                     key={item.question}
-                    type="button"
-                    className="w-full text-left rounded-2xl border border-border p-5 transition hover:border-[#0b3574]/50 bg-card"
-                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="rounded-2xl border border-border bg-card overflow-hidden"
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <h3 className="text-base md:text-lg font-semibold text-foreground">{item.question}</h3>
-                      <span
-                        className={`flex h-8 w-8 items-center justify-center rounded-full border border-border transition ${
-                          isOpen ? "bg-[#0b3574] text-white border-[#0b3574]" : "text-muted-foreground"
-                        }`}
-                        aria-hidden="true"
-                      >
-                        <Plus className={`h-4 w-4 transition ${isOpen ? "rotate-45" : ""}`} />
-                      </span>
-                    </div>
-                    {isOpen && <p className="mt-3 text-sm text-muted-foreground">{item.answer}</p>}
-                  </button>
+                    <button
+                      type="button"
+                      className="w-full flex items-center justify-between gap-4 p-5 text-left"
+                      onClick={() => setOpenIndex(open ? null : index)}
+                    >
+                      <span className="font-medium text-foreground">{item.question}</span>
+                      <Plus
+                        className={`w-5 h-5 text-[#0b3574] transition-transform ${open ? "rotate-45" : ""}`}
+                      />
+                    </button>
+                    {open && (
+                      <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
+                        {item.answer}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
           </div>
 
-          <div className="space-y-6 h-full flex flex-col">
-            <div className="rounded-3xl border border-border p-6 flex flex-col flex-1 bg-card">
-              <h3 className="text-lg font-semibold text-foreground">Support that feels human</h3>
-              <p className="text-sm text-muted-foreground mt-2">
-                We guide you through onboarding, reports, and workflows so you can focus on growth.
-              </p>
-              <Button
-                className="mt-4 bg-[#0b3574] text-white hover:opacity-90"
-                onClick={() => onNavigate?.("contact")}
-              >
-                Ask us anything
-              </Button>
-            </div>
-
-            <div className="rounded-3xl border border-border p-6 bg-muted/30 flex flex-col flex-1">
-              <h3 className="text-lg font-semibold text-foreground">Why businesses trust Flowbooks</h3>
-              <div className="mt-4 space-y-4">
+          <div className="space-y-6">
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <h3 className="text-lg font-semibold text-foreground mb-4">Why organisations choose Flowbooks</h3>
+              <div className="space-y-4">
                 {points.map((point) => {
                   const Icon = point.icon;
                   return (
                     <div key={point.title} className="flex gap-3">
-                      <div className="h-9 w-9 rounded-full bg-background border border-border flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-[#0b3574]" />
+                      <div className="w-10 h-10 rounded-full bg-[#0b3574]/10 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-5 h-5 text-[#0b3574]" />
                       </div>
                       <div>
-                        <p className="font-semibold text-sm text-foreground">{point.title}</p>
+                        <div className="font-medium text-foreground">{point.title}</div>
                         <p className="text-sm text-muted-foreground">{point.description}</p>
                       </div>
                     </div>
@@ -191,24 +160,31 @@ export function FAQs({ onNavigate }: FAQsProps) {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-border p-6 flex flex-col flex-1 bg-card">
-              <h3 className="text-lg font-semibold text-foreground">Popular topics</h3>
-              <div className="mt-4 space-y-3">
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <h3 className="text-lg font-semibold text-foreground mb-4">Popular topics</h3>
+              <div className="space-y-4">
                 {topics.map((topic) => {
                   const Icon = topic.icon;
                   return (
-                    <div key={topic.title} className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-[#0b3574]" />
+                    <div key={topic.title} className="flex gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#e8eef9] flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-5 h-5 text-[#0b3574]" />
                       </div>
                       <div>
-                        <p className="font-semibold text-sm text-foreground">{topic.title}</p>
-                        <p className="text-xs text-muted-foreground">{topic.description}</p>
+                        <div className="font-medium text-foreground">{topic.title}</div>
+                        <p className="text-sm text-muted-foreground">{topic.description}</p>
                       </div>
                     </div>
                   );
                 })}
               </div>
+              <Button
+                className="mt-6 w-full text-white"
+                style={{ backgroundColor: "#0b3574" }}
+                onClick={() => onNavigate?.("contact")}
+              >
+                Contact support
+              </Button>
             </div>
           </div>
         </div>

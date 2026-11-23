@@ -4,7 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { useState, useEffect, useMemo } from "react";
 import { BlogArticle } from "@/app/components/BlogArticle";
 import { blogCategories } from "@/app/constants/blogCategories";
-import { supabaseRequest, supabaseUrl, supabaseAnonKey } from "@/app/lib/supabaseClient";
+import { fetchSiteBlogPosts } from "@/app/lib/siteCmsApi";
 
 interface BlogPost {
   id: string | number;
@@ -44,50 +44,29 @@ export function Blog() {
     });
   }, [blogPosts]);
 
-  // Load blog posts from localStorage first (same storage the Admin dashboard writes to)
   useEffect(() => {
-    const savedPosts = localStorage.getItem("flowbooks_blog_posts");
-    if (savedPosts) {
-      try {
-        const parsed = JSON.parse(savedPosts) as BlogPost[];
-        setBlogPosts(parsed);
-        if (parsed.length > 0) {
-          setFeaturedPost({ ...parsed[0], featured: true });
-        }
-      } catch (err) {
-        console.warn("Failed to load cached blog posts", err);
-      }
-    }
-
-    // Ensure loading clears even if only cached data is present
-    setLoadingPosts(false);
-  }, []);
-
-  // Load blog posts from Supabase
-  useEffect(() => {
-    if (!supabaseUrl || !supabaseAnonKey) {
-      console.warn("Supabase not configured; showing cached blog posts only");
-      setLoadingPosts(false);
-      return;
-    }
-
-    const abort = new AbortController();
+    let active = true;
     const load = async () => {
       setLoadingPosts(true);
       try {
-        const posts = await supabaseRequest<BlogPost[]>(`/rest/v1/blog_posts?select=*`, { signal: abort.signal });
+        const posts = await fetchSiteBlogPosts();
+        if (!active) return;
         setBlogPosts(posts || []);
         if (posts && posts.length > 0) {
           setFeaturedPost({ ...posts[0], featured: true });
+        } else {
+          setFeaturedPost(null);
         }
       } catch (err) {
         console.warn("Failed to load blog posts", err);
       } finally {
-        setLoadingPosts(false);
+        if (active) setLoadingPosts(false);
       }
     };
     load();
-    return () => abort.abort();
+    return () => {
+      active = false;
+    };
   }, []);
 
   // If an article is selected, show the full article view

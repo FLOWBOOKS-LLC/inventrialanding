@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/app/components/ui/button';
 import { Check } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -99,15 +99,13 @@ const plans = [
       'Customise dashboards',
       'Backup online & restore data',
       'Manage revenue recognition',
+      'Add-on: NRS e-invoicing (quoted)',
+      'Add-on: Data protection package (quoted)',
     ],
   },
 ];
 
 export function Register({ onNavigate }: RegisterProps) {
-  const backendBaseUrl = useMemo(() => {
-    const fromEnv = (import.meta as any)?.env?.VITE_BACKEND_URL as string | undefined;
-    return (fromEnv && fromEnv.trim()) || 'http://localhost:4000';
-  }, []);
   const [isInitiating, setIsInitiating] = useState(false);
   const [paymentError, setPaymentError] = useState<string | null>(null);
   const [paymentResponse, setPaymentResponse] = useState<any>(null);
@@ -130,7 +128,7 @@ export function Register({ onNavigate }: RegisterProps) {
 
     try {
       const transactionId = String(Date.now());
-      const resp = await fetch(`${backendBaseUrl}/api/payments/remita/initiate`, {
+      const resp = await fetch(`/api/payments/remita/initiate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

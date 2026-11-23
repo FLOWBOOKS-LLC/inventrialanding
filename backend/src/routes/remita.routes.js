@@ -1,5 +1,7 @@
 import { Router } from "express";
 import {
+  buildRrrInvoicePdf,
+  fetchRrrInvoice,
   initiateRemitaPayment,
   validateRemitaConfig,
   verifyRemitaPayment,
@@ -8,28 +10,34 @@ import {
 const router = Router();
 
 router.get("/health", (_req, res) => {
-  const config = validateRemitaConfig();
+  const rrrConfig = validateRemitaConfig("rrr");
+  const checkoutConfig = validateRemitaConfig("checkout");
   res.status(200).json({
     ok: true,
-    remitaConfigured: config.ok,
-    mode: config.mode,
-    missing: config.missing,
+    remitaConfigured: rrrConfig.ok || checkoutConfig.ok,
+    rrr: rrrConfig,
+    checkout: checkoutConfig,
   });
 });
 
 router.post("/initiate", async (req, res) => {
-  const config = validateRemitaConfig();
+  const body = req.body ?? {};
+  const channel = String(body.channel || body.paymentMethod || "rrr").toLowerCase();
+  const config = validateRemitaConfig(channel);
+
   if (!config.ok) {
     return res.status(500).json({
       ok: false,
       message: "Missing Remita configuration",
       missing: config.missing,
+      mode: config.mode,
     });
   }
 
   try {
-    const result = await initiateRemitaPayment(req.body ?? {});
-    if (result?.mode === "connect" && !result?.redirectUrl) {
+    const result = await initiateRemitaPayment(body);
+
+    if (channel === "checkout" && result?.mode === "connect" && !result?.redirectUrl) {
       return res.status(502).json({
         ok: false,
         message:
@@ -37,6 +45,16 @@ router.post("/initiate", async (req, res) => {
         data: result?.data,
       });
     }
+
+    if ((channel === "rrr" || channel === "bank") && !result?.rrr) {
+      return res.status(502).json({
+        ok: false,
+        message:
+          "Remita payment was created but no RRR was returned. Check merchant credentials and Remita response.",
+        data: result?.data,
+      });
+    }
+
     return res.status(200).json({ ok: true, ...result });
   } catch (error) {
     console.error("[Remita initiate error]", {
@@ -53,9 +71,26 @@ router.post("/initiate", async (req, res) => {
   }
 });
 
+router.get("/print/:rrr", async (req, res) => {
+  try {
+    const invoice = await fetchRrrInvoice(req.params.rrr);
+    const pdf = buildRrrInvoicePdf(invoice);
+    const filename = `Remita-RRR-${invoice.rrr}.pdf`;
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `inline; filename="${filename}"`);
+    return res.status(200).send(pdf);
+  } catch (error) {
+    return res.status(400).json({
+      ok: false,
+      message: error?.message || "Failed to build the Remita invoice PDF.",
+    });
+  }
+});
+
 router.get("/verify/:rrr", async (req, res) => {
-  const config = validateRemitaConfig();
-  if (!config.ok) {
+  const config = validateRemitaConfig("rrr");
+  const checkoutConfig = validateRemitaConfig("checkout");
+  if (!config.ok && !checkoutConfig.ok) {
     return res.status(500).json({
       ok: false,
       message: "Missing Remita configuration",
@@ -70,17 +105,16 @@ router.get("/verify/:rrr", async (req, res) => {
     return res.status(400).json({
       ok: false,
       message: error?.message || "Failed to verify payment",
+      remitaData: error?.response?.data,
     });
   }
 });
 
 router.post("/webhook", (req, res) => {
-  // TODO: Validate signature and persist transaction events.
   console.log("[Remita webhook payload]", req.body);
   return res.status(200).json({ ok: true });
 });
 
-// Inline checkout callback (client-side success payload)
 router.post("/inline/callback", (req, res) => {
   console.log("[Remita inline callback]", req.body);
   return res.status(200).json({ ok: true });

@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "REMITA_ENV=sandbox nodemon src/server.js",
-    "dev:prod": "REMITA_ENV=production nodemon src/server.js",
+    "dev": "nodemon src/server.js",
+    "dev:sandbox": "nodemon src/server.js",
+    "dev:prod": "node -e \"process.env.REMITA_ENV='production'; require('child_process').spawn('nodemon',['src/server.js'],{stdio:'inherit',env:process.env,shell:true})\"",
     "start": "node src/server.js"
   },
   "dependencies": {

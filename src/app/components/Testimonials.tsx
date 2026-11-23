@@ -10,13 +10,13 @@ const categories = [
     stories: [
       {
         image: "https://images.unsplash.com/photo-1752650732081-8f61e81813ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGJ1c2luZXNzJTIwb3duZXIlMjBvZmZpY2V8ZW58MXx8fHwxNzY4OTE3NjA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "FlowBooks simplifies daily finances",
-        description: "So small business owners can focus on growing their business instead of paperwork."
+        title: "Accounting that stays clear",
+        description: "Small businesses keep cleaner books and spend less time on paperwork."
       },
       {
         image: "https://images.unsplash.com/photo-1553484771-6e117b648d45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnRyZXByZW5ldXIlMjBjb2ZmZWUlMjBzaG9wfGVufDF8fHx8MTc2ODkxNzYwOHww&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Automated bookkeeping",
-        description: "Reduce manual work and keep your records accurate without the stress."
+        title: "NDPR data compliance with guidance",
+        description: "NDPR compliance support—from registration to training—without the overwhelm."
       }
     ]
   },
@@ -26,13 +26,13 @@ const categories = [
     stories: [
       {
         image: "https://images.unsplash.com/photo-1758518729685-f88df7890776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjB0ZWFtfGVufDF8fHx8MTc2ODgyMzkzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Built for growing organisations",
-        description: "FlowBooks scales with your business — without added complexity."
+        title: "E-invoicing readiness",
+        description: "Mid-market teams meet NRS e-invoicing requirements alongside their books."
       },
       {
         image: "https://images.unsplash.com/photo-1606836591695-4d58a73eba1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMG1lZXRpbmclMjBvZmZpY2V8ZW58MXx8fHwxNzY4ODA2MzE3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        title: "Manufacturing Firm",
-        description: "Secure multi-user access keeps teams aligned and accountable."
+        title: "One trusted partner",
+        description: "ERP, NRS e-invoicing, and NDPR data compliance under one relationship."
       }
     ]
   }
@@ -63,11 +63,11 @@ export function Testimonials({ onNavigate }: TestimonialsProps) {
             Customer Stories
           </p>
           <h2 className="text-3xl lg:text-3xl text-slate-800 dark:text-slate-100 mb-2">
-            How Flowbooks supports different teams
+            How Flowbooks supports different organisations
           </h2>
           <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            From small businesses to mid-market businesses, Flowbooks helps keep books accurate,
-            inventory visible, cash flow clear, and teams aligned.
+            From small businesses to mid-market teams, Flowbooks helps with accounting software / ERP,
+            NRS e-invoicing, and NDPR data compliance.
           </p>
           
           {/* Category Navigation */}

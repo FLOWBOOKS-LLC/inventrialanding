@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Building2, Users, Award, CheckCircle, ArrowRight, Briefcase, Globe, Loader2 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { useState, useEffect } from "react";
-import { supabaseRequest, supabaseUrl, supabaseAnonKey } from "@/app/lib/supabaseClient";
+import { fetchSiteStories } from "@/app/lib/siteCmsApi";
 
 interface ClientsProps {
   onNavigate?: (page: string) => void;
@@ -22,42 +22,24 @@ export function Clients({ onNavigate }: ClientsProps) {
   const [caseStudies, setCaseStudies] = useState<SuccessStory[]>([]);
   const [loadingStories, setLoadingStories] = useState(true);
 
-  // Load success stories from localStorage for fast render
   useEffect(() => {
-    const savedStories = localStorage.getItem("flowbooks_success_stories");
-    if (savedStories) {
-      setCaseStudies(JSON.parse(savedStories));
-    }
-    // Keep loading true until remote fetch finishes or is skipped
-  }, []);
-
-  // Load success stories from Supabase so all visitors see the shared data
-  useEffect(() => {
-    if (!supabaseUrl || !supabaseAnonKey) {
-      console.warn("Supabase env vars missing; showing cached success stories only");
-      setLoadingStories(false);
-      return;
-    }
-
-    const abort = new AbortController();
+    let active = true;
     const load = async () => {
       setLoadingStories(true);
       try {
-        const stories = await supabaseRequest<SuccessStory[]>(
-          `/rest/v1/success_stories?select=*`,
-          { signal: abort.signal }
-        );
+        const stories = await fetchSiteStories();
+        if (!active) return;
         setCaseStudies(stories || []);
-        localStorage.setItem("flowbooks_success_stories", JSON.stringify(stories || []));
       } catch (err) {
-        console.warn("Failed to load success stories from Supabase", err);
+        console.warn("Failed to load success stories", err);
       } finally {
-        setLoadingStories(false);
+        if (active) setLoadingStories(false);
       }
     };
-
     load();
-    return () => abort.abort();
+    return () => {
+      active = false;
+    };
   }, []);
 
   const industries = [
@@ -175,7 +157,7 @@ export function Clients({ onNavigate }: ClientsProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10"
             >
-              See how teams use flowbooks for invoicing, inventory, reconciliation, and reporting—with results that speak for themselves
+              See how teams use Flowbooks for accounting software / ERP, NRS e-invoicing, and NDPR data compliance—with results that speak for themselves
             </motion.p>
 
             {/* Stats */}
@@ -227,7 +209,7 @@ export function Clients({ onNavigate }: ClientsProps) {
           >
             <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Industries We Serve</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Invoicing, inventory, reconciliation, and reporting that fit your sector
+              Accounting software / ERP, NRS e-invoicing, and NDPR data compliance that fit your sector
             </p>
           </motion.div>
 
@@ -274,7 +256,7 @@ export function Clients({ onNavigate }: ClientsProps) {
           >
             <h2 className="text-3xl lg:text-4xl mb-3 text-foreground">Success Stories</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Real results from teams that streamlined invoicing, inventory, reconciliation, and reporting
+              Real results from teams that streamlined ERP, NRS e-invoicing, and NDPR data compliance
             </p>
           </motion.div>
 
@@ -382,7 +364,7 @@ export function Clients({ onNavigate }: ClientsProps) {
               Ready to Join Our Success Stories?
             </h2>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Invoicing, inventory, reconciliation, and reporting in one platform. Start with flowbooks today.
+              Accounting software / ERP, NRS e-invoicing, and NDPR data compliance in one partnership. Start with Flowbooks today.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
