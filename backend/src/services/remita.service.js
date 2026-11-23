@@ -104,6 +104,126 @@ export function buildPayNow(rrr, returnUrl) {
   };
 }
 
+function checkoutBaseUrl() {
+  const configured = process.env.REMITA_CHECKOUT_BASE_URL;
+  if (configured) return String(configured).replace(/\/$/, "");
+  const key = process.env.REMITA_PUBLIC_KEY || "";
+  return key.startsWith("pk_test_")
+    ? "https://api-checkout-demo.systemspecsng.com/api/v1"
+    : "https://api-checkout.remita.net/api/v1";
+}
+
+function checkoutHeaders() {
+  return {
+    "Content-Type": "application/json",
+    publicKey: process.env.REMITA_PUBLIC_KEY || "",
+  };
+}
+
+function checkoutPhone(value) {
+  const digits = String(value || "").replace(/[^\d]/g, "");
+  if (digits.startsWith("234") && digits.length >= 13) return `0${digits.slice(3, 13)}`;
+  if (digits.startsWith("0") && digits.length >= 11) return digits.slice(0, 11);
+  return "08000000000";
+}
+
+function nairaToKobo(amount) {
+  const naira = Number(amount);
+  if (!Number.isFinite(naira) || naira <= 0) {
+    throw new Error("Valid amount is required.");
+  }
+  return Math.round(naira * 100);
+}
+
+function assertCheckoutOk(data, fallback) {
+  if (String(data?.status) === "00" && data?.data) return data.data;
+  const message = data?.message || data?.data?.processorResponse || fallback;
+  throw new Error(message || fallback);
+}
+
+export async function listCheckoutBanks() {
+  const { data } = await axios.get(`${checkoutBaseUrl()}/misc/ussd-codes`, {
+    headers: checkoutHeaders(),
+    timeout: 20000,
+  });
+  const list = Array.isArray(data?.data) ? data.data : [];
+  return list
+    .map((item) => ({
+      code: String(item.code || ""),
+      name: String(item.shortname || item.shortName || item.code || ""),
+    }))
+    .filter((item) => item.code);
+}
+
+export async function createConnectCheckout(input) {
+  if (!hasConnectCredentials()) {
+    throw new Error("Remita Connect keys are not configured.");
+  }
+  if (!input?.email) throw new Error("Customer email is required.");
+
+  const paymentIdentifier = `${String(input.orderId || "FB").replace(/[^\w-]/g, "").slice(0, 24)}-${Date.now()}`;
+  const firstName = String(input.firstName || input.payerName || "Customer").trim() || "Customer";
+  const lastName = String(input.lastName || "Customer").trim() || "Customer";
+  const amount = nairaToKobo(input.amount);
+  const response = await axios.post(
+    `${checkoutBaseUrl()}/payment/pre`,
+    {
+      useRRR: false,
+      firstName,
+      lastName,
+      email: String(input.email).trim(),
+      phoneNumber: checkoutPhone(input.phone),
+      currency: "NGN",
+      narration: String(input.description || input.planName || "Flowbooks Connect").slice(0, 120),
+      amount,
+      paymentIdentifier,
+      tokenize: false,
+    },
+    { headers: checkoutHeaders(), timeout: 20000 }
+  );
+  const payment = assertCheckoutOk(response.data, "Remita test checkout did not start.");
+  const banks = await listCheckoutBanks().catch(() => []);
+  return {
+    paymentIdentifier: payment.paymentIdentifier || paymentIdentifier,
+    rrr: String(payment.rrrNumber || ""),
+    amountKobo: Number(payment.amount || amount),
+    totalKobo: Number(payment.totalAmountWithFee || payment.amount || amount),
+    currency: payment.paymentCurrency || "NGN",
+    channels: Array.isArray(payment.channels) ? payment.channels : [],
+    banks,
+    test: String(process.env.REMITA_PUBLIC_KEY || "").startsWith("pk_test_"),
+  };
+}
+
+export async function startCheckoutUssd(input) {
+  if (!input?.paymentIdentifier || !input?.rrr || !input?.bankCode) {
+    throw new Error("Payment, RRR, and bank are required.");
+  }
+  const response = await axios.post(
+    `${checkoutBaseUrl()}/payment/initiate`,
+    {
+      paymentIdentifier: input.paymentIdentifier,
+      paymentChannel: "USSD",
+      rrrNumber: input.rrr,
+      bankCode: input.bankCode,
+      amount: Number(input.amountKobo),
+      currency: "NGN",
+    },
+    { headers: checkoutHeaders(), timeout: 20000 }
+  );
+  const payment = assertCheckoutOk(response.data, "Remita could not start the USSD payment.");
+  const meta = payment.metaData || {};
+  return {
+    dialCode: meta.dialCode || "",
+    rrr: meta.rrr || input.rrr,
+    bank: meta.shortName || "",
+    amountToBePaid: meta.amountToBePaid ?? payment.totalAmountWithFee ?? null,
+    originalAmount: meta.originalAmount ?? null,
+    message: response.data?.message || "Your payment is being processed.",
+    paymentState: payment.paymentState || "PENDING",
+  };
+}
+
 async function getBearerTokenIfConfigured() {
   if (hasConnectCredentials()) return null;
   if (!process.env.REMITA_API_TOKEN) return null;

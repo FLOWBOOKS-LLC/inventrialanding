@@ -1,8 +1,10 @@
 import { Router } from "express";
 import {
   buildRrrInvoicePdf,
+  createConnectCheckout,
   fetchRrrInvoice,
   initiateRemitaPayment,
+  startCheckoutUssd,
   validateRemitaConfig,
   verifyRemitaPayment,
 } from "../services/remita.service.js";
@@ -67,6 +69,39 @@ router.post("/initiate", async (req, res) => {
       message: error?.response?.data?.message || error?.message || "Failed to initialize payment",
       remitaStatus: error?.response?.status,
       remitaData: error?.response?.data,
+    });
+  }
+});
+
+router.post("/checkout", async (req, res) => {
+  const config = validateRemitaConfig("checkout");
+  if (!config.ok) {
+    return res.status(500).json({
+      ok: false,
+      message: "Missing Remita configuration",
+      missing: config.missing,
+    });
+  }
+
+  try {
+    const data = await createConnectCheckout(req.body ?? {});
+    return res.status(200).json({ ok: true, ...data });
+  } catch (error) {
+    return res.status(400).json({
+      ok: false,
+      message: error?.response?.data?.message || error?.message || "Remita test checkout failed.",
+    });
+  }
+});
+
+router.post("/checkout/ussd", async (req, res) => {
+  try {
+    const data = await startCheckoutUssd(req.body ?? {});
+    return res.status(200).json({ ok: true, ...data });
+  } catch (error) {
+    return res.status(400).json({
+      ok: false,
+      message: error?.response?.data?.message || error?.message || "Remita could not start the USSD payment.",
     });
   }
 });
